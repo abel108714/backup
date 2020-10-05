@@ -22,9 +22,9 @@ set "aa2=%aa2: =%" ::去除空白
 echo %copyFolder%
 
 
-xcopy %copyFolder%* C:\backup_data\backup\%aa%\◎資訊\
-xcopy C:\Users\udev77\Desktop\*.txt C:\backup_data\backup\%aa%\Desktop\
-xcopy C:\Users\udev77\Desktop\*.bat C:\backup_data\backup\%aa%\Desktop\
+xcopy /e /y %copyFolder%* C:\backup_data\backup\%aa%\◎資訊\
+xcopy /e /y C:\Users\udev77\Desktop\*.txt C:\backup_data\backup\%aa%\Desktop\
+xcopy /e /y C:\Users\udev77\Desktop\*.bat C:\backup_data\backup\%aa%\Desktop\
 cd C:\backup_data\backup\
 git init
 git add .
