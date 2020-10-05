@@ -80,6 +80,28 @@ handler = WebhookHandler('b4ee9629a3ee5fd3a17142d34cc0598e')
 import json
 
 
+#import pymysql
+#import charts
+# 資料庫設定
+#db_settings = {
+#    "host": "127.21.7.39",
+#    "port": 3306,
+#    "user": "root",
+#    "password": "16264386",
+#    "db": "usersDB",
+#    "charset": "utf8"
+#}
+#import mysql.connector
+
+#mydb=mysql.connector.connect(
+#    host= '127.21.7.39',
+#    port= 3306,
+#    user= 'root',
+#    password= '16264386',
+#    db= 'usersDB'
+#)
+
+
 #讀入LINE BOT序號
 #with open("data/line_bot_secrets.txt", "r") as json_file:
 #  secrets = json.load(json_file)
@@ -240,8 +262,25 @@ def handle_message(event):#
             #datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             #try:
             #profile = line_bot_api.get_profile('')
-            line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(int(date.strftime("%H%M")))))
-            line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(event.source.group_id)))
+            #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(int(date.strftime("%H%M")))))
+            line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(profile.display_name)))
+            line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(event.source.user_id)))
+            #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(event.source.group_id)))
+            # 建立Connection物件
+            #conn = pymysql.connect(**db_settings)
+            # 建立Cursor物件
+            #cur=mydb.cursor()
+            #with conn.cursor() as cursor:
+            #sql="INSERT INTO users(UID,Dept,Name,checked) VALUES(%s,%s,%s,%s)"
+            #my_id=str(event.source.user_id)
+            #if my_id == "" :
+                #my_id = event.source.group_id
+            #data=(my_id,'',str(profile.display_name),'')
+            #cursor.execute(sql,data)
+            #cur.execute(sql,data)
+            #mydb.commit()
+                # 儲存變更
+                #conn.commit()
             while True:
                 #now_t=int(int(date.strftime("%H"))*60+int(date.strftime("%M")))
                 #set_t=int(11*60+11)

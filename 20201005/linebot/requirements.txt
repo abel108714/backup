@@ -3,3 +3,5 @@ flask
 numpy
 opencv-python
 schedule
+pymysql
+mysql.connector
