@@ -25,6 +25,7 @@ echo %copyFolder%
 xcopy /e /y %copyFolder%* C:\backup_data\backup\%aa%\¡·¸ê°T\
 xcopy /e /y C:\Users\udev77\Desktop\*.txt C:\backup_data\backup\%aa%\Desktop\
 xcopy /e /y C:\Users\udev77\Desktop\*.bat C:\backup_data\backup\%aa%\Desktop\
+xcopy /e /y C:\linebot\* C:\backup_data\backup\%aa%\linebot\
 cd C:\backup_data\backup\
 git init
 git add .
