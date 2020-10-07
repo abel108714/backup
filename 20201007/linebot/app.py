@@ -92,17 +92,7 @@ import pymysql
 #    "charset": "utf8"
 #}
 import mysql.connector
-db_settings = {
-    "host": "127.21.7.39",
-    "port": 3306,
-    "user": "root",
-    "password": "16264386",
-    "db": "usersDB",
-    "charset": "utf8"
-}
-# 建立Connection物件
-conn = pymysql.connect(**db_settings)
-#conn2 = pymysql.connect(**db_settings)
+
 
 
 
@@ -132,12 +122,6 @@ def job2():
     tz = timezone(timedelta(hours=+8))
     date = datetime.now(tz)
     #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", TextSendMessage(text=str(date.strftime("%H:%M"))))
-        #Uca283ed15fe7664dab50d50ca20f2846  怡君的id
-        #Uee6224531167e863e3c08504055d6ed2  自己的id
-        #C4ec4e31c55ca25cc823f5ab5b4e1b040  測試用群組id
-        #Caa547d0a89e353969160556a34444c64  網通群組id
-    
-    print('case0')
     if date.strftime("%H:%M") == "17:48":#自動發網通報表
         print('case1')
         #網通群組
@@ -169,28 +153,6 @@ def job2():
         #line_bot_api.push_message("Uca283ed15fe7664dab50d50ca20f2846", StorePerformanceReport())
         #自己
         line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", StorePerformanceReport())
-        #print('ok!')
-        #try:
-
-            # 建立Cursor物件
-        #    with conn.cursor() as cur:
-        #        print('ok!1')
-                #UPDATE users SET checked='学习 C++' WHERE UID=3
-                #sql="INSERT INTO users(UID,Dept,Name,checked) VALUES(%s,%s,%s,%s)"
-        #        sql="UPDATE users SET checked = %s WHERE UID = %s"
-        #        print('ok!2')
-
-        #        data=(tdy_date_str,'Uee6224531167e863e3c08504055d6ed2')
-        #        print('ok!3')
-        #        cur.execute(sql,data)
-        #        print('ok!4')
-        #        conn.commit()
-        #        print('ok!5')
-        #        line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text="已記錄"))
-        #except:
-        #    print('ok!6')
-          
-        #    line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=sql))
 
 
 
@@ -229,11 +191,10 @@ def callback():
     app.logger.info("Request body: " + body)
     # handle webhook body
     try:
-        handler.handle(body, signature)
+        handler.handle(body,signature)
     except InvalidSignatureError:
         abort(400)
     return 'OK'
-
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):#
@@ -260,47 +221,47 @@ def handle_message(event):#
         #elif '功能列表' in msg:
             #message = function_list()
             #line_bot_api.reply_message(event.reply_token, message)
-        #if '門市業績報表' in msg:
+        if '門市業績報表' in msg:
             # message = image_carousel_message1()
-        #    message = StorePerformanceReport()
-        #    line_bot_api.reply_message(event.reply_token, message)  
-        #elif '門市部日報表' in msg:
+            message = StorePerformanceReport()
+            line_bot_api.reply_message(event.reply_token, message)  
+        elif '門市部日報表' in msg:
             # message = image_carousel_message1()
-        #    message = StorePerformanceReport()
-        #    line_bot_api.reply_message(event.reply_token, message)  
+            message = StorePerformanceReport()
+            line_bot_api.reply_message(event.reply_token, message)  
         #elif 'R' in msg:
             # message = image_carousel_message1()
             #message = TextSendMessage(text="https://raw.githubusercontent.com/abel108714/test/master/" + BegMonthOfTodayPeriod + "網通目標達成比.jpg")
             #line_bot_api.reply_message(event.reply_token, message)  
-        #elif 'SS' in msg:
+        elif 'SS' in msg:
             # message = image_carousel_message1()
-        #    message = StorePerformanceReport()
-        #    line_bot_api.reply_message(event.reply_token, message)  
-        #elif 'ss' in msg:
+            message = StorePerformanceReport()
+            line_bot_api.reply_message(event.reply_token, message)  
+        elif 'ss' in msg:
             # message = image_carousel_message1()
-        #    message = StorePerformanceReport()
-        #    line_bot_api.reply_message(event.reply_token, message)  
-        #elif BegMonthOfTodayPeriod + '累計達成比' in msg:
+            message = StorePerformanceReport()
+            line_bot_api.reply_message(event.reply_token, message)  
+        elif BegMonthOfTodayPeriod + '累計達成比' in msg:
             # message = image_carousel_message1()
             #name = str(getOSMCAppendFileName())
-        #    message = OCPerformanceReport()
+            message = OCPerformanceReport()
             #message = TextSendMessage(text=str(OCPerformanceReport()))
-            #line_bot_api.reply_message(event.reply_token, message)  
+            line_bot_api.reply_message(event.reply_token, message)  
         #elif msg in msg:
             # message = image_carousel_message1()
             #name = str(getOSMCAppendFileName())
             #message = SpecOCPerformanceReport(msg)
             #message = TextSendMessage(text=str(OCPerformanceReport()))
             #line_bot_api.reply_message(event.reply_token, message)  
-        #elif event.message.text == 'ID?' or event.message.text == 'id?':
-        #    User_ID = TextMessage(text=event.source.user_id)
-        #    line_bot_api.reply_message(event.reply_token, User_ID)
+        elif event.message.text == 'ID?' or event.message.text == 'id?':
+            User_ID = TextMessage(text=event.source.user_id)
+            line_bot_api.reply_message(event.reply_token, User_ID)
             #print ('Reply User ID =>' + event.source.user_id)
-        #elif event.message.text == 'GroupID?':
-        #    Group_ID = TextMessage(text=event.source.group_id)
-        #    line_bot_api.reply_message(event.reply_token, Group_ID)
+        elif event.message.text == 'GroupID?':
+            Group_ID = TextMessage(text=event.source.group_id)
+            line_bot_api.reply_message(event.reply_token, Group_ID)
             #print ('Reply Group ID =>' + event.source.group_id)
-        if 'test' in msg:
+        elif 'test' in msg:
 
             #User_ID = TextMessage(text=event.source.user_id)
             #line_bot_api.reply_message(event.reply_token, message)
@@ -336,11 +297,36 @@ def handle_message(event):#
                 #mydb.commit()
             profile = line_bot_api.get_profile(event.source.user_id)
             message = TextSendMessage(text=str(profile.display_name))
-            print('test0')
+            line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(event.source.user_id)))
+            line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(profile.display_name)))
+            try:
+                db_settings = {
+                    "host": "127.21.7.39",
+                    "port": 3306,
+                    "user": "root",
+                    "password": "16264386",
+                    "db": "usersDB",
+                    "charset": "utf8"
+                }
+                # 建立Connection物件
+                conn = pymysql.connect(**db_settings)
+                # 建立Cursor物件
+                with conn.cursor() as cursor:
+                    sql="INSERT INTO users(UID,Dept,Name,checked) VALUES(%s,%s,%s,%s)"
+                    #my_id=str(event.source.user_id)
 
+                    data=(str(event.source.user_id),'',str(profile.display_name),'')
+                    cursor.execute(sql,data)
+                    #cursor.execute('SELECT * FROM users;')
+                    #data = cursor.fetchone()     
+                    #index = data[0]
+                    #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(index)))
+                        # 儲存變更
+                    conn.commit()
+            except:
+                    line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(profile.display_name)+"已記錄"))
             # 資料庫設定
             while True:
-                print('test1')
                 #now_t=int(int(date.strftime("%H"))*60+int(date.strftime("%M")))
                 #set_t=int(11*60+11)
                 #exe_t=set_t-now_t
@@ -395,12 +381,12 @@ def handle_message(event):#
         else:
             #message = TextSendMessage(text=msg)
             #message = TextSendMessage(text="")
-            message = SpecOCPerformanceReport(msg)
+            #message = SpecOCPerformanceReport(msg)
             #line_bot_api.reply_message(event.reply_token, message)
-            #profile = line_bot_api.get_profile(event.source.user_id)
-            #message = TextSendMessage(text=str(profile.display_name))
+            profile = line_bot_api.get_profile(event.source.user_id)
+            message = TextSendMessage(text=str(profile.display_name))
             #User_ID = TextMessage(text=event.source.user_id)
-            line_bot_api.reply_message(event.reply_token, message)
+            #line_bot_api.reply_message(event.reply_token, message)
 
             #CHANNEL_ACCESS_TOKEN = "YOUR CHANNEL TOKEN"
             #to = str(event.source.user_id)#"YOUR USER ID"
@@ -410,14 +396,14 @@ def handle_message(event):#
             #datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             #try:
             #profile = line_bot_api.get_profile('')
-            #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(int(date.strftime("%H%M")))))
-            #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(event.source.group_id)))
-            #while True:
+            line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(int(date.strftime("%H%M")))))
+            line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(event.source.group_id)))
+            while True:
                 #now_t=int(int(date.strftime("%H"))*60+int(date.strftime("%M")))
                 #set_t=int(11*60+11)
                 #exe_t=set_t-now_t
-                #schedule.run_pending()
-                #time.sleep(1)
+                schedule.run_pending()
+                time.sleep(1)
     
 
 
