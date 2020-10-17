@@ -1,0 +1,51 @@
+
+def isExist(string):
+    i=0
+    with open('data\\welcome.txt') as f:
+        if string == f.read():
+            return f.read()
+        else:
+            return f.read()
+    #return i
+
+def getUesrIDIndex(string):
+    i=0
+    with open('data\\welcome.txt') as f:
+        if string in f.read():
+            return i
+        else:
+	        i+=1
+    
+
+def getUesrID(index):
+    i=0
+    with open('data\\welcome.txt') as f:
+        if i == index:
+            return f.readline()
+        else:
+	        i+=1
+
+def sum(x,y):
+    s=x+y
+
+    return s
+
+if __name__ == "__main__":
+
+    f = open("demofile.txt", "r")
+    print(f.read(5))
+    print('-------------------')
+    print(isExist('立修'))
+    print(getUesrIDIndex('立修'))
+    print(getUesrID(getUesrIDIndex('立修')))
+
+    print('-------------------')
+    print(isExist('林'))
+    print(getUesrIDIndex('林'))
+    print(getUesrID(getUesrIDIndex('林')))
+
+    print('-------------------')
+    print(isExist('李'))
+    print(getUesrIDIndex('李'))
+    print(getUesrID(getUesrIDIndex('李')))
+    print(sum(1,2))
