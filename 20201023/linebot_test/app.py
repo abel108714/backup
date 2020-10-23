@@ -391,7 +391,7 @@ def job2(event):
         #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", StorePerformanceReport())
         #自己
         line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", StorePerformanceReport())
-    elif date.strftime("%H:%M") == "17:42":
+    elif date.strftime("%H:%M") == "17:53":
         print('case3')
         #網通群組
         #line_bot_api.push_message("Caa547d0a89e353969160556a34444c64", OCPerformanceReport())
