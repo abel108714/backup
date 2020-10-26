@@ -1,0 +1,13 @@
+備份增加VB程式v
+
+自動重開機登入
+
+安裝google遠端桌面v
+
+測試https://github.com/Sukuza/Eris-Command/blob/6d2b4312782378a1a22314fe4a7280968ed4e96e/linebot/api.py
+是否可用
+
+備份增加My Documents資料夾
+備份增加.py檔
+修改實體通路6055欄位
+修改鼎新機具報表自動化編號
