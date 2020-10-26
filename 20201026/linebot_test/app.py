@@ -683,7 +683,7 @@ def handle_message(event):#
                 mydb.commit()
                 if str(tdy_date_str) == my_data:#若跟今天日期相同，則代表已發過報表，跳出函式
                     print('已發過報表')
-                    sys.exit() 
+                    #sys.exit() 
             
             try:
                 #記錄checked的日期
@@ -694,15 +694,21 @@ def handle_message(event):#
 
                 cursor.close()#最後在關閉
                 print("已儲存")
-                working_count=1
+                working_count=0
                 while True:
-                    if working_count>0:
-                        #cls()    
-                        print('working...\\')
-                    else:
-                        #cls()
-                        print('working.../')
-                    working_count=working_count*-1
+                    for working_count in [0,1,2]:
+                        if working_count==0:
+                            cls()    
+                            print('working.')
+                            time.sleep(1)
+                        elif working_count==1:
+                            cls()
+                            print('working..')
+                            time.sleep(1)
+                        elif working_count==2:
+                            cls()
+                            print('working...')
+                            time.sleep(1)                   
                     schedule.run_pending()
                     time.sleep(1)
             except:
@@ -882,7 +888,9 @@ def cls():
     if platform.system()=="Windows":
         subprocess.Popen("cls", shell=True).communicate() #I like to use this instead of subprocess.call since for multi-word commands you can just type it out, granted this is just cls and subprocess.call should work fine 
     else: #Linux and Mac
-        print("\033c", end="")   
+        print("\033c", end="")
+
+
 
 import os
 if __name__ == "__main__":
