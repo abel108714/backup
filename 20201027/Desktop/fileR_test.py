@@ -50,41 +50,95 @@ class FileDataAccess:
         self.SplitStr = SplitStr
         self.FileName = FileName
 
-    def getIndex(self,Str):
+    def getDataRow(self,KeyStr):
         file1 = open(self.FileName, 'r') 
         Lines = file1.readlines() 
         count = 0
         for line in Lines: 
-            if Str == line.strip().split(self.SplitStr)[self.key]:
+            if KeyStr == line.strip().split(self.SplitStr)[self.key]:
                 return count
             else:
                 count+=1
 
-    def getData(self,Str):
+    def getData(self,Index,KeyStr):
         file1 = open(self.FileName, 'r') 
         Lines = file1.readlines() 
         count = 0
-        index = self.getIndex(Str)
+        DataRow = self.getDataRow(KeyStr)
         for line in Lines: 
             #print(count)
-            #print(line)
-            if count == index:
-                return line.strip().split(self.SplitStr)[index]
+            #print(DataRow)
+            print('>>>>>>'+str(line))
+            if count == DataRow:
+                #print("---->"+str(len(line.strip().split(self.SplitStr))))
+                return line.strip().split(self.SplitStr)[Index]
             else:
                 count+=1
-
-    def setData(self,key,data1,data2):
+    #setData('東森','21-3,069,200')
+    def setData(self,KeyStr,DataArr):
         file1 = open(self.FileName, 'r') 
         Lines = file1.readlines() 
         count = 0
-        if str(self.getData(key)) == str('None'):
-            for line in Lines:
+        NewLines = ''
+        #找KeyStr
+        DataRow = self.getDataRow(KeyStr)
+        for line in Lines: 
+            if count == DataRow:
+                #print(len(line.strip().split(self.SplitStr))
+                for i in range(0,len(line.strip().split(self.SplitStr))):
+                    #len(line.strip().split(self.SplitStr))
+                    if i==self.key:
+                        newline=newline+line.strip().split(self.SplitStr)[i]
+                    else:
+                        print(1)
+                        print(line.strip().split(self.SplitStr)[i])
+                        print(2)
+                        print(DataArr[i])
+                        newline=newline+DataArr[i]
+                        print(line)
+
+                line=''
+                for i in range(0,len(line.strip().split(self.SplitStr))):
+                    line=line+DataArr[i-1]
+
+
+            else:
+                count+=1
+            NewLines = NewLines + line
+        # i=0
+        # if str(self.getData(0,KeyStr)) == str('None'):#如果找不到
+        #     print('ok')
+        # else:#找到
+        #     for line in Lines: 
+        #         for i in len(line.strip().split(self.SplitStr))-1:
+        #             line.strip().split(self.SplitStr)[i]=DataArr[i]
+
+        fp = open(self.FileName, "w")
+        fp.writelines(NewLines)
+        fp.close()
+
+
+            #for line in Lines:
+            #    line.strip().split(self.SplitStr)[Index]
+
+
+
+        #if str(self.getData(KeyStr)) != str('None'):
+            #d=0
+            #陣列轉字串
+
+
+
+            #for data in data_arr:
+            #    data[d]
+            #    d+=1
+            #for line in Lines:
                 #print(line.strip('\n')+'123')
                 #print(Lines[count])
                 #if key == 
                 #count+=1            
 
-            lines = ['\n',key,self.SplitStr,data1,self.SplitStr,data2,'\n'] 
+            #lines = ['\n',key,self.SplitStr,data1,self.SplitStr,data2,'\n'] 
         # for line in Lines: 
         #     print(count)
         #     print(line.strip('\n')+'123')
@@ -115,9 +169,30 @@ class FileDataAccess:
 a=FileDataAccess(0,'-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部每月預入績效.txt')
 
 #print(a.getIndex('東森'))
-#print(a.getData('東森'))
-print(a.getData('東西'))
-print(a.setData('東西','10/10','54,321'))
+print('====================')
+#print(a.getData(2,'東森'))
+b=['21','3,069,201']
+print(a.setData('東森',['21','3,069,201']))
+#print(a.getData(2,'博客來'))
+#print(a.getData(1,'東森'))
+#print(a.getData(1,'博客來'))
+print('====================')
+#print(a.getData('東西'))
+#print(a.setData('東西','10/10','54,321'))
+#la2=str(1,2,3)
+#la=[1,2,3,4,5]
+#print(str(la))
+#la=list(la2)+['6','7','8']
+#print(str(la))
+import numpy as np
+#陣列轉字串
+arr_list = ['a', 'b', 'c', 'd']
+arr_list = arr_list + ['1', '2', '3', '4']
+arr = np.array(arr_list)
+arr_str = ''.join(arr)
+print(arr_str)
+
+
 #print(getUesrIndex('立修'))
 #print(getUesrIndex('陳'))
 #print(getUesrID('立修'))

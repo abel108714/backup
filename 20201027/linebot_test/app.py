@@ -373,6 +373,7 @@ def job2(event):
     #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str("1")))
     tz = timezone(timedelta(hours=+8))
     date = datetime.now(tz)
+    print('123')
     print(str(date.strftime("%H:%M")))
     #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", TextSendMessage(text=str(date.strftime("%H:%M"))))
     if date.strftime("%H:%M") == "17:45":#自動發網通報表
@@ -391,7 +392,7 @@ def job2(event):
         #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", StorePerformanceReport())
         #自己
         line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", StorePerformanceReport())
-    elif date.strftime("%H:%M") == "17:53":
+    elif date.strftime("%H:%M") == "17:59":
         print('case3')
         #網通群組
         #line_bot_api.push_message("Caa547d0a89e353969160556a34444c64", OCPerformanceReport())
@@ -407,6 +408,7 @@ def job2(event):
         #自己
         #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", StorePerformanceReport())
         line_bot_api.push_message("C5fd1c0d2f75eb01ad8935d719076012b", OCPerformanceReport())
+        #line_bot_api.push_message("U03f8575fac6ad12b612c6222ad37678e", OCPerformanceReport())
     elif date.strftime("%H:%M") == "16:06":#測試用時間
         print('case4')
         
@@ -478,7 +480,8 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):#
-        #schedule.every(1).minutes.do(job2,event)  
+        schedule.every(1).minutes.do(job2,event)
+        #
         #user_id = event.source.user_id
     #while True:
         msg = event.message.text

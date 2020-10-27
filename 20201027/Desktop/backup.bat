@@ -29,7 +29,7 @@ xcopy /e /y C:\Users\udev77\Desktop\*.py C:\backup_data\backup\%aa%\Desktop\
 xcopy /e /y C:\linebot\* C:\backup_data\backup\%aa%\linebot\
 xcopy /e /y C:\linebot_test\* C:\backup_data\backup\%aa%\linebot_test\
 xcopy /e /y C:\Users\udev77\source\repos\* C:\backup_data\backup\%aa%\repos\
-xcopy /e /y C:\MyDocu~1\* C:\backup_data\backup\%aa%\MyDocu~1\
+xcopy /e /y C:\MyDocu~1\* C:\backup_data\backup\%aa%\"My Documents"\
 cd C:\backup_data\backup\
 git init
 git add .
