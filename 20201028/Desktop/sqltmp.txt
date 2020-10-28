@@ -1,0 +1,56 @@
+mysql> 
+
+select checked from users where UID="U03f8575fac6ad12b612c6222ad37678e";
+
+update users set checked="20201018" where UID="U03f8575fac6ad12b612c6222ad37678e";
+
+select * from users;
+
+[22/Oct/2020 16:10:41]
+
+
+            try:
+                db_settings = {
+                    "host": "127.21.7.39",
+                    "port": 3306,
+                    "user": "root",
+                    "password": "16264386",
+                    "db": "usersDB",
+                    "charset": "utf8"
+                }
+                # 建立Connection物件
+                conn = pymysql.connect(**db_settings)
+                # 建立Cursor物件
+                with conn.cursor() as cursor:
+                    sql="INSERT INTO users(UID,Dept,Name,checked) VALUES(%s,%s,%s,%s)"
+                    #my_id=str(event.source.user_id)
+
+                    data=(str(event.source.user_id),'',str(profile.display_name),'')
+                    cursor.execute(sql,data)
+                    #cursor.execute('SELECT * FROM users;')
+                    #data = cursor.fetchone()     
+                    #index = data[0]
+                    #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str(index)))
+                        # 儲存變更
+                    conn.commit()
+                print('sql done.')
+            except:
+                print('sql except.')
+
+
+
+
+            sql="UPDATE users SET checked=%s where UID=%s" 
+            #sql="UPDATE users SET checked=\'20201020\' where UID=\'U03f8575fac6ad12b612c6222ad37678e\'"
+            #sql="UPDATE users SET checked=\'20201018\'"
+            #print(sql)
+            #mysql> UPDATE users SET checked=20201019 where UID="U03f8575fac6ad12b612c6222ad37678e";
+            data=(str(tdy_date_str),str(event.source.user_id))
+            #print(data)
+            #print(cursor)
+            cursor.execute(sql,data)
+            #cursor.execute(sql)
+            print(cursor)
+            print(mydb)
+            mydb.commit()
+            print(mydb)

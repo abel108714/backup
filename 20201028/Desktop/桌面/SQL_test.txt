@@ -1,0 +1,36 @@
+Sub SQL_test()
+
+
+    Dim Cn As New ADODB.connection
+    Dim Rs As New ADODB.Recordset
+
+    SQLIP = "localhost"
+    SQLNAME = "numbersDB"
+    SQLID = "root"
+    SQLPWD = "aa461192"
+    Cn.Open "DRIVER=MySQL ODBC 5.3 Unicode Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD) & _
+    ""
+    Rs.Open "select * from numbers;", Cn, 3
+    If Rs.RecordCount > 0 Then
+        MsgBox "0k"
+    Else
+        MsgBox "Ng"
+    End If
+    
+    
+    Do Until Rs.EOF
+
+        '選擇要貼上的欄位
+        Range("A1").Select
+        ActiveCell = Rs.Fields("Name")
+        strOutput = Rs.Fields("Name")
+        Rs.MoveNext
+    Loop
+    
+    MsgBox strOutput
+
+End Sub
+
