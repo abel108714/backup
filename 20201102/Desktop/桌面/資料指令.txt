@@ -1,0 +1,32 @@
+INSERT INTO members (UID, dept, name, target) VALUES('1','北區','李永齊','0');
+INSERT INTO members (UID, dept, name, target) VALUES('2','北區','柯世鵬','0');
+INSERT INTO members (UID, dept, name, target) VALUES('3','北區','陳安睫','0');
+INSERT INTO members (UID, dept, name, target) VALUES('4','中區','陳巧芬','0');
+INSERT INTO members (UID, dept, name, target) VALUES('5','中區','駱麗玲','0');
+INSERT INTO members (UID, dept, name, target) VALUES('6','南區','張嘉芬','0');
+INSERT INTO members (UID, dept, name, target) VALUES('7','南區','黃三和','0');
+INSERT INTO members (UID, dept, name, target) VALUES('8','外銷','秦志雄','0');
+INSERT INTO members (UID, dept, name, target) VALUES('9','外銷','許巧琪','0');
+INSERT INTO members (UID, dept, name, target) VALUES('10','外銷','黃宥瑄','0');
+
+INSERT INTO members (UID, dept, name, target) VALUES('11','流通','陳永宗','0');
+INSERT INTO members (UID, dept, name, target) VALUES('12','流通','陳騏毅','0');
+INSERT INTO members (UID, dept, name, target) VALUES('13','網電','張玉玲','0');
+
+INSERT INTO members (UID, dept, name, target) VALUES('14','北投','王佩芳','0');
+INSERT INTO members (UID, dept, name, target) VALUES('15','五權','潘麗蓮','0');
+INSERT INTO members (UID, dept, name, target) VALUES('16','崇德','王素月','0');
+INSERT INTO members (UID, dept, name, target) VALUES('17','進德','林育慧','0');
+INSERT INTO members (UID, dept, name, target) VALUES('18','中港','王品蓁','0');
+INSERT INTO members (UID, dept, name, target) VALUES('19','經國','耿語晨','0');
+INSERT INTO members (UID, dept, name, target) VALUES('20','中興','劉珮翎','0');
+INSERT INTO members (UID, dept, name, target) VALUES('21','豐樂','秦婉華','0');
+INSERT INTO members (UID, dept, name, target) VALUES('22','國光','蔡佩螢','0');
+INSERT INTO members (UID, dept, name, target) VALUES('23','三豐','王芬芳','0');
+INSERT INTO members (UID, dept, name, target) VALUES('24','科博館','劉怡君','0');
+INSERT INTO members (UID, dept, name, target) VALUES('25','左營','劉韻茹','0');
+
+INSERT INTO members (UID, dept, name, target) VALUES('26','胖老爺','鄭智文','0');
+
+INSERT INTO members (UID, dept, name, target) VALUES('27','行政','李麗娟','0');
+INSERT INTO members (UID, dept, name, target) VALUES('28','行政','徐春貴','0');
