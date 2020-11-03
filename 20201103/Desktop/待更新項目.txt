@@ -1,0 +1,17 @@
+蜂王乳精欄位座標
+產生鼎新報表座標
+
+
+
+    If Month(d) >= 10 And getExpePerf(2, "date") >= 10 Then
+        Columns("F:F").ColumnWidth = 39.29
+        Columns("G:G").ColumnWidth = 25.57
+    Else
+        Columns("F:F").ColumnWidth = 37.43
+        Columns("G:G").ColumnWidth = 27.43
+    End If
+
+
+
+
+自動化故障時 DataCt不為0卻沒檔案
