@@ -170,7 +170,7 @@ def job2():
     
     #print("yes")
     #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", TextSendMessage(text=str(date.strftime("%H:%M"))))
-    if date.strftime("%H:%M") == "17:55":#自動發網通報表
+    if date.strftime("%H:%M") == "17:41":#自動發網通報表
         if weekno<6:
             print('case1')
             #網通群組
@@ -522,25 +522,27 @@ def handle_message(event):#
 
                 cursor.close()#最後在關閉
                 print("已儲存")
-                working_count=0
-                while True:
-                    # for working_count in [0,1,2]:
-                    #     if working_count==0:
-                    #         cls()    
-                    #         print('working.')
-                    #         time.sleep(1)
-                    #     elif working_count==1:
-                    #         cls()
-                    #         print('working..')
-                    #         time.sleep(1)
-                    #     elif working_count==2:
-                    #         cls()
-                    #         print('working...')
-                    #         time.sleep(1)                   
-                    schedule.run_pending()
-                    time.sleep(1)
             except:
                 print("未儲存")
+                
+            working_count=0
+            while True:
+                # for working_count in [0,1,2]:
+                #     if working_count==0:
+                #         cls()    
+                #         print('working.')
+                #         time.sleep(1)
+                #     elif working_count==1:
+                #         cls()
+                #         print('working..')
+                #         time.sleep(1)
+                #     elif working_count==2:
+                #         cls()
+                #         print('working...')
+                #         time.sleep(1)                   
+                schedule.run_pending()
+                time.sleep(1)
+
             #myresult = cursor.fetchall()#fetchone()#fetchall()
             #print('myresult:'+ str(myresult).strip('[').strip(']'))
             #mydb.commit()
