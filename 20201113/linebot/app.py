@@ -164,8 +164,8 @@ def job2():
     #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str("1")))
     tz = timezone(timedelta(hours=+8))
     date = datetime.now(tz)
-    print('123')
-    print(str(date.strftime("%H:%M")))
+    #print('123')
+    #print(str(date.strftime("%H:%M")))
     weekno = datetime.today().weekday()
     
     #print("yes")
@@ -202,7 +202,7 @@ def job2():
         #line_bot_api.push_message("Uca283ed15fe7664dab50d50ca20f2846", StorePerformanceReport())
         #自己
         #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", StorePerformanceReport())
-        line_bot_api.push_message("C5fd1c0d2f75eb01ad8935d719076012b", OCPerformanceReport())
+        #line_bot_api.push_message("C5fd1c0d2f75eb01ad8935d719076012b", OCPerformanceReport())
         #line_bot_api.push_message("U03f8575fac6ad12b612c6222ad37678e", OCPerformanceReport())
     elif date.strftime("%H:%M") == "16:46":#測試用時間
         print('case4')
@@ -313,7 +313,7 @@ def handle_message(event):#
         else:
             print('match: 格式不符')
 
-    if 'run' in msg:
+    if '[run]' in msg:
 
         profile = line_bot_api.get_profile(event.source.user_id)
         message = TextSendMessage(text=str(profile.display_name))
@@ -360,19 +360,19 @@ def handle_message(event):#
             
         working_count=0
         while True:
-            # for working_count in [0,1,2]:
-            #     if working_count==0:
-            #         cls()    
-            #         print('working.')
-            #         time.sleep(1)
-            #     elif working_count==1:
-            #         cls()
-            #         print('working..')
-            #         time.sleep(1)
-            #     elif working_count==2:
-            #         cls()
-            #         print('working...')
-            #         time.sleep(1)                   
+            for working_count in [0,1,2]:
+                if working_count==0:
+                    cls()    
+                    print('working.')
+                    time.sleep(1)
+                elif working_count==1:
+                    cls()
+                    print('working..')
+                    time.sleep(1)
+                elif working_count==2:
+                    cls()
+                    print('working...')
+                    time.sleep(1)                   
             schedule.run_pending()
             time.sleep(1)
 
