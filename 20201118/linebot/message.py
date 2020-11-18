@@ -376,7 +376,7 @@ def SpecOCPerformanceReport(msg):
         return message
 
 def OCPerformanceReport():
-    
+
     NewDate=d.Date()
     #獲取今天的日期
     tdy_date_str = NewDate.getYear() + NewDate.getMonth() + NewDate.getDay()
@@ -400,7 +400,7 @@ def OCPerformanceReport():
         return message
     else:
         #print('無報表')
-        message=TextSendMessage(text="")
+        message=TextSendMessage(text="目前無報表，抱歉")
         return message
         #message=TextSendMessage(text="")
         #return message

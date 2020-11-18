@@ -170,7 +170,7 @@ def job2():
     
     #print("yes")
     #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", TextSendMessage(text=str(date.strftime("%H:%M"))))
-    if date.strftime("%H:%M") == "17:45":#自動發網通報表
+    if date.strftime("%H:%M") == "17:41":#自動發網通報表
         if weekno<6:
             print('case1')
             print(weekno)

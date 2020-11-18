@@ -7598,3 +7598,258 @@ linebot.exceptions.LineBotApiError: LineBotApiError: status_code=400, request_id
 2020-11-18 14:54 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 14:53:37, next run: 2020-11-18 14:54:37)
 2020-11-18 14:55 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 14:54:37, next run: 2020-11-18 14:55:37)
 2020-11-18 14:56 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 14:55:37, next run: 2020-11-18 14:56:37)
+2020-11-18 14:57 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 14:56:37, next run: 2020-11-18 14:57:37)
+2020-11-18 14:58 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 14:57:37, next run: 2020-11-18 14:58:37)
+2020-11-18 14:59 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 14:58:37, next run: 2020-11-18 14:59:37)
+2020-11-18 15:00 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 14:59:37, next run: 2020-11-18 15:00:37)
+2020-11-18 15:01 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:00:38, next run: 2020-11-18 15:01:38)
+2020-11-18 15:02 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:01:38, next run: 2020-11-18 15:02:38)
+2020-11-18 15:03 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:02:38, next run: 2020-11-18 15:03:38)
+2020-11-18 15:04 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:03:38, next run: 2020-11-18 15:04:38)
+2020-11-18 15:05 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:04:38, next run: 2020-11-18 15:05:38)
+2020-11-18 15:06 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:05:38, next run: 2020-11-18 15:06:38)
+2020-11-18 15:07 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:06:38, next run: 2020-11-18 15:07:38)
+2020-11-18 15:08 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:07:38, next run: 2020-11-18 15:08:38)
+2020-11-18 15:09 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:08:38, next run: 2020-11-18 15:09:38)
+2020-11-18 15:10 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:09:38, next run: 2020-11-18 15:10:38)
+2020-11-18 15:11 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:10:38, next run: 2020-11-18 15:11:38)
+2020-11-18 15:12 INFO  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+2020-11-18 15:13 INFO Request body: {"events":[{"type":"message","replyToken":"6c4baffc0bbb4639a5ba86689043c203","source":{"userId":"Uee6224531167e863e3c08504055d6ed2","type":"user"},"timestamp":1605683589261,"mode":"active","message":{"type":"text","id":"13051387249866","text":"[run]"}}],"destination":"U8ec81edfb39499a39625be8c3e335ce0"}
+2020-11-18 15:13 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 15:13 DEBUG https://api.line.me:443 "GET /v2/bot/profile/Uee6224531167e863e3c08504055d6ed2 HTTP/1.1" 200 241
+2020-11-18 15:13 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 15:13 DEBUG https://api.line.me:443 "POST /v2/bot/message/reply HTTP/1.1" 200 22
+2020-11-18 15:13 INFO Running job Every 1 minute do job2() (last run: [never], next run: 2020-11-18 15:13:48)
+2020-11-18 15:14 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:13:49, next run: 2020-11-18 15:14:49)
+2020-11-18 15:14 DEBUG Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2020-11-18 15:14 DEBUG https://raw.githubusercontent.com:443 "GET /abel108714/test/master/1101_1118%E7%B6%B2%E9%80%9A%E7%9B%AE%E6%A8%99%E9%81%94%E6%88%90%E6%AF%94.jpg HTTP/1.1" 404 14
+2020-11-18 15:14 INFO https://raw.githubusercontent.com/abel108714/test/master/1101_1118網通目標達成比.jpg
+2020-11-18 15:14 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 15:14 DEBUG https://api.line.me:443 "POST /v2/bot/message/push HTTP/1.1" 400 118
+2020-11-18 15:14 ERROR Exception on /callback [POST]
+Traceback (most recent call last):
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "app.py", line 253, in callback
+    handler.handle(body,signature)
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\linebot\webhook.py", line 256, in handle
+    self.__invoke_func(func, event, payload)
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\linebot\webhook.py", line 268, in __invoke_func
+    func(event)
+  File "app.py", line 379, in handle_message
+    schedule.run_pending()
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\schedule\__init__.py", line 563, in run_pending
+    default_scheduler.run_pending()
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\schedule\__init__.py", line 94, in run_pending
+    self._run_job(job)
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\schedule\__init__.py", line 147, in _run_job
+    ret = job.run()
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\schedule\__init__.py", line 466, in run
+    ret = self.job_func()
+  File "app.py", line 182, in job2
+    line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", OCPerformanceReport())
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\linebot\api.py", line 148, in push_message
+    '/v2/bot/message/push', data=json.dumps(data), timeout=timeout
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\linebot\api.py", line 1153, in _post
+    self.__check_error(response)
+  File "C:\Users\udev77\djangogirls\djangogirls_venv\lib\site-packages\linebot\api.py", line 1180, in __check_error
+    error=Error.new_from_json_dict(response.json)
+linebot.exceptions.LineBotApiError: LineBotApiError: status_code=400, request_id=23600d2a-e1bc-4b0e-a524-72825b79c03b, error_response={"details": [{"message": "May not be empty", "property": "messages[0].text"}], "message": "The request body has 1 error(s)"}, headers={'Server': 'openresty', 'Content-Type': 'application/json', 'x-line-request-id': '23600d2a-e1bc-4b0e-a524-72825b79c03b', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'x-frame-options': 'DENY', 'Content-Length': '118', 'Expires': 'Wed, 18 Nov 2020 07:14:48 GMT', 'Cache-Control': 'max-age=0, no-cache, no-store', 'Pragma': 'no-cache', 'Date': 'Wed, 18 Nov 2020 07:14:48 GMT', 'Connection': 'close'}
+2020-11-18 15:14 INFO 127.0.0.1 - - [18/Nov/2020 15:14:50] "[35m[1mPOST /callback HTTP/1.1[0m" 500 -
+2020-11-18 15:20 INFO  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+2020-11-18 15:20 INFO Request body: {"events":[{"type":"message","replyToken":"82b6df20496b4b7e92650a5b46011c53","source":{"userId":"Uee6224531167e863e3c08504055d6ed2","type":"user"},"timestamp":1605684036713,"mode":"active","message":{"type":"text","id":"13051420149526","text":"[run]"}}],"destination":"U8ec81edfb39499a39625be8c3e335ce0"}
+2020-11-18 15:20 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 15:20 DEBUG https://api.line.me:443 "GET /v2/bot/profile/Uee6224531167e863e3c08504055d6ed2 HTTP/1.1" 200 244
+2020-11-18 15:20 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 15:20 DEBUG https://api.line.me:443 "POST /v2/bot/message/reply HTTP/1.1" 200 2
+2020-11-18 15:21 INFO Running job Every 1 minute do job2() (last run: [never], next run: 2020-11-18 15:21:35)
+2020-11-18 15:22 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:21:35, next run: 2020-11-18 15:22:35)
+2020-11-18 15:22 DEBUG Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2020-11-18 15:22 DEBUG https://raw.githubusercontent.com:443 "GET /abel108714/test/master/1101_1118%E7%B6%B2%E9%80%9A%E7%9B%AE%E6%A8%99%E9%81%94%E6%88%90%E6%AF%94.jpg HTTP/1.1" 404 14
+2020-11-18 15:22 INFO https://raw.githubusercontent.com/abel108714/test/master/1101_1118網通目標達成比.jpg
+2020-11-18 15:22 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 15:22 DEBUG https://api.line.me:443 "POST /v2/bot/message/push HTTP/1.1" 200 22
+2020-11-18 15:23 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:22:36, next run: 2020-11-18 15:23:36)
+2020-11-18 15:25 INFO  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+2020-11-18 15:25 INFO Request body: {"events":[{"type":"message","replyToken":"1d78e04d1bd74fe584f3323bb741c508","source":{"userId":"Uee6224531167e863e3c08504055d6ed2","type":"user"},"timestamp":1605684316307,"mode":"active","message":{"type":"text","id":"13051440868723","text":"[run]"}}],"destination":"U8ec81edfb39499a39625be8c3e335ce0"}
+2020-11-18 15:25 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 15:25 DEBUG https://api.line.me:443 "GET /v2/bot/profile/Uee6224531167e863e3c08504055d6ed2 HTTP/1.1" 200 241
+2020-11-18 15:25 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 15:25 DEBUG https://api.line.me:443 "POST /v2/bot/message/reply HTTP/1.1" 200 2
+2020-11-18 15:26 INFO Running job Every 1 minute do job2() (last run: [never], next run: 2020-11-18 15:26:14)
+2020-11-18 15:27 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:26:15, next run: 2020-11-18 15:27:15)
+2020-11-18 15:28 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:27:15, next run: 2020-11-18 15:28:15)
+2020-11-18 15:29 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:28:15, next run: 2020-11-18 15:29:15)
+2020-11-18 15:30 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:29:15, next run: 2020-11-18 15:30:15)
+2020-11-18 15:31 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:30:16, next run: 2020-11-18 15:31:16)
+2020-11-18 15:32 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:31:16, next run: 2020-11-18 15:32:16)
+2020-11-18 15:33 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:32:17, next run: 2020-11-18 15:33:17)
+2020-11-18 15:34 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:33:18, next run: 2020-11-18 15:34:18)
+2020-11-18 15:35 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:34:19, next run: 2020-11-18 15:35:19)
+2020-11-18 15:36 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:35:19, next run: 2020-11-18 15:36:19)
+2020-11-18 15:37 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:36:20, next run: 2020-11-18 15:37:20)
+2020-11-18 15:38 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:37:21, next run: 2020-11-18 15:38:21)
+2020-11-18 15:39 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:38:22, next run: 2020-11-18 15:39:22)
+2020-11-18 15:40 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:39:22, next run: 2020-11-18 15:40:22)
+2020-11-18 15:41 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:40:23, next run: 2020-11-18 15:41:23)
+2020-11-18 15:42 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:41:24, next run: 2020-11-18 15:42:24)
+2020-11-18 15:43 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:42:25, next run: 2020-11-18 15:43:25)
+2020-11-18 15:44 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:43:26, next run: 2020-11-18 15:44:26)
+2020-11-18 15:45 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:44:27, next run: 2020-11-18 15:45:27)
+2020-11-18 15:46 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:45:28, next run: 2020-11-18 15:46:28)
+2020-11-18 15:47 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:46:29, next run: 2020-11-18 15:47:29)
+2020-11-18 15:48 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:47:30, next run: 2020-11-18 15:48:30)
+2020-11-18 15:49 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:48:31, next run: 2020-11-18 15:49:31)
+2020-11-18 15:50 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:49:32, next run: 2020-11-18 15:50:32)
+2020-11-18 15:51 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:50:33, next run: 2020-11-18 15:51:33)
+2020-11-18 15:52 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:51:33, next run: 2020-11-18 15:52:33)
+2020-11-18 15:53 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:52:33, next run: 2020-11-18 15:53:33)
+2020-11-18 15:54 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:53:33, next run: 2020-11-18 15:54:33)
+2020-11-18 15:55 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:54:33, next run: 2020-11-18 15:55:33)
+2020-11-18 15:56 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:55:33, next run: 2020-11-18 15:56:33)
+2020-11-18 15:57 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:56:33, next run: 2020-11-18 15:57:33)
+2020-11-18 15:58 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:57:33, next run: 2020-11-18 15:58:33)
+2020-11-18 15:59 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:58:33, next run: 2020-11-18 15:59:33)
+2020-11-18 16:00 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 15:59:33, next run: 2020-11-18 16:00:33)
+2020-11-18 16:01 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:00:33, next run: 2020-11-18 16:01:33)
+2020-11-18 16:02 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:01:33, next run: 2020-11-18 16:02:33)
+2020-11-18 16:03 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:02:33, next run: 2020-11-18 16:03:33)
+2020-11-18 16:04 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:03:33, next run: 2020-11-18 16:04:33)
+2020-11-18 16:05 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:04:33, next run: 2020-11-18 16:05:33)
+2020-11-18 16:06 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:05:33, next run: 2020-11-18 16:06:33)
+2020-11-18 16:07 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:06:33, next run: 2020-11-18 16:07:33)
+2020-11-18 16:08 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:07:34, next run: 2020-11-18 16:08:34)
+2020-11-18 16:09 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:08:34, next run: 2020-11-18 16:09:34)
+2020-11-18 16:10 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:09:34, next run: 2020-11-18 16:10:34)
+2020-11-18 16:11 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:10:34, next run: 2020-11-18 16:11:34)
+2020-11-18 16:12 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:11:34, next run: 2020-11-18 16:12:34)
+2020-11-18 16:13 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:12:34, next run: 2020-11-18 16:13:34)
+2020-11-18 16:14 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:13:34, next run: 2020-11-18 16:14:34)
+2020-11-18 16:15 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:14:34, next run: 2020-11-18 16:15:34)
+2020-11-18 16:16 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:15:34, next run: 2020-11-18 16:16:34)
+2020-11-18 16:17 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:16:34, next run: 2020-11-18 16:17:34)
+2020-11-18 16:18 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:17:34, next run: 2020-11-18 16:18:34)
+2020-11-18 16:19 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:18:34, next run: 2020-11-18 16:19:34)
+2020-11-18 16:20 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:19:34, next run: 2020-11-18 16:20:34)
+2020-11-18 16:21 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:20:34, next run: 2020-11-18 16:21:34)
+2020-11-18 16:22 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:21:34, next run: 2020-11-18 16:22:34)
+2020-11-18 16:23 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:22:34, next run: 2020-11-18 16:23:34)
+2020-11-18 16:24 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:23:34, next run: 2020-11-18 16:24:34)
+2020-11-18 16:25 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:24:34, next run: 2020-11-18 16:25:34)
+2020-11-18 16:26 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:25:34, next run: 2020-11-18 16:26:34)
+2020-11-18 16:27 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:26:34, next run: 2020-11-18 16:27:34)
+2020-11-18 16:28 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:27:34, next run: 2020-11-18 16:28:34)
+2020-11-18 16:29 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:28:34, next run: 2020-11-18 16:29:34)
+2020-11-18 16:30 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:29:34, next run: 2020-11-18 16:30:34)
+2020-11-18 16:31 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:30:34, next run: 2020-11-18 16:31:34)
+2020-11-18 16:32 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:31:34, next run: 2020-11-18 16:32:34)
+2020-11-18 16:33 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:32:34, next run: 2020-11-18 16:33:34)
+2020-11-18 16:34 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:33:34, next run: 2020-11-18 16:34:34)
+2020-11-18 16:35 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:34:34, next run: 2020-11-18 16:35:34)
+2020-11-18 16:36 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:35:34, next run: 2020-11-18 16:36:34)
+2020-11-18 16:37 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:36:34, next run: 2020-11-18 16:37:34)
+2020-11-18 16:38 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:37:34, next run: 2020-11-18 16:38:34)
+2020-11-18 16:39 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:38:34, next run: 2020-11-18 16:39:34)
+2020-11-18 16:40 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:39:34, next run: 2020-11-18 16:40:34)
+2020-11-18 16:41 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:40:34, next run: 2020-11-18 16:41:34)
+2020-11-18 16:42 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:41:34, next run: 2020-11-18 16:42:34)
+2020-11-18 16:43 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:42:34, next run: 2020-11-18 16:43:34)
+2020-11-18 16:44 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:43:34, next run: 2020-11-18 16:44:34)
+2020-11-18 16:45 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:44:34, next run: 2020-11-18 16:45:34)
+2020-11-18 16:46 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:45:34, next run: 2020-11-18 16:46:34)
+2020-11-18 16:47 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:46:34, next run: 2020-11-18 16:47:34)
+2020-11-18 16:48 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:47:34, next run: 2020-11-18 16:48:34)
+2020-11-18 16:49 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:48:34, next run: 2020-11-18 16:49:34)
+2020-11-18 16:50 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:49:34, next run: 2020-11-18 16:50:34)
+2020-11-18 16:51 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:50:34, next run: 2020-11-18 16:51:34)
+2020-11-18 16:52 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:51:34, next run: 2020-11-18 16:52:34)
+2020-11-18 16:53 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:52:34, next run: 2020-11-18 16:53:34)
+2020-11-18 16:54 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:53:34, next run: 2020-11-18 16:54:34)
+2020-11-18 16:55 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:54:34, next run: 2020-11-18 16:55:34)
+2020-11-18 16:56 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:55:34, next run: 2020-11-18 16:56:34)
+2020-11-18 16:57 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:56:34, next run: 2020-11-18 16:57:34)
+2020-11-18 16:58 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:57:34, next run: 2020-11-18 16:58:34)
+2020-11-18 16:59 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:58:34, next run: 2020-11-18 16:59:34)
+2020-11-18 17:00 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 16:59:34, next run: 2020-11-18 17:00:34)
+2020-11-18 17:01 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:00:34, next run: 2020-11-18 17:01:34)
+2020-11-18 17:02 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:01:34, next run: 2020-11-18 17:02:34)
+2020-11-18 17:03 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:02:34, next run: 2020-11-18 17:03:34)
+2020-11-18 17:04 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:03:34, next run: 2020-11-18 17:04:34)
+2020-11-18 17:05 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:04:34, next run: 2020-11-18 17:05:34)
+2020-11-18 17:06 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:05:34, next run: 2020-11-18 17:06:34)
+2020-11-18 17:07 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:06:34, next run: 2020-11-18 17:07:34)
+2020-11-18 17:08 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:07:34, next run: 2020-11-18 17:08:34)
+2020-11-18 17:09 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:08:34, next run: 2020-11-18 17:09:34)
+2020-11-18 17:10 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:09:34, next run: 2020-11-18 17:10:34)
+2020-11-18 17:11 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:10:34, next run: 2020-11-18 17:11:34)
+2020-11-18 17:12 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:11:34, next run: 2020-11-18 17:12:34)
+2020-11-18 17:13 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:12:34, next run: 2020-11-18 17:13:34)
+2020-11-18 17:14 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:13:34, next run: 2020-11-18 17:14:34)
+2020-11-18 17:15 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:14:34, next run: 2020-11-18 17:15:34)
+2020-11-18 17:16 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:15:34, next run: 2020-11-18 17:16:34)
+2020-11-18 17:17 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:16:34, next run: 2020-11-18 17:17:34)
+2020-11-18 17:18 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:17:34, next run: 2020-11-18 17:18:34)
+2020-11-18 17:19 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:18:34, next run: 2020-11-18 17:19:34)
+2020-11-18 17:20 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:19:34, next run: 2020-11-18 17:20:34)
+2020-11-18 17:21 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:20:35, next run: 2020-11-18 17:21:35)
+2020-11-18 17:22 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:21:35, next run: 2020-11-18 17:22:35)
+2020-11-18 17:23 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:22:35, next run: 2020-11-18 17:23:35)
+2020-11-18 17:24 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:23:35, next run: 2020-11-18 17:24:35)
+2020-11-18 17:25 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:24:35, next run: 2020-11-18 17:25:35)
+2020-11-18 17:26 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:25:35, next run: 2020-11-18 17:26:35)
+2020-11-18 17:27 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:26:35, next run: 2020-11-18 17:27:35)
+2020-11-18 17:28 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:27:35, next run: 2020-11-18 17:28:35)
+2020-11-18 17:29 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:28:35, next run: 2020-11-18 17:29:35)
+2020-11-18 17:30 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:29:35, next run: 2020-11-18 17:30:35)
+2020-11-18 17:31 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:30:35, next run: 2020-11-18 17:31:35)
+2020-11-18 17:32 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:31:35, next run: 2020-11-18 17:32:35)
+2020-11-18 17:33 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:32:35, next run: 2020-11-18 17:33:35)
+2020-11-18 17:34 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:33:35, next run: 2020-11-18 17:34:35)
+2020-11-18 17:35 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:34:35, next run: 2020-11-18 17:35:35)
+2020-11-18 17:36 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:35:35, next run: 2020-11-18 17:36:35)
+2020-11-18 17:37 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:36:35, next run: 2020-11-18 17:37:35)
+2020-11-18 17:38 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:37:35, next run: 2020-11-18 17:38:35)
+2020-11-18 17:39 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:38:35, next run: 2020-11-18 17:39:35)
+2020-11-18 17:40 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:39:35, next run: 2020-11-18 17:40:35)
+2020-11-18 17:41 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:40:35, next run: 2020-11-18 17:41:35)
+2020-11-18 17:41 DEBUG Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2020-11-18 17:41 DEBUG https://raw.githubusercontent.com:443 "GET /abel108714/test/master/1101_1118%E7%B6%B2%E9%80%9A%E7%9B%AE%E6%A8%99%E9%81%94%E6%88%90%E6%AF%94.jpg HTTP/1.1" 200 46775
+2020-11-18 17:41 INFO https://raw.githubusercontent.com/abel108714/test/master/1101_1118網通目標達成比.jpg
+2020-11-18 17:41 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 17:41 DEBUG https://api.line.me:443 "POST /v2/bot/message/push HTTP/1.1" 200 2
+2020-11-18 17:42 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:41:42, next run: 2020-11-18 17:42:42)
+2020-11-18 17:43 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:42:42, next run: 2020-11-18 17:43:42)
+2020-11-18 17:44 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:43:42, next run: 2020-11-18 17:44:42)
+2020-11-18 17:46 INFO  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+2020-11-18 17:46 INFO Request body: {"events":[{"type":"message","replyToken":"6dffbd8e64b24e209d5553266926e8e8","source":{"userId":"Uee6224531167e863e3c08504055d6ed2","type":"user"},"timestamp":1605692773472,"mode":"active","message":{"type":"text","id":"13052127567754","text":"[run]"}}],"destination":"U8ec81edfb39499a39625be8c3e335ce0"}
+2020-11-18 17:46 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 17:46 DEBUG https://api.line.me:443 "GET /v2/bot/profile/Uee6224531167e863e3c08504055d6ed2 HTTP/1.1" 200 241
+2020-11-18 17:46 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 17:46 DEBUG https://api.line.me:443 "POST /v2/bot/message/reply HTTP/1.1" 200 22
+2020-11-18 17:47 INFO Running job Every 1 minute do job2() (last run: [never], next run: 2020-11-18 17:47:11)
+2020-11-18 17:47 DEBUG Starting new HTTPS connection (1): raw.githubusercontent.com:443
+2020-11-18 17:47 DEBUG https://raw.githubusercontent.com:443 "GET /abel108714/test/master/1101_1118%E7%B6%B2%E9%80%9A%E7%9B%AE%E6%A8%99%E9%81%94%E6%88%90%E6%AF%94.jpg HTTP/1.1" 200 46775
+2020-11-18 17:47 INFO https://raw.githubusercontent.com/abel108714/test/master/1101_1118網通目標達成比.jpg
+2020-11-18 17:47 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 17:47 DEBUG https://api.line.me:443 "POST /v2/bot/message/push HTTP/1.1" 200 22
+2020-11-18 17:48 INFO  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+2020-11-18 17:48 INFO Request body: {"events":[{"type":"message","replyToken":"5923e8e311db4b4aad7eda16b346bfce","source":{"userId":"Uee6224531167e863e3c08504055d6ed2","type":"user"},"timestamp":1605692890500,"mode":"active","message":{"type":"text","id":"13052137512790","text":"[run]"}}],"destination":"U8ec81edfb39499a39625be8c3e335ce0"}
+2020-11-18 17:48 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 17:48 DEBUG https://api.line.me:443 "GET /v2/bot/profile/Uee6224531167e863e3c08504055d6ed2 HTTP/1.1" 200 244
+2020-11-18 17:48 DEBUG Starting new HTTPS connection (1): api.line.me:443
+2020-11-18 17:48 DEBUG https://api.line.me:443 "POST /v2/bot/message/reply HTTP/1.1" 200 2
+2020-11-18 17:49 INFO Running job Every 1 minute do job2() (last run: [never], next run: 2020-11-18 17:49:03)
+2020-11-18 17:50 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:49:03, next run: 2020-11-18 17:50:03)
+2020-11-18 17:51 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:50:03, next run: 2020-11-18 17:51:03)
+2020-11-18 17:52 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:51:03, next run: 2020-11-18 17:52:03)
+2020-11-18 17:53 INFO Running job Every 1 minute do job2() (last run: 2020-11-18 17:52:03, next run: 2020-11-18 17:53:03)
