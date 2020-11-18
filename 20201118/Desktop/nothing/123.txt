@@ -1,0 +1,8 @@
+    try:
+        if date.strftime("%H:%M") == "16:07":
+            line_bot_api.push_message(str(event.source.user_id), TextSendMessage(text=str("123")))
+        else
+            line_bot_api.push_message(str(event.source.user_id), TextSendMessage(text=str("456")))
+    except LineBotApiError as e:
+    # error handle
+        raise e
