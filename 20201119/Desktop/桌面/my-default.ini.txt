@@ -1,0 +1,5 @@
+[mysqld]
+
+    basedir=C:\MySQL\mysql-8.0.20-winx64
+
+    datadir=C:\MySQL\mysql-8.0.20-winx64\data
