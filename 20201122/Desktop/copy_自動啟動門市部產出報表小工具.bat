@@ -1,0 +1,1 @@
+copy C:\Users\udev77\source\repos\WindowsApp5\WindowsApp5\bin\Debug\WindowsApp5.exe C:\Users\udev77\Desktop\自動啟動門市部產出報表小工具.exe
