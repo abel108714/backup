@@ -153,7 +153,8 @@ Public Class Form1
         'setScreenPic(report_path, report, 20, 193, 0, 0, 999, 612) '23,196,0,0,1225,697網通報表多一列
         'setScreenPic(github_report_path, report, 20, 193, 0, 0, 999, 612) '23,196,0,0,1225,697網通報表多一列(螢幕1)
         'setScreenPic(github_report_path, report, 15, 191, 0, 0, 714, 433) '螢幕2
-        setScreenPic(github_report_path, report, 15, 191, 0, 0, 715, 457) '螢幕2
+        'setScreenPic(github_report_path, report, 15, 191, 0, 0, 715, 457) '螢幕2
+        setScreenPic(github_report_path, report, 20, 191, 0, 0, 714, 457) '螢幕2
         'setScreenPic(report_path2, report2, 15, 192, 0, 0, 1224, 330)
         'setScreenPic(github_report_path, report2, 15, 192, 0, 0, 1224, 330)
 

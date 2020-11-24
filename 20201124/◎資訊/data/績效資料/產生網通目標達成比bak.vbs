@@ -16,7 +16,10 @@ Set args = WScript.Arguments
 Set objExcel = CreateObject("Excel.Application")
 objExcel.visible = true
 objExcel.workbooks.Open args(0) 
-objExcel.Run "'Book1.xlsm'!Module5.OC_WorkbooksOpen"
+objExcel.workbooks.Open args(1) 
+objExcel.workbooks.Open args(2) 
+objExcel.WorkBooks(2).WorkSheets("²Ä 1 ­¶").Activate
+objExcel.Run "'Book1.xlsm'!OC_WorkbooksOpen"
 
 'Clear the objects at the end of your script.
 set args = Nothing
