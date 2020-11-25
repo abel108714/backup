@@ -39,7 +39,17 @@ filename = "C:\My Documents\COPR23" & "20201021" & "000058" & Year(d) & month_st
 
 寫VBA date class v
 
-寫取得累積業積函式getCumulativePerformance
+寫取得累積業積函式getCumulativePerformance v
+
+庫存水位存量改從鼎新拿資料
+
+庫存水位存量報表自動化
+
+門市報表日期月初修正
+
+
+
+
 
 
 
