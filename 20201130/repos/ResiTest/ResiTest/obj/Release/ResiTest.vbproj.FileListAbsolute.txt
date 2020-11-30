@@ -1,0 +1,12 @@
+C:\Users\udev77\source\repos\ResiTest\ResiTest\bin\Release\ResiTest.exe.config
+C:\Users\udev77\source\repos\ResiTest\ResiTest\bin\Release\ResiTest.exe
+C:\Users\udev77\source\repos\ResiTest\ResiTest\bin\Release\ResiTest.pdb
+C:\Users\udev77\source\repos\ResiTest\ResiTest\bin\Release\ResiTest.xml
+C:\Users\udev77\source\repos\ResiTest\ResiTest\obj\Release\ResiTest.vbprojAssemblyReference.cache
+C:\Users\udev77\source\repos\ResiTest\ResiTest\obj\Release\ResiTest.Form1.resources
+C:\Users\udev77\source\repos\ResiTest\ResiTest\obj\Release\ResiTest.Resources.resources
+C:\Users\udev77\source\repos\ResiTest\ResiTest\obj\Release\ResiTest.vbproj.GenerateResource.cache
+C:\Users\udev77\source\repos\ResiTest\ResiTest\obj\Release\ResiTest.vbproj.CoreCompileInputs.cache
+C:\Users\udev77\source\repos\ResiTest\ResiTest\obj\Release\ResiTest.exe
+C:\Users\udev77\source\repos\ResiTest\ResiTest\obj\Release\ResiTest.xml
+C:\Users\udev77\source\repos\ResiTest\ResiTest\obj\Release\ResiTest.pdb
