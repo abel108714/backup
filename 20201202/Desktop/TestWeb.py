@@ -23,6 +23,22 @@ def getData(id,FieldIndex):
    return result
 #過濾9 已過期
 
+#Lot No
+def isOtherLotNO(id):
+   list = []
+   new_text=driver.find_elements_by_xpath(("//table[@id='GridView1']/tbody/tr"))
+   i = 0
+   result = 0
+   for text in new_text:
+      list.append(text.text)
+      
+      if list[i].split(" ")[0] == id:
+         print(text.text)
+         #result = list[i].split(" ")[FieldIndex]
+      i=i+1
+   
+   return result
+
 
 #記錄開始執行時間
 start = time.time()
