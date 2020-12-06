@@ -1,0 +1,2 @@
+print("hello,PyLadies!")
+input()
