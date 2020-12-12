@@ -1,0 +1,42 @@
+今起組長請協助
+姐妹店長討論達標策略。協助提升效率團隊一起達標。
+
+組長怡君
+1組科博＆豐樂
+
+組長桂秋
+2組進德＆中港
+
+組長素月督導
+3:組三豐＆崇德＆經國
+
+組長珮翎
+4:組中興＆喜屋
+
+組長佩芳
+5:組北投＆左營
+
+組長珮螢
+6:組國光＆五權
+
+Array(2, 7, 13, 20, 26, 32)
+
+
+3 4  9 10  15 16 17  22  23   28  29   34  35
+
+
+5 11   18   24   30   36
+("科博館", "豐樂",  "進德", "中港", "三豐","崇德", "經國", "中興新村", "喜屋", "北投", "左營", "國光", "五權")
+
+
+        WorkBooks("POSI49_2_" & Start_DateStr & "_" & End_DateStr & "_" & i & ".xlsx").Activate
+        Sheets("單頭資料").Activate
+
+
+    '自定義排序
+    Application.AddCustomList ListArray:=Array("崇德", "三豐", "喜屋", "中興新村", "中港", "五權", "左營", "科博館", "進德", "經國", "豐樂", "北投", "國光")
+    '去除字串空白才可排序
+    For i = 4 To 16
+        range("C" & i).Value = Trim(range("C" & i).Value)
+    Next
+    range("C4:H16").Sort key1:=range("C4"), order1:=xlAscending, OrderCustom:=Application.CustomListCount + 1
