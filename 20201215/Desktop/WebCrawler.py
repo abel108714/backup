@@ -31,7 +31,6 @@ def checkData(findStr):
             else: 
                return False   
 
-
 # def adjustData(Arr):
 #    Arr[]
 #    if checkData(findStr):
@@ -46,6 +45,7 @@ def findSubString(Str,SubString):
       return False
 
 def getDiffDate(StartDate,EndDate):
+   
    print("StartDate: "+StartDate)
    print("EndDate: "+EndDate)
    StartDateArr = [3]
@@ -59,10 +59,14 @@ def getDiffDate(StartDate,EndDate):
       EndDateArr=EndDate.split("/")
    elif findSubString(EndDate,"-"):
       EndDateArr=EndDate.split("-")
-   other_day = datetime.date(int(EndDateArr[0]),int(EndDateArr[1]),int(EndDateArr[2]))
-   result = startday - other_day
-   print(result)
-   return result.days
+   try:
+      other_day = datetime.date(int(EndDateArr[0]),int(EndDateArr[1]),int(EndDateArr[2]))
+      result = startday - other_day
+      print(result)
+      return abs(result.days)
+   except:
+      return 0
+
 
 def removeRedundantPID(str):
    pass
@@ -84,37 +88,11 @@ def getDataByWebPage():
    today = date.today()
    today_str = today.strftime("%Y/%m/%d")
    for text in new_text:
-      
-
-
       Datalist.append(text.text)
       RowData=Datalist[i].split("\n")
       Data=RowData[0].split(" ")
-
       findStr=Data[2]
-      print("str: "+findStr)
-      #10903008	天然冰湖野米十穀米600g	6包/箱
-      #\d*\S[/][箱]
-      regex = r"\d*\S[/][箱]"
-      # matches = re.finditer(regex, findStr, re.MULTILINE)
-      
-      matches = re.search(regex, findStr) #re.search(r"\d*\S[/][箱]", findStr)
-      print("1 "+Data[0])
-      print("2 "+Data[1])
-      print("3 "+Data[2])
-      print("4 "+Data[3])
-      print("- "+Data[4])
-      print("- "+Data[5])
-      print("5 "+Data[6])
-      print(matches)
       if re.search(r"\d*[瓶]?[支]?[/][箱]?[盒]?", findStr) == None and i != 0:
-         # print("1 "+Data[0])
-         # print("2 "+Data[1])
-         # print("3 "+Data[2])
-         # print("4 "+Data[3])
-         # print("- "+Data[4])
-         # print("- "+Data[5])
-         # print("5 "+Data[6])
          Data[1]=Data[1]+Data[2]
          Data[2]=Data[3]
          Data[3]=Data[4]
@@ -122,13 +100,6 @@ def getDataByWebPage():
          Data[5]=Data[6]
          Data[6]=Data[7]
          Data[7]=""
-         # print("1 "+Data[0])
-         # print("2 "+Data[1])
-         # print("3 "+Data[2])
-         # print("4 "+Data[3])
-         # print("- "+Data[4])
-         # print("- "+Data[5])
-         # print("5 "+Data[6])
       elif re.search(r"\d*[m][l][/][瓶]", findStr)  and i != 0:
          Data[1]=Data[1]+Data[2]
          Data[2]=Data[3]
@@ -137,139 +108,6 @@ def getDataByWebPage():
          Data[5]=Data[6]
          Data[6]=Data[7]
          Data[7]=""
-      else:
-         # print("1 "+Data[0])
-         # print("2 "+Data[1])
-         # print("3 "+Data[2])
-         # print("4 "+Data[3])
-         # print("- "+Data[4])
-         # print("- "+Data[5])
-         # print("5 "+Data[6])
-         # if re.search(r"\d*[支][/][盒]", findStr) == None and i != 0:
-         #    print("1 "+Data[0])
-         #    print("2 "+Data[1])
-         #    print("3 "+Data[2])
-         #    print("4 "+Data[3])
-         #    print("- "+Data[4])
-         #    print("- "+Data[5])
-         #    print("5 "+Data[6])
-         #    Data[1]=Data[1]+Data[2]
-         #    Data[2]=Data[3]
-         #    Data[3]=Data[4]
-         #    Data[4]=Data[5]
-         #    Data[5]=Data[6]
-         #    Data[6]=Data[7]
-         #    Data[7]=""
-            print("1 "+Data[0])
-            print("2 "+Data[1])
-            print("3 "+Data[2])
-            print("4 "+Data[3])
-            print("- "+Data[4])
-            print("- "+Data[5])
-            print("5 "+Data[6])
-         # else:
-         #    # print("1 "+Data[0])
-         #    # print("2 "+Data[1])
-         #    # print("3 "+Data[2])
-         #    # print("4 "+Data[3])
-         #    # print("- "+Data[4])
-         #    # print("- "+Data[5])
-         #    # print("5 "+Data[6])
-         #    Data[1]=Data[1]+Data[2]
-         #    Data[2]=Data[3]
-         #    Data[3]=Data[4]
-         #    Data[4]=Data[5]
-         #    Data[5]=Data[6]
-         #    Data[6]=Data[7]
-         #    Data[7]=""
-         #    # print("1 "+Data[0])
-         #    # print("2 "+Data[1])
-         #    # print("3 "+Data[2])
-         #    # print("4 "+Data[3])
-         #    # print("- "+Data[4])
-         #    # print("- "+Data[5])
-         #    # print("5 "+Data[6])
-
-
-      # for matchNum, match in enumerate(matches, start=1):
-      #    print("???")  
-      #    print(matchNum)
-      #    print(match)
-      #    if matchNum != 1:
-      #       Data[1]=Data[1]+" "+Data[2]
-      #       Data[2]=Data[3]
-      #       Data[3]=Data[4]
-      #       Data[4]=Data[5]
-      #       Data[5]=Data[6]
-      #       Data[6]=Data[7]
-      #       Data[7]=""
-
-
-
-      #調整陣列取得的資料，因品名有空白會多切割一次
-      # findStr=Data[1]+" "+Data[2]
-      # print('6')
-      # regex = r"\b\S*\s\d*[m][l]"
-      # matches = re.finditer(regex, findStr, re.MULTILINE)
-      # for matchNum, match in enumerate(matches, start=1):      
-      #    if matchNum == 1:
-      #       Data[1]=Data[1]+" "+Data[2]
-      #       Data[2]=Data[3]
-      #       Data[3]=Data[4]
-      #       Data[4]=Data[5]
-      #       Data[5]=Data[6]
-      #       Data[6]=Data[7]
-      #       Data[7]=""
-
-      # regex = r"\b\S*\s\d*[(][N][E][W][)]"
-      # matches = re.finditer(regex, findStr, re.MULTILINE)
-      # for matchNum, match in enumerate(matches, start=1):      
-      #    if matchNum == 1:
-      #       Data[1]=Data[1]+" "+Data[2]
-      #       Data[2]=Data[3]
-      #       Data[3]=Data[4]
-      #       Data[4]=Data[5]
-      #       Data[5]=Data[6]
-      #       Data[6]=Data[7]
-      #       Data[7]=""
-
-      # regex = r"\b\S*\s\d*[0-9]*[g]"
-      # matches = re.finditer(regex, findStr, re.MULTILINE)
-      # for matchNum, match in enumerate(matches, start=1):
-      #    if matchNum == 1:
-      #       Data[1]=Data[1]+" "+Data[2]
-      #       Data[2]=Data[3]
-      #       Data[3]=Data[4]
-      #       Data[4]=Data[5]
-      #       Data[5]=Data[6]
-      #       Data[6]=Data[7]
-      #       Data[7]="" 
-
-      # regex = r"\D*\d*\D[(]\D*[)]"
-      # matches = re.finditer(regex, findStr, re.MULTILINE)
-      # for matchNum, match in enumerate(matches, start=1):
-      #    if matchNum == 1:
-      #       Data[1]=Data[1]+" "+Data[2]
-      #       Data[2]=Data[3]
-      #       Data[3]=Data[4]
-      #       Data[4]=Data[5]
-      #       Data[5]=Data[6]
-      #       Data[6]=Data[7]
-      #       Data[7]="" 
-
-      # findStr=Data[4]+" "+Data[5]
-      # print("findStr: "+findStr)
-      # regex = r"[0-9]*[箱]\s*[0-9]*[袋][0-9]*[包]"
-      # matches = re.finditer(regex, findStr, re.MULTILINE)
-      # print("0000000000000000000000000000")
-      # for matchNum, match in enumerate(matches, start=1):
-      #    print("1111111111111111111111111111111")
-      #    if matchNum == 1:
-      #       print("22222222222222222222222222222222222")
-      #       Data[4]=Data[4]+" "+Data[5]
-      #       Data[5]=Data[6]
-      #       Data[6]=Data[7]
-      #       Data[7]="" 
 
       #排除品號
       if (Data[0] == "70206023") | (Data[0] == "70206024") | (Data[0] == "70303719"):
@@ -281,18 +119,8 @@ def getDataByWebPage():
       wb.sheets[0].range('F' + str(i+1)).value  = Data[2]
       wb.sheets[0].range('G' + str(i+1)).value  = Data[3]
       wb.sheets[0].range('J' + str(i+1)).value  = Data[6]
-      # print("1 "+Data[0])
-      # print("2 "+Data[1])
-      # print("3 "+Data[2])
-      # print("4 "+Data[3])
-      # print("- "+Data[4])
-      # print("- "+Data[5])
-      # print("5 "+Data[6])
-
-      # if i == 5:
-      #    break
-      # if i+1>=2:
-      #    wb.sheets[0].range('K' + str(i+1)).value  = getDiffDate(today_str,Data[6])
+      if i+1>=2:
+         wb.sheets[0].range('K' + str(i+1)).value  = getDiffDate(today_str,Data[6])
       i=i+1
 
 #記錄開始執行時間
@@ -333,9 +161,9 @@ RadioButton.click()
 #查詢
 Button = driver.find_element_by_id('ctl00_ContentPlaceHolder1_Button1')
 Button.click()
-print('1')
+
 getDataByWebPage()
-print('1')
+
 driver.quit()#關閉瀏覽器
 
 #記錄結束執行時間

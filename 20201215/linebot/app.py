@@ -1,4 +1,4 @@
-from flask import Flask, request, abort
+﻿from flask import Flask, request, abort
 
 from linebot import (
     LineBotApi, WebhookHandler
@@ -170,7 +170,7 @@ def job2():
     
     #print("yes")
     #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", TextSendMessage(text=str(date.strftime("%H:%M"))))
-    if date.strftime("%H:%M") == "17:35":#自動發網通報表
+    if date.strftime("%H:%M") == "17:42":#自動發網通報表
         if weekno<6:
             print('case1')
             print(weekno)
