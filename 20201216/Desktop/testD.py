@@ -9,3 +9,15 @@ result = today - other_day
 print (result)
 #如果只想要把相差的天數拿出來的話
 print ("只要看天數 =>" + str(result.days))
+
+path = 'C:\\Users\\udev77\\Documents\\InventoryReminder.txt'
+f = open(path, 'r')
+lines = f.readlines()
+#line=[]
+i = 0
+for line in lines:
+    print(line)
+    print(i)
+    i=i+1
+f.close()
+# print(lines)

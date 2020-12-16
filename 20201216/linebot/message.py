@@ -391,6 +391,121 @@ def StorePerformanceReport():
     )
     return message
 
+
+#NewGroup
+def StoreNewGroupPerformanceReport():
+    # 設定為 +8 時區
+    tz = dt.timezone(dt.timedelta(hours=+8))
+    date = dt.datetime.now(tz)
+    oneday = dt.timedelta(days=1)
+    ydate = date-oneday
+
+
+
+    #獲取今天的日期
+    y=str(date.year)
+    if int(date.month) < 10:
+        m = '0' + str(date.month)
+    else:
+        m = str(date.month)
+
+    if int(date.day) < 10:
+        d = '0' + str(date.day)
+    else:
+        d = str(date.day)
+    #獲取昨天的日期
+    yes_y=str(ydate.year)
+    if int(ydate.month) < 10:
+        yes_m = '0' + str(ydate.month)
+    else:
+        yes_m = str(ydate.month)
+    if int(ydate.day) < 10:
+        yes_d = '0' + str(ydate.day)
+    else:
+        yes_d = str(ydate.day)
+    tdy_date_str = y + m + d
+    ysdy_date_str = yes_y + yes_m + yes_d
+    BegMonthOfTodayPeriod = m + str("01") + str("_") + m + d
+
+    urls = []
+    for x in range(10,15):
+        urls.append('https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_'+ str(x) +'.jpg.jpg')
+        #print(str(urls[x]))
+    #logging.info('門市部日報表' + str(ysdy_date_str))
+    message = TemplateSendMessage(
+        alt_text='門市部日報表' + str(ysdy_date_str),
+        template=ImageCarouselTemplate(
+            columns=[
+                ImageCarouselColumn(
+                    image_url=str(urls[10]),
+                    #image_url='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_1.jpg.jpg',
+                    #image_url="https://github.com/lixiuchou/report_image_host/raw/master/screen_30_200_0_0_708_456.jpg",
+                    action=URITemplateAction(
+                        label="1",
+                        uri = urls[10]
+                        #uri='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_1.jpg.jpg'
+                        #uri="https://m-miya.net/wp-content/uploads/2014/07/0-065-1.min_.jpg"
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url=urls[11],
+                    #image_url='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_2.jpg.jpg',
+                    #image_url="https://github.com/lixiuchou/report_image_host/raw/master/screen_29_200_0_0_1228_499.jpg",
+                    action=URITemplateAction(
+                        label="2",
+                        uri = urls[11]
+                        #uri='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_2.jpg.jpg'
+                        #uri="https://m-miya.net/wp-content/uploads/2014/07/0-065-1.min_.jpg"
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url=urls[12],
+                    #image_url='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_3.jpg.jpg',
+                    #image_url="https://github.com/lixiuchou/report_image_host/raw/master/screen_30_200_0_0_708_456.jpg",
+                    action=URITemplateAction(
+                        label="3",
+                        uri = urls[12]
+                        #uri='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_3.jpg.jpg'
+                        #uri="https://m-miya.net/wp-content/uploads/2014/07/0-065-1.min_.jpg"
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url=urls[13],
+                    #image_url='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_4.jpg.jpg',
+                    #image_url="https://github.com/lixiuchou/report_image_host/raw/master/screen_30_200_0_0_708_456.jpg",
+                    action=URITemplateAction(
+                        label="4",
+                        uri = urls[13]
+                        #uri='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_4.jpg.jpg'
+                        #uri="https://m-miya.net/wp-content/uploads/2014/07/0-065-1.min_.jpg"
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url=urls[14],
+                    #image_url='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_5.jpg.jpg',
+                    #image_url="https://github.com/lixiuchou/report_image_host/raw/master/screen_30_200_0_0_708_456.jpg",
+                    action=URITemplateAction(
+                        label="5",
+                        uri = urls[14]
+                        #uri='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_5.jpg.jpg'
+                        #uri="https://m-miya.net/wp-content/uploads/2014/07/0-065-1.min_.jpg"
+                    )
+                ),
+                ImageCarouselColumn(
+                    image_url=urls[15],
+                    #image_url='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_6.jpg.jpg',
+                    #image_url="https://github.com/lixiuchou/report_image_host/raw/master/screen_30_200_0_0_708_456.jpg",
+                    action=URITemplateAction(
+                        label="6",
+                        uri = urls[15]
+                        #uri='https://raw.githubusercontent.com/abel108714/test/master/門市部日報表' + str(ysdy_date_str) + '_6.jpg.jpg'
+                        #uri="https://m-miya.net/wp-content/uploads/2014/07/0-065-1.min_.jpg"
+                    )
+                )
+            ]
+        )
+    )
+    return message
 #Online Shopping & marketing channel Performance Report
     #image_message = ImageSendMessage(
     #    original_content_url='https://example.com/original.jpg',

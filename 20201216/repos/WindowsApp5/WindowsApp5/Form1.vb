@@ -162,7 +162,9 @@ Public Class Form1
         Dim report_1 As String
         Dim report_2 As String
         Dim report_3 As String
-
+        Dim report_4 As String
+        Dim report_5 As String
+        Dim report_6 As String
         'Dim report7 As String
         report_path = "S:\網通部\◎資訊\"
         github_report_path = "S:\網通部\◎資訊\" & "test\"
@@ -175,7 +177,9 @@ Public Class Form1
         report_1 = "門市部日報表" & thisDate1.ToString("yyyyMMdd") & "_" & "7.jpg"
         report_2 = "門市部日報表" & thisDate1.ToString("yyyyMMdd") & "_" & "8.jpg"
         report_3 = "門市部日報表" & thisDate1.ToString("yyyyMMdd") & "_" & "9.jpg"
-
+        report_4 = "門市部日報表" & thisDate1.ToString("yyyyMMdd") & "_" & "10.jpg"
+        report_5 = "門市部日報表" & thisDate1.ToString("yyyyMMdd") & "_" & "11.jpg"
+        report_6 = "門市部日報表" & thisDate1.ToString("yyyyMMdd") & "_" & "12.jpg"
         'report7 = "門市部日報表" & thisDate1.ToString("yyyyMMdd") & "_" & "7.jpg"
         'setScreenPic(report_path, report1, 30, 200, 0, 0, 708, 456)
         'setScreenPic(github_report_path, report1, 30, 200, 0, 0, 708, 456)
@@ -239,12 +243,23 @@ Public Class Form1
         'setScreenPic(github_report_path, report6, 34, 552, 0, 0, 1226, 351)
         setScreenPic(github_report_path, report6, 26, 423, 0, 0, 930, 267)
         xlApp_sou.Run("'Book1.xlsm'!承諾目標1截圖")
-        setScreenPic(github_report_path, report_1, 26, 195, 0, 0, 930, 419)
+        'setScreenPic(github_report_path, report_1, 26, 195, 0, 0, 930, 419)
+        setScreenPic(github_report_path, report_1, 26, 195, 0, 0, 930, 191)
         xlApp_sou.Run("'Book1.xlsm'!承諾目標2截圖")
-        setScreenPic(github_report_path, report_2, 26, 195, 0, 0, 930, 457)
+        'setScreenPic(github_report_path, report_2, 26, 195, 0, 0, 930, 457)
+        setScreenPic(github_report_path, report_2, 26, 195, 0, 0, 930, 191)
         xlApp_sou.Run("'Book1.xlsm'!承諾目標3截圖")
-        setScreenPic(github_report_path, report_3, 26, 195, 0, 0, 930, 419)
-
+        'setScreenPic(github_report_path, report_3, 26, 195, 0, 0, 930, 419)
+        setScreenPic(github_report_path, report_3, 26, 195, 0, 0, 930, 229)
+        xlApp_sou.Run("'Book1.xlsm'!承諾目標4截圖")
+        'setScreenPic(github_report_path, report_3, 26, 195, 0, 0, 930, 419)
+        setScreenPic(github_report_path, report_4, 26, 195, 0, 0, 930, 191)
+        xlApp_sou.Run("'Book1.xlsm'!承諾目標5截圖")
+        'setScreenPic(github_report_path, report_3, 26, 195, 0, 0, 930, 419)
+        setScreenPic(github_report_path, report_5, 26, 195, 0, 0, 930, 191)
+        xlApp_sou.Run("'Book1.xlsm'!承諾目標6截圖")
+        'setScreenPic(github_report_path, report_3, 26, 195, 0, 0, 930, 419)
+        setScreenPic(github_report_path, report_6, 26, 195, 0, 0, 930, 191)
 
         '關閉
         'xlApp_sou.Run("'Book1.xlsm'!closeAllWorkbook")
@@ -263,7 +278,9 @@ Public Class Form1
         cmd_test.cmd("copy " & report_1 & " " & "S:\網通部\◎資訊\test\")
         cmd_test.cmd("copy " & report_2 & " " & "S:\網通部\◎資訊\test\")
         cmd_test.cmd("copy " & report_3 & " " & "S:\網通部\◎資訊\test\")
-
+        cmd_test.cmd("copy " & report_4 & " " & "S:\網通部\◎資訊\test\")
+        cmd_test.cmd("copy " & report_5 & " " & "S:\網通部\◎資訊\test\")
+        cmd_test.cmd("copy " & report_6 & " " & "S:\網通部\◎資訊\test\")
         'cmd_test.cmd("copy " & report7 & " " & "S:\網通部\◎資訊\test\")
         cmd_test.cmd("cd /d S:\網通部\◎資訊\test\")
         cmd_test.cmd("git init") '避免git斷線

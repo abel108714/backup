@@ -170,7 +170,7 @@ def job2():
     
     #print("yes")
     #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", TextSendMessage(text=str(date.strftime("%H:%M"))))
-    if date.strftime("%H:%M") == "17:42":#自動發網通報表
+    if date.strftime("%H:%M") == "17:36":#自動發網通報表
         if weekno<6:
             print('case1')
             print(weekno)
@@ -218,12 +218,32 @@ def job2():
         #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", StorePerformanceReport())
         #line_bot_api.push_message("C5fd1c0d2f75eb01ad8935d719076012b", OCPerformanceReport())
         #line_bot_api.push_message("U03f8575fac6ad12b612c6222ad37678e", OCPerformanceReport())
-    elif date.strftime("%H:%M") == "16:46":#測試用時間
+    elif date.strftime("%H:%M") == "17:01":#測試用時間
         print('case4')
         
         #line_bot_api.push_message("U03f8575fac6ad12b612c6222ad37678e", OCPerformanceReport())
     #else:
         #print("no")
+        #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", StorePerformanceReport())
+    elif date.strftime("%H:%M") == "17:02":#測試用時間
+        print('case5')
+        path = 'C:\\Users\\udev77\\Documents\\InventoryReminder.txt'
+        f = open(path, 'r')
+        lines = f.readlines()
+        # for line in lines:
+        #     print(line)
+        f.close()
+        print(lines)
+        #line_bot_api.push_message("U03f8575fac6ad12b612c6222ad37678e", OCPerformanceReport())
+    #else:
+        #print("no")
+        #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", StoreNewGroupPerformanceReport())
+        # line_bot_api.push_message(
+        #     "Uee6224531167e863e3c08504055d6ed2", [
+        #         TextSendMessage(text='Hello World!'),
+        #         TextSendMessage(text='Hello World!')
+        #     ]
+        # )
 
 
 
@@ -326,6 +346,7 @@ def handle_message(event):#
             #寫入資料
             newDataAccess.setData(title_match,updateArr)
             line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str('Ok! 已更新')))
+
         else:
             print('match: 格式不符')
 
