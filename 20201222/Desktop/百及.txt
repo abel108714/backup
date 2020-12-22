@@ -1,0 +1,5 @@
+百及物流查詢庫存網址
+http://www.logistics.com.tw/TMP/login.aspx?ReturnUrl=%2fTMP%2fDefault.aspx
+
+帳號OGB
+密碼OG140
