@@ -129,8 +129,18 @@ def getDataToExcel(driver,path):
       if (Data[0] == "70206023") | (Data[0] == "70206024") | (Data[0] == "70303719"):
          continue
 
+      findStr=Data[6]
+      if re.search(r"\S?[退]\S?", findStr) != None:
+         Data[5]=Data[5]+Data[6]
+         Data[6]=Data[7]
+         Data[7]=""
 
       findStr=Data[5]
+      #若沒批號，保存期限往後移
+      if re.search(r"\d*[/]\d*[/]\d*", findStr) != None:
+         Data[5]=""
+         Data[6]=Data[5]
+         Data[7]=Data[6]
       if re.search(r"\d*[袋]\S*", findStr) != None:
          Data[4]=Data[4]+Data[5]
          Data[5]=Data[6]
@@ -141,8 +151,9 @@ def getDataToExcel(driver,path):
          Data[5]=Data[6]
          Data[6]=Data[7]
          Data[7]=""
-
-      if re.search(r"\d*?\S*?\s?\S?[退]\S?", findStr) != None or re.search(r"\d*?[(][倒][)][凹][箱]", findStr) != None:
+      # print('Data[4] = ' + Data[4])
+      # print('Data[5] = ' + Data[5])
+      if re.search(r"\d*\S*?\s?\S?[退]\S?", findStr) != None or re.search(r"\d*?[(][倒][)][凹][箱]", findStr) != None:
          Data[0]=""
          Data[1]=""
          Data[2]=""
@@ -185,13 +196,19 @@ def getDataToExcel(driver,path):
          wb.sheets[0].range('K' + str(i+1)).value  = getDiffDate(today_str,Data[6])
       #記錄品號為空的列
       if wb.sheets[0].range('D' + str(i+1)).value == None:
+         # print('i+1 = ' + str(i+1))
          DelList.append(i+1)
 
       i=i+1
 
    #記錄品號為空的列刪除
+   # print(DelList)
+   j=0
    for DelRow in DelList:
-      wb.sheets[0].api.Rows(DelRow).Delete()
+      wb.sheets[0].api.Rows(DelRow-j).Delete()
+      #記錄已刪除列數
+      j=j+1
+
 
          
 
