@@ -55,7 +55,7 @@ VBA call exe + Python to exe v
 
 python read xlsm
 
-
+Module1ªº¨ç¦¡²¾¨ìPA
 
 
 
