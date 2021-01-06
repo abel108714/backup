@@ -274,12 +274,12 @@ def job2():
             #     ]
             # )
             #自己
-            line_bot_api.push_message(
-                "Uee6224531167e863e3c08504055d6ed2", [
-                    TextSendMessage(text='庫存已更新'),
-                    TextSendMessage(text='S:\開放公用區\★每週更新庫存水位警示表★\庫存水位.xlsm')
-                ]
-            )
+            # line_bot_api.push_message(
+            #     "Uee6224531167e863e3c08504055d6ed2", [
+            #         TextSendMessage(text='庫存已更新'),
+            #         TextSendMessage(text='S:\開放公用區\★每週更新庫存水位警示表★\庫存水位.xlsm')
+            #     ]
+            # )
             #曉詩Ud3e3d7c236e4c9bb1116ab0b377bd005
             #昱慧Ud8ea127ff725488a20e30380eda16fbb
             #永忠U3c77f40434fa99e97e2f6e9cfb6ff0f6

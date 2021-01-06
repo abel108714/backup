@@ -53,9 +53,9 @@ Python版的滑鼠鍵盤控制
 VBA call Python function
 VBA call exe + Python to exe v
 
-python read xlsm
+python read xlsm 
 
-Module1的函式移到PA
+Module1的函式移到PA  v
 
 
 

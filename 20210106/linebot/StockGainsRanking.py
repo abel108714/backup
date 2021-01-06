@@ -35,10 +35,15 @@ def main():
 
    new_text=driver.find_elements_by_xpath("/html/body/center/table/tbody/tr/td/table/tbody")
    i=0
+   Datalist = []
    for text in new_text:
       # Datalist.append(text.text)
       # print(i)
-      print(text.text)
+      # print(text.text)
+      Datalist.append(text.text)
+      RowData=Datalist[i].split("\n")
+      Data=RowData[0].split(" ")
+      print(Data[6])
       i=i+1
 
    #記錄結束執行時間
