@@ -11,7 +11,7 @@ import time
 import datetime
 from datetime import date
 import sys
-import FileDataAccess
+from FileDataAccess import *
 
 
 def main():
@@ -49,7 +49,7 @@ def main():
       
 
       #new物件給初始值
-      a=FileDataAccess(0,'3','-','C:\\My Documents\\StockMarketGainsRecord.txt')
+      a=FileDataAccess(0,'3','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
 
       #使用方法
       b=['21','3,069,201']
