@@ -61,7 +61,6 @@ class FileDataAccess:
                                 NewLines = NewLines + self.SplitStr + line.strip().split(self.SplitStr)[i]
                         else:#不需更新資料列的key欄位
                             TempLine=DataArr.pop(0)
-                            print("TempLine: " + str(TempLine))
                             if i==0:#如果是資料列開頭，不加self.SplitStr分隔符號
                                 NewLines = NewLines + TempLine
                             else:#如果不是資料列開頭，加self.SplitStr分隔符號
