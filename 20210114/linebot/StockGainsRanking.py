@@ -39,7 +39,7 @@ def main():
    Datalist = []
    Data = []
    s=""
-   fda=FileDataAccess(0,'3','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
+   fda=FileDataAccess(0,'4','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
    #使用方法
    dt=d.Date()
    for text in new_text:
@@ -56,7 +56,7 @@ def main():
 
 
          print(dt.getDay())
-         datas=[str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),Data[5]]
+         datas=[Data[2],str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),Data[5]]
          print(fda.setData(Data[1],datas))
          # time.sleep(2)
       # #new物件給初始值
@@ -74,7 +74,7 @@ def main():
    driver.quit()#關閉瀏覽器
 
 if __name__ == "__main__":
-   # main()
+   main()
    #new物件給初始值
    # a=FileDataAccess(0,'3','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
 
@@ -82,15 +82,15 @@ if __name__ == "__main__":
    # b=['8','1,043,712']
    # print(a.setData('東',b))
 
-   fda=FileDataAccess(0,'3','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
+   # fda=FileDataAccess(0,'3','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
 
-   #使用方法
-   dt=d.Date()
-   print(dt.getDay())
-   datas=[str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),'1,043,712']
-   print(fda.setData('初',datas))
-   datas=[str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),'1,043,712']
-   print(fda.setData('初2',datas))
+   # #使用方法
+   # dt=d.Date()
+   # print(dt.getDay())
+   # datas=[str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),'1,043,712']
+   # print(fda.setData('初',datas))
+   # datas=[str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),'1,043,712']
+   # print(fda.setData('初2',datas))
 
 
 
