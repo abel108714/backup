@@ -50,16 +50,19 @@ def main():
 
       # print(RowData[0])
       if i>1 and float(s) > 8.5:#首行不印，漲幅大於8.5%
-         print(Data[0] + "\t" + Data[1] + "\t" + Data[2] +  "\t\t" + Data[5])
-      
-      
-
+         
+         dt=d.Date()
+         ToDayStr=str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay())
+         if fda.getData(2,Data[0]) == None and dt.getDiffDate(fda.getData(2,Data[0]),ToDayStr)!=0:
+            print(Data[0] + "\t" + Data[1] + "\t" + Data[2] +  "\t\t" + Data[5])
+         elif dt.getDiffDate(fda.getData(2,Data[0]),ToDayStr)>3:
+            print(Data[0] + "\t" + Data[1] + "\t" + Data[2] +  "\t\t" + Data[5])
 
          # print(dt.getDay())
          datas=[Data[2],str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),Data[5]]
-         print(datas)
-         print(Data[1])
-         print(fda.setData(Data[1],datas))
+         # print(datas)
+         # print(Data[1])
+         fda.setData(Data[1],datas)
          # time.sleep(2)
       # #new物件給初始值
       # a=FileDataAccess(0,'3','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
@@ -76,7 +79,7 @@ def main():
    driver.quit()#關閉瀏覽器
 
 if __name__ == "__main__":
-   # main()
+   main()
    #new物件給初始值
    # a=FileDataAccess(0,'3','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
 
@@ -84,16 +87,16 @@ if __name__ == "__main__":
    # b=['8','1,043,712']
    # print(a.setData('東',b))
 
-   fda=FileDataAccess(0,'4','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
+   # fda=FileDataAccess(0,'4','-','C:\\Users\\udev77\\Desktop\\StockMarketGainsRecord.txt')#C:\\My Documents\\StockMarketGainsRecord.txt')
 
    # #使用方法
    # dt=d.Date()
    # print(dt.getDay())
    # print(dt.getDiffDate(str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),"2021/1/1"))
-   print(fda.getData(0,"2328"))
-   print(fda.getData(1,"2328"))
-   print(fda.getData(2,"2328"))
-   print(fda.getData(3,"2328"))
+   # print(fda.getData(0,"2329"))
+   # print(fda.getData(1,"2328"))
+   # print(fda.getData(2,"2328"))
+   # print(fda.getData(3,"2328"))
    # print(fda.getData(4,"2328"))
    # datas=[str(dt.getYear()) + "/" + str(dt.getMonth()) + "/" + str(dt.getDay()),'1,043,712','8']
    # print(fda.setData('初',datas))
