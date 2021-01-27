@@ -1,0 +1,20 @@
+|    shell> myodbc-installer -d -l
+|
+|    Register a Unicode driver (Windows example)
+|    shell> myodbc-installer -d -a -n "MySQL ODBC 5.3 Unicode Driver" -t "DRIVER=myodbc5w.dll;SETUP=myodbc5S.dll"
+|
+|      Note
+|         * driver_name is myodbc5a.dll for the ANSI version and
+|           myodbc5w.dll for the Unicode version of MySQL ODBC Driver
+|
+|    Add a new system data source name for Unicode driver
+|    shell> myodbc-installer -s -a -c2 -n "test" -t "DRIVER=MySQL ODBC 5.3 Unicode Driver;SERVER=localhost;DATABASE=test;UID=myid;PWD=mypwd"
+|
+|    List data source name attributes for 'test'
+|    shell> myodbc-installer -s -l -c2 -n "test"
++---
+
+
+[ERROR] SQLInstaller error 19: 不能寫到登錄
+[ERROR] SQLInstaller error 20: 不可移除 DSN
+[ERROR] Data source entry failed, remove or try again
