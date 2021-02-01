@@ -1,0 +1,21 @@
+百及物流查詢庫存網址
+http://www.logistics.com.tw/TMP/login.aspx?ReturnUrl=%2fTMP%2fDefault.aspx
+
+帳號OGB
+密碼OG140
+
+
+select uid,name,target from members where uid='30';
+UPDATE members SET target='4500000' WHERE UID='30';
+
+
+
+鼎新庫存需要進表
+庫別01002 成品倉庫
+庫別01003 半成品倉
+庫別01009 (東森)預留倉
+庫別01010 (外銷)暫存倉
+庫別01999 百及物流
+
+
+git clone git@github.com:abel108714/test.git
