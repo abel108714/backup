@@ -769,91 +769,42 @@ def handle_message(event):#
         else:
             print('match: 格式不符')
 
-    if '[run]' in msg:
-        # print("run1")
-        # print("run1")
+
+
+    headers = {"Authorization":"Bearer 8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json"}
+    rich_menu_to_create = RichMenu(
+        size=RichMenuSize(width=2500, height=843),
+        selected=False,
+        name="Nice richmenu",
+        chat_bar_text="Tap here",
+        areas=[RichMenuArea(
+            bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
+            action=URIAction(label='Go to line.me', uri='https://line.me'))]
+    )
+    rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
+    print(rich_menu_id)
+    try:
+        with open("C:\\linebot\\image.jpeg", 'rb') as f:
+            line_bot_api.set_rich_menu_image(str(rich_menu_id), "image/jpeg", f)
+    except Exception as e:
+        print("===Upload Exception===")
+    print("run3:"+str(rich_menu_id))
+    content = line_bot_api.get_rich_menu_image(str(rich_menu_id))
+    with open("C:\\linebot\\image.jpeg", 'wb') as fd:
+        for chunk in content.iter_content():
+            fd.write(chunk)
+    print("run6:"+str(rich_menu_id))
+    rich_menu = line_bot_api.get_rich_menu(rich_menu_id)
+    line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
+    print(str(rich_menu_id))
+
+
+    if '[run]' in msg and user_id == "Uee6224531167e863e3c08504055d6ed2" :
+        print("小幫手自動傳訊功能已啟用")
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str('小幫手自動傳訊功能已啟用')))
         profile = line_bot_api.get_profile(event.source.user_id)
         message = TextSendMessage(text=str(profile.display_name))
-        headers = {"Authorization":"Bearer 8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json"}
 
-        # body = {
-        #     "size": {"width": 2500, "height": 1686},
-        #     "selected": "true",
-        #     "name": "Controller",
-        #     "chatBarText": "Controller",
-        #     "areas":[
-        #         {
-        #         "bounds": {"x": 551, "y": 325, "width": 321, "height": 321},
-        #         "action": {"type": "message", "text": "up"}
-        #         },
-        #         {
-        #         "bounds": {"x": 876, "y": 651, "width": 321, "height": 321},
-        #         "action": {"type": "message", "text": "right"}
-        #         },
-        #         {
-        #         "bounds": {"x": 551, "y": 972, "width": 321, "height": 321},
-        #         "action": {"type": "message", "text": "down"}
-        #         },
-        #         {
-        #         "bounds": {"x": 225, "y": 651, "width": 321, "height": 321},
-        #         "action": {"type": "message", "text": "left"}
-        #         },
-        #         {
-        #         "bounds": {"x": 1433, "y": 657, "width": 367, "height": 367},
-        #         "action": {"type": "message", "text": "btn b"}
-        #         },
-        #         {
-        #         "bounds": {"x": 1907, "y": 657, "width": 367, "height": 367},
-        #         "action": {"type": "message", "text": "btn a"}
-        #         }
-        #     ]
-        # }
-
-        # req = requests.request('POST', 'https://api.line.me/v2/bot/richmenu', 
-        #                     headers=headers,data=json.dumps(body).encode('utf-8'))
-        # print(eval(req.text.strip('}').split(':')[1]))
-        # rich_menu_id = eval(req.text.strip('}').split(':')[1])
-        # print(req.text)
-        rich_menu_to_create = RichMenu(
-            size=RichMenuSize(width=2500, height=843),
-            selected=False,
-            name="Nice richmenu",
-            chat_bar_text="Tap here",
-            areas=[RichMenuArea(
-                bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
-                action=URIAction(label='Go to line.me', uri='https://line.me'))]
-        )
-        rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
-        print(rich_menu_id)
-        try:
-            # f=open("C:\\linebot\\image.jpg", 'rb')
-            # line_bot_api.set_rich_menu_image(str(rich_menu_id), str("image/jpeg"), f)
-            with open("C:\\linebot\\image.jpeg", 'rb') as f:
-            # with open("https://github.com/abel108714/test/blob/master/image.jpg", 'rb') as f:
-                line_bot_api.set_rich_menu_image(str(rich_menu_id), "image/jpeg", f)
-                # line_bot_api.set_rich_menu_image(str("<")+str(rich_menu_id)+str(">"), str("<")+str("image/jpeg")+str(">"), f)
-        except Exception as e:
-            print("===Upload Exception===")
-        # rich_menu_to_create = RichMenu(
-        #     size=RichMenuSize(width=2500, height=843),
-        #     selected=False,
-        #     name="Nice richmenu",
-        #     chat_bar_text="Tap here",
-        #     areas=[RichMenuArea(
-        #         bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
-        #         action=URIAction(label='Go to line.me', uri='https://line.me'))]
-        # )
-        # print("run2:")
-        # rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
-        print("run3:"+str(rich_menu_id))
-        content = line_bot_api.get_rich_menu_image(str(rich_menu_id))
-        with open("C:\\linebot\\image.jpeg", 'wb') as fd:
-            for chunk in content.iter_content():
-                fd.write(chunk)
-        print("run6:"+str(rich_menu_id))
-        rich_menu = line_bot_api.get_rich_menu(rich_menu_id)
-        line_bot_api.link_rich_menu_to_user(user_id, rich_menu_id)
-        print(str(rich_menu_id))
 
         
         
