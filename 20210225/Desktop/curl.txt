@@ -1,0 +1,27 @@
+curl -X GET "https://access.line.me/dialog/oauth/weblogin?" --data "response_type=code&client_id=1654386488&redirect_uri=https://c5613467a1c0.ngrok.io/callback&state=123"
+
+curl -X GET "https://access.line.me/dialog/oauth/weblogin?" --data "response_type=code" --data "client_id=1654386488" --data "redirect_uri=https://c5613467a1c0.ngrok.io/callback" --data "state=123"
+
+curl -X GET --url "https://access.line.me/dialog/oauth/weblogin?" --data "response_type=code" --data 'client_id=1654386488' --data "redirect_uri=https://c5613467a1c0.ngrok.io/callback" --data "state=123"
+
+curl -X GET --url "https://access.line.me/dialog/oauth/weblogin?" --data "response_type=code" --data '{"client_id":"1654386488","redirect_uri=https://c5613467a1c0.ngrok.io/callback","state:123"}'
+
+
+curl -X POST "https://access.line.me/dialog/oauth/weblogin?" --data "response_type=code&client_id=1654386488&redirect_uri=https://c5613467a1c0.ngrok.io/callback&state=123"
+
+curl -X POST "https://access.line.me/dialog/oauth/weblogin?" --data "response_type=code" --data "client_id=1654386488" --data "redirect_uri=https://c5613467a1c0.ngrok.io/callback" --data "state=123"
+
+陽明漲停 不用賣了
+
+
+
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1654386488&redirect_uri=https://c5613467a1c0.ngrok.io/callback&state=123abc
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1234567890&redirect_uri=https%3A%2F%2Fexample.com%2Fauth&state=123abc
+
+
+
+curl -X POST "https://access.line.me/dialog/oauth/weblogin?" -d "response_type=code" -d "client_id=1654386488" -d "redirect_uri=https://c5613467a1c0.ngrok.io/callback" -d "state=123"
+curl -X POST "https://access.line.me/dialog/oauth/weblogin?" -d "response_type=code&client_id=1654386488&redirect_uri=https://c5613467a1c0.ngrok.io/callback&state=123"
+
+msys-gssapi-3.dll
+1654386488
