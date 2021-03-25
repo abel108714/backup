@@ -1,0 +1,267 @@
+Imports System.Threading
+Imports System.Drawing
+Imports System.Drawing.Imaging
+Imports Microsoft.VisualBasic.ApplicationServices.BuiltInRole
+Imports Microsoft.VisualBasic.ApplicationServices
+
+Public Class Form1
+
+    'Inherits System.Web.UI.
+    Private Declare Function BlockInput Lib "user32" _
+        (ByVal fBlock As Integer) As Integer
+    Declare Auto Function SetCursorPos Lib "user32" (ByVal x As Integer, ByVal y As Integer) As Integer
+    Declare Sub mouse_event Lib "user32" (ByVal dwFlags As Integer, ByVal dx As Integer, ByVal dy As Integer, ByVal dwData As Integer, ByVal dwExtraInfo As Integer)
+
+    Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Integer
+    Declare Function FindWindowEx Lib "user32" Alias "FindWindowExA" _
+    (ByVal hWndParent As Integer, ByVal hWndChildAfter As Integer, ByVal lpClassName As String, ByVal lpWindowName As String) As Integer
+    Private Declare Function SetForegroundWindow Lib "user32" (ByVal hwnd As IntPtr) As Long
+
+    Public Const MOUSEEVENTF_LEFTDOWN = &H2
+    Public Const MOUSEEVENTF_LEFTUP = &H4
+    Public Const MOUSEEVENTF_MIDDLEDOWN = &H20
+    Public Const MOUSEEVENTF_MIDDLEUP = &H40
+    Public Const MOUSEEVENTF_RIGHTDOWN = &H8
+    Public Const MOUSEEVENTF_RIGHTUP = &H10
+    Public Const MOUSEEVENTF_MOVE = &H1
+    Dim a As New Process
+    Dim xlApp_sou As Object
+    Dim xlBook_sou As Object
+    Dim mydocpath As String = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
+
+
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'Timer1.Enabled = True
+        'Timer1.Interval = 100
+
+
+        'KeyPreview = True
+
+        Me.KeyPreview = True ' HOT KEY
+        'Me.Show()
+        '238 370 按確定
+        'xlApp_sou = CreateObject("Excel.Application") '創建EXCEL應用類
+        'xlApp_sou.Visible = True '設置EXCEL可見
+        SetCursorPos(238, 370)
+        setMouseClick("left", 2)
+        'MsgBox(mydocpath)
+
+        'xlBook_sou = xlApp_sou.Workbooks.Open(mydocpath) '打開EXCEL工作簿
+        'Dim sizex As Size = My.Computer.Screen.Bounds.Size
+        'Dim myImage As New Bitmap(sizex.Width, sizex.Height)
+        'Dim g As Graphics = Graphics.FromImage(myImage)
+        'g.CopyFromScreen(New Point(0, 0), New Point(0, 0), sizex)   '截圖座標
+        'Dim dc1 As IntPtr = g.GetHdc
+        'g.ReleaseHdc(dc1)
+        'myImage.Save("C:\test.jpg")
+
+        Dim User = New User
+        'If Not User.IsInRole(Administrator) Then
+        'MsgBox("請以系統管理員身分執行此程式")
+        'End If
+
+
+
+
+        'bmScrn.Dispose()
+
+
+        CopyScreenWithMouse()
+        'Dim hwd As IntPtr
+        'Dim hwd1 As IntPtr
+        'Label1.Text = "產生報表中，勿移動滑鼠及操控鍵盤"
+        'Label1.Refresh()
+        'Dim NowDate As String = System.DateTime.Now
+        'Dim EarMonDate As String = DateTime.Parse(NowDate).ToString("yyy/MM/") & "01"
+        'NowDate = DateTime.Parse(NowDate).ToString("yyy/MM/dd")
+        'a.StartInfo.FileName = "C:\Conductor\C_dsbin\MainMenu.exe"
+        'a.Start()
+        'hwd = FindWindow(vbNullString, "鼎新電腦 Cosmos ERP")
+        'If hwd.Equals(IntPtr.Zero) Then '若已開啟就不等待秒數
+        '    Thread.Sleep(13000)
+        'Else
+        '    Thread.Sleep(3000)
+        'End If
+        'setSendKeys("01439{enter}", 10)
+        'setSendTab(3, 1) '到輸入代號位置
+        'SendKeys.SendWait("COPR38{enter}") '輸入代號
+        'setPerfReport(NowDate, NowDate, hwd1, 15) '當日業績報表
+        'SetCursorPos(218, 178)
+        'setMouseClick("left", 2)
+        'SendKeys.SendWait("COPR38{enter}") '輸入代號
+        'setPerfReport(EarMonDate, NowDate, hwd1, 120) '累計業績報表
+        'SetCursorPos(835, 83) '到關閉系統位置
+        'setMouseClick("left", 2) '關閉系統
+        'Me.Close()
+
+    End Sub
+    Protected Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+        'Me.Visible = False
+        Me.Opacity = 0 '視窗透明
+        ' 取得螢幕的解析度
+        Dim scrnWidth As Integer = Screen.PrimaryScreen.Bounds.Width ' - 500
+        Dim scrnHeight As Integer = Screen.PrimaryScreen.Bounds.Height ' - 400
+
+        ' 建立Bitmap物件
+        Dim bmScrn As New Bitmap(scrnWidth, scrnHeight, PixelFormat.Format32bppArgb)
+
+        ' 將螢幕畫面複製到Bitmap物件中
+        Dim g As Graphics = Graphics.FromImage(bmScrn)
+        Dim x As Integer = 0
+        Dim y As Integer = 0
+        Dim x1 As Integer = 0
+        Dim y1 As Integer = 0
+        Dim x2 As Integer = scrnWidth
+        Dim y2 As Integer = scrnHeight
+        If TextBox1.Text <> "" Then
+            x = TextBox1.Text
+        End If
+        If TextBox2.Text <> "" Then
+            y = TextBox2.Text
+        End If
+        If TextBox3.Text <> "" Then
+            x1 = TextBox3.Text
+        End If
+        If TextBox4.Text <> "" Then
+            y1 = TextBox4.Text
+        End If
+        If TextBox5.Text <> "" Then
+            x2 = TextBox5.Text
+        End If
+        If TextBox6.Text <> "" Then
+            y2 = TextBox6.Text
+        End If
+        'g.CopyFromScreen(x, y, 0, 0, New Size(scrnWidth, scrnHeight))
+        g.CopyFromScreen(x, y, x1, y1, New Size(x2, y2))
+        'Dim sizex As Size = My.Computer.Screen.Bounds.Size
+        'g.CopyFromScreen(New Point(0, 200), New Point(0, 200), sizex)   '截圖座標
+        '設定偏移座標、設定原點座標
+        g.Dispose()
+
+        ' 儲存螢幕影像
+        'If Not User.IsInRole(Administrator) Then
+        'MsgBox("請以系統管理員身分執行此程式")
+        'Else
+        'bmScrn.Save("S:\網通部\◎資訊\screen.jpg")
+        'bmScrn.Save("C:\screen.jpg")
+        'End If
+        Dim filename As String
+        Dim hwd1, hwd2 As IntPtr
+        hwd1 = FindWindow(vbNullString, "WindowsApp4")
+
+        If hwd1.Equals(IntPtr.Zero) Then
+            'Label1.Text = "找不到"
+            'MsgBox("找不到")
+        Else
+            'Label1.Text = "找到了"
+            'MsgBox("找到了")
+            'SetForegroundWindow(hwd1)
+            'hwd2 = FindWindowEx(hwd1, 0&, "Edit", vbNullString) '內容的視窗類別是Edit
+            'If hwd2.Equals(IntPtr.Zero) Then
+            ' Label2.Text = "找不到"
+            ' Else
+            ' Label2.Text = "找到了"
+            ' End If
+
+        End If
+        Try
+            filename = "S:\網通部\◎資訊\screen" & "_" & x & "_" & y & ".jpg"
+            bmScrn.Save(filename)
+            'bmScrn.Save("C:\screen.jpg")
+            Dim IOStm As IO.Stream = New IO.FileStream(filename, IO.FileMode.Open)
+            PictureBox1.Image = New Bitmap(IOStm)
+            PictureBox1.SizeMode = PictureBoxSizeMode.AutoSize
+            IOStm.Close()
+        Catch ex As Runtime.InteropServices.ExternalException
+            MsgBox("輸出路徑權限不足")
+        End Try
+        Me.Opacity = 70 '視窗透明70
+        'Me.Close()
+
+
+
+        'Dim myImage As New Bitmap(1024, 768)
+        'Dim myImage2 As New Bitmap(1280, 1024)
+        'Dim g = Graphics.FromImage(myImage2)
+        'g.CopyFromScreen(New Point(0, 0), New Point(0, 0), New Size(1024, 768))
+        'g.CopyFromScreen(New Point(0, 0), New Point(0, 0), New Size(1280, 1024))
+        'Dim dc1 As IntPtr = g.GetHdc
+        'g.ReleaseHdc(dc1)
+        'g.Dispose()
+        'myImage2.Save("S:\網通部\◎資訊\screen2.jpg")
+        'myImage2.Save("C:\\screen.jpg")
+        'myImage2.Save("S:\screen.jpg")
+        'myImage2.Save("S:\\screen.jpg")
+    End Sub
+
+    Function CopyScreenWithMouse() As Bitmap
+        Dim b As Bitmap =
+            New Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height)
+        Dim g As Graphics = Graphics.FromImage(b)
+        g.CopyFromScreen(New Point(0, 0), New Point(0, 0), Screen.PrimaryScreen.Bounds.Size)
+        Cursor.Draw(g, New Rectangle(Cursor.Position, Cursor.Size))
+        g.Dispose()
+        Return b
+    End Function
+
+    Public Sub inputDate(newDate As String)
+        Dim date_ary() As String
+        date_ary = Split(newDate, "/")
+        SendKeys.SendWait(date_ary(0)) '輸入開始日期
+        Thread.Sleep(1000)
+        SendKeys.SendWait(date_ary(1))
+        Thread.Sleep(1000)
+        SendKeys.SendWait(date_ary(2))
+        Thread.Sleep(2000)
+    End Sub
+
+    Public Sub setMouseClick(str As String, sleepSec As Integer)
+        If String.Equals(str, "left") Then
+            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)
+            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+        ElseIf String.Equals(str, "middle") Then
+            mouse_event(MOUSEEVENTF_MIDDLEDOWN, 0, 0, 0, 0)
+            mouse_event(MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0)
+        ElseIf String.Equals(str, "right") Then
+            mouse_event(MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0)
+            mouse_event(MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0)
+        End If
+        Thread.Sleep(sleepSec * 1000)
+    End Sub
+
+    Public Overloads Sub setSendEnter(sleepSec As Integer)
+        SendKeys.SendWait("{enter}")
+        Thread.Sleep(sleepSec * 1000)
+    End Sub
+
+    Public Overloads Sub setSendTab(tab_times As Integer, sleepSec As Integer)
+        Dim i As Integer = 0
+        Do
+            SendKeys.SendWait("{tab}")
+            Thread.Sleep(sleepSec * 1000)
+            i += 1
+        Loop Until i = tab_times
+    End Sub
+
+    Public Overloads Sub setSendKeys(sendKey As String, sleepSec As Integer)
+        SendKeys.SendWait(sendKey)
+        Thread.Sleep(sleepSec * 1000)
+    End Sub
+
+    Public Overloads Sub setSendKeys(sendKey As String)
+        SendKeys.SendWait(sendKey)
+        Thread.Sleep(2 * 1000)
+    End Sub
+
+    Private Sub Form_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F10
+                Me.Close()
+            Case Keys.Enter
+                Button1_Click(Button1, New System.EventArgs()) '自動按下按鈕
+        End Select
+    End Sub
+
+End Class
