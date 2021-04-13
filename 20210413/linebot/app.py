@@ -757,6 +757,7 @@ def handle_message(event):
     print("已儲存圖片至Z槽")
     #print("sleep start")
     #print("sleep end")
+    print("C:/linebot/PicToStrTest.py Z:/"+event.message.id+".jpg")
     os.system("C:/linebot/PicToStrTest.py Z:/"+event.message.id+".jpg")#13816417264421.jpg
     #os.system("C:/linebot/PicToStrTest.py Z:/13816417264421.jpg")
     

@@ -80,7 +80,7 @@ def checkSubstring(dataList, start, end, SubString):
         print(dataList[i])
         temp=dataList[i].strip().replace(',','')
         ss=str(ss)+str(temp)
-        print(ss)
+        print("ss: "+str(ss))
         if ss==SubString and i==2:
             return True
         
@@ -145,32 +145,33 @@ def main(argv):
     #print(resultList)
     # print(dataList)
 
-    # print(checkSubstring(dataList,1,2,"月目標"))
-    
-    i=0
-    j=0
-    while i < len(dataList)-1:#len(dataList[i])-1
-        # print(dataList[i])
-        ss=dataList[i].strip().replace(',','')
-        newDataAccess=FileDataAccess(0,'2','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部下個月業積目標.txt')
+    print("check: " + str(checkSubstring(dataList,1,2,"月目標")))
+    if checkSubstring(dataList,1,2,"月目標") == True:
 
-                    #print(ws.cell(row=cell.row, column=2).value) #change column number for any cell value you want
-        # wb.sheets[0].range('D' + str(i+1)).value  = Data[0]
-        # wb.sheets[0].range('E' + str(i+1)).value  = Data[1]
-        # wb.sheets[0].range('F' + str(i+1)).value  = Data[2]
-        # wb.sheets[0].range('G' + str(i+1)).value  = Data[3]
-        # wb.sheets[0].range('H' + str(i+1)).value  = Data[4]
-        # wb.sheets[0].range('J' + str(i+1)).value  = Data[6]
-        if ss != "" and i !=0:
+        i=0
+        j=0
+        while i < len(dataList)-1:#len(dataList[i])-1
+            # print(dataList[i])
+            ss=dataList[i].strip().replace(',','')
+            newDataAccess=FileDataAccess(0,'2','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部下個月業積目標.txt')
+            #S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\業績目標.xlsx
+            #print(ws.cell(row=cell.row, column=2).value) #change column number for any cell value you want
+            # wb.sheets[0].range('D' + str(i+1)).value  = Data[0]
+            # wb.sheets[0].range('E' + str(i+1)).value  = Data[1]
+            # wb.sheets[0].range('F' + str(i+1)).value  = Data[2]
+            # wb.sheets[0].range('G' + str(i+1)).value  = Data[3]
+            # wb.sheets[0].range('H' + str(i+1)).value  = Data[4]
+            # wb.sheets[0].range('J' + str(i+1)).value  = Data[6]
+            if ss != "" and i !=0:
 
-            # print(ss)
-            # print(isDigit(ss))
-            if isDigit(ss):
-                newDataAccess.setData(str(j),[ss])
-                j=j+1
+                # print(ss)
+                # print(isDigit(ss))
+                if isDigit(ss):
+                    newDataAccess.setData(str(j),[ss])
+                    j=j+1
 
-        i=i+1
-    print("已更新個人業績目標")
+            i=i+1
+        print("已更新個人業績目標")
     # wb = Workbook()
     # ws = wb.active
     # # 定義你所要連接的檔案名稱
@@ -196,8 +197,9 @@ def main(argv):
 
 
 if __name__ == "__main__":
-    print("Pic")
+    print("Pic1")
     print(sys.argv[0])
-    print("Pic")
+    print(sys.argv[1])
+    print("Pic2")
     main(sys.argv)
-    print("Pic")
+    print("Pic3")
