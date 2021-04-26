@@ -454,6 +454,8 @@ def checkExpPerf():
     # print(weekno)
     # print(int(a.getDay()) >= 25)
     # print("123")
+
+    #全聯預入,自動於25日以後的第一個工作天中午12點清除預入金額
     if int(a.getDay()) >= 25 and weekno<=6 and date.strftime("%H:%M") == "12:00": 
         print('day1')
         # newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部每月預入績效.txt')
@@ -467,6 +469,7 @@ def checkExpPerf():
             print('case2')
             updateArr=['','']
             newDataAccess.setData('全聯',updateArr)
+    #全聯預入,自動於1日的11點30輸入預入金額
     elif int(a.getDay()) == 1 and date.strftime("%H:%M") == "11:30": 
         print('day2')
         # newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部每月預入績效.txt')
@@ -497,7 +500,7 @@ def job2():
     
         
     #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", TextSendMessage(text=str(date.strftime("%H:%M"))))
-    if date.strftime("%H:%M") == "17:55":#自動發網通報表
+    if date.strftime("%H:%M") == "17:39":#自動發網通報表
         print('isHoliday() = '+str(isHoliday()))
         print('isWorkday() = '+str(isWorkday()))
         if isWorkday() == True:

@@ -580,7 +580,15 @@ def OCPerformanceReport():
         return message
     else:
         #print('無報表')
-        message=TextSendMessage(text="目前無報表，抱歉")
+        os.system("start /wait cmd /c xcopy /e /y S:\\網通部\\◎資訊\\test\\"+BegMonthOfTodayPeriod+'網通目標達成比.jpg')
+        os.system("start /wait cmd /c S:\\網通部\\◎資訊\\reset.bat")
+        os.system("start /wait cmd /c copy S:\\網通部\\◎資訊\\test\\"+BegMonthOfTodayPeriod+'網通目標達成比.jpg ' + "S:\\網通部\\◎資訊\\test")
+        os.system("start /wait cmd /c S:\\網通部\\◎資訊\\upload.bat")
+        #message=TextSendMessage(text="報表產生中")#目前無報表，抱歉
+        message = ImageSendMessage(
+            original_content_url="https://raw.githubusercontent.com/abel108714/test/master/"+BegMonthOfTodayPeriod+"%E7%B6%B2%E9%80%9A%E7%9B%AE%E6%A8%99%E9%81%94%E6%88%90%E6%AF%94.jpg",
+            preview_image_url="https://raw.githubusercontent.com/abel108714/test/master/"+BegMonthOfTodayPeriod+"%E7%B6%B2%E9%80%9A%E7%9B%AE%E6%A8%99%E9%81%94%E6%88%90%E6%AF%94.jpg"
+        )
         return message
         #message=TextSendMessage(text="")
         #return message
