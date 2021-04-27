@@ -1,0 +1,25 @@
+1. 機器人每月一號去讀取txt寫進業績目標.xlsx裡ok
+尚需機器人增加寫入完成訊息ok
+自動刪Z槽業績圖檔ok
+隱藏excel
+
+2. 鼎新自動化取得報表(等月底取得系統序號檔名)
+->bat啟動AMS巨集輸入業績迴轉率至迴轉率表
+->迴轉率表欄位自動計算一年期間的迴轉率
+->每日庫存水位讀取
+
+連結到S:\網通部\◎資訊\庫存水位表\商品迴轉天數表_2020.xls的每月均銷量
+測試
+getLastCol
+getLastRow
+
+加上workbook check exist
+
+if workbook check exist
+getLastCol
+getLastRow
+
+先改迴轉率巨集 改成銷售量就好
+再改月均銷售量巨集
+
+
