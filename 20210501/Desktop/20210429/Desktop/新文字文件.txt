@@ -1,0 +1,1315 @@
+
+
+Sub printStr(str As String)
+    Debug.Print (str)
+End Sub
+
+Public Function ArrayLen(arr As Variant) As Integer
+    ArrayLen = UBound(arr) - LBound(arr) + 1
+End Function
+
+Sub freezeCol(FCol As Integer) '凍結欄
+    With ActiveWindow
+        .SplitColumn = FCol
+    End With
+    ActiveWindow.FreezePanes = True
+End Sub
+
+Sub freezeRow(FRow As Integer) '凍結列
+    With ActiveWindow
+        .SplitRow = FRow
+    End With
+    ActiveWindow.FreezePanes = True
+End Sub
+
+Sub copyFile(FilePath As String) '存檔後自動備份到指定路徑
+  
+    FileName = sys.getFileName(FilePath) '輸入給備份的名稱，記得要打附檔名，「Filename」只是一個代碼，可自由命名。。
+    Savecopyasto = sys.getFilePath(FilePath) '輸入要備份的路徑，記得路徑前後都要打上雙引號，「Savecopyasto」只是一個代碼，可自由命名。
+    Savecopyasname = Savecopyasto & FileName '之後將路徑與檔名作連結，「Savecopyasname」只是一個代碼，可自由命名。
+    ActiveWorkbook.SaveCopyAs Savecopyasname '這一行就是複製備份的程式碼。
+'    ThisWorkbook.SaveAs Filename:=
+End Sub
+
+Function getDateTitle(TitleStr As String) As String
+    Dim SimilarStr As String
+    SimilarStr = CStr(year(TitleStr)) & "/" & CStr(month(TitleStr))
+    getDateTitle = SimilarStr
+End Function
+
+Sub ttt()
+'    sys.printStr (getLastRow(1, 1, "A"))
+'    sys.printStr (getLastCol(1, 1, 1))
+'    Dim LastCol As Integer
+'    LastCol = WorkBooks(3).Worksheets(1).Cells(1, Columns.count).End(xlToLeft).Column
+'    sys.printStr (LastCol)
+'    Dim LastRow As Integer
+'    LastRow = WorkBooks(3).Worksheets(1).Cells(Rows.count, 1).End(xlUp).Row
+'    sys.printStr (LastRow)
+End Sub
+Function getLastRow(TarWBIndex As Integer, SheetIndex As Integer, SpecCol As String) As Integer
+
+'
+    
+    
+    Dim LastRow As Integer
+    LastRow = WorkBooks(TarWBIndex).Worksheets(SheetIndex).range(SpecCol & "65536").End(xlUp).Row
+    'LastRow = WorkBooks(TarWBIndex).Worksheets(SheetIndex).Cells(Rows.count, SpecCol).End(xlUp).Row '資料最後一列
+
+    getLastRow = LastRow
+End Function
+
+
+Function getLastCol(TarWBIndex As Integer, SheetIndex As Integer, SpecRow As Integer) As Integer
+'    If isOpenWB(TarWBIndex) = True Then
+        Dim LastCol As Integer
+        Dim Rng As range
+        Set Rng = WorkBooks(TarWBIndex).Worksheets(SheetIndex).Cells
+'        'LastCol = WorkBooks(TarWBIndex).Worksheets(SheetIndex).range("RRR" & SpecRow).End(xlToLeft).Column
+        LastCol = Rng.Find(What:="*", After:=Rng.Cells(1), Lookat:=xlPart, LookIn:=xlFormulas, SearchOrder:=xlByColumns, SearchDirection:=xlPrevious, MatchCase:=False).Column
+'        LastCol = WorkBooks(TarWBIndex).Worksheets(SheetIndex).Cells(SpecRow, Columns.count).End(xlToLeft).Column '資料最後一行
+        getLastCol = LastCol
+'    End If
+
+        
+'        sys.printStr (WorkBooks(TarWBindex).Name)
+'        sys.printStr (WorkBooks(1).Worksheets(1).Cells(1, Columns.count).End(xlToLeft))
+'        sys.printStr (WorkBooks(1).Worksheets(1).Cells(1, Columns.count).End(xlToLeft).Column)
+
+
+
+End Function
+
+'Function getLastRow(TarWBIndex, SheetIndex, SpecCol As String)
+''    Debug.Print WorkBooks(TarWBindex).Name
+''    Debug.Print Worksheets("sheet1").Cells(Rows.count, 1).End(xlUp).Row
+''    Debug.Print WorkBooks(4).Worksheets(1).Cells(1, 1).Value
+''    Debug.Print Worksheets("sheet1").Cells(Rows.count, 1).End(xlUp).Row
+''    Debug.Print WorkBooks(4).Worksheets(1).Cells(1, 1).End(xlUp).Value
+''    Debug.Print WorkBooks(4).Worksheets(1).Cells(Rows.count, 1).End(xlUp).Row
+''    Debug.Print WorkBooks(TarWBindex).Worksheets(SheetIndex).Cells(Rows.count, "A").End(xlUp).Row
+''    Debug.Print Cells(Rows.count, "A").End(xlUp).Row
+''    Debug.Print ActiveWorkbook.Name
+''    Debug.Print ActiveSheet.Name
+''    Debug.Print Sheets(2).Name
+''    Debug.Print WorkBooks(0).Worksheets(SheetIndex).Cells(Rows.count, "A").End(xlUp).Row
+''    Debug.Print WorkBooks(1).Worksheets(SheetIndex).Cells(Rows.count, "A").End(xlUp).Row
+''    Debug.Print WorkBooks(2).Worksheets(SheetIndex).Cells(Rows.count, "A").End(xlUp).Row
+''    Debug.Print WorkBooks(3).Worksheets(SheetIndex).Cells(Rows.count, "A").End(xlUp).Row
+''
+'
+'
+'    Dim LastRow As Integer
+'    LastRow = WorkBooks(TarWBIndex).Worksheets(SheetIndex).range(SpecCol & "65536").End(xlUp).Row
+'    'WorkBooks(TarWBIndex).Worksheets(SheetIndex).Cells(Rows.count, sys.getColNumber(SpecCol)).End(xlUp).Row '資料最後一列
+'
+'    getLastRow = LastRow
+'End Function
+
+Function isOpenWB(WBIndex As Integer) As Boolean
+    On Error GoTo ErrorHandler
+    If WorkBooks(WBIndex).Name <> "" Then
+        isOpenWB = True
+    End If
+ErrorHandler:
+    isOpenWB = False
+Resume Next
+    
+End Function
+
+Sub ss()
+    sys.printStr (sys.getLastCol(1, 1, 1))
+End Sub
+
+'Function getLastCol(TarWBIndex, SheetIndex, SpecRow)
+''    If isOpenWB(TarWBIndex) = True Then
+'        Dim LastCol As Integer
+'        LastCol = WorkBooks(TarWBIndex).Worksheets(SheetIndex).Cells(1, Columns.count).End(xlToLeft).Column
+''        LastCol = WorkBooks(TarWBIndex).Worksheets(SheetIndex).range(Columns.count & SpecRow).End(xlToLeft).Column
+''        LastCol = WorkBooks(TarWBIndex).Worksheets(SheetIndex).Cells(SpecRow, Columns.count).End(xlToLeft).Column '資料最後一行
+'        getLastCol = LastCol
+''    End If
+'
+'
+''        sys.printStr (WorkBooks(TarWBindex).Name)
+''        sys.printStr (WorkBooks(1).Worksheets(1).Cells(1, Columns.count).End(xlToLeft))
+''        sys.printStr (WorkBooks(1).Worksheets(1).Cells(1, Columns.count).End(xlToLeft).Column)
+'
+'
+'
+'End Function
+
+Function isExistRowStr(TarWBIndex As Integer, SheetIndex As Integer, SpecCol As String, str As String) As Boolean
+    Dim LastRow As Integer
+    Dim Row As Integer
+    LastRow = sys.getLastRow(TarWBIndex, SheetIndex, SpecCol)
+    For Row = 1 To LastRow
+        If str = WorkBooks(TarWBIndex).Sheets(SheetIndex).range(SpecCol & Row).Value Then
+            isExistRowStr = True
+            Exit Function
+        End If
+    Next Row
+    isExistRowStr = False
+End Function
+
+Function getStrRow(TarWBIndex As Integer, SheetIndex As Integer, SpecCol As String, str As String) As Integer
+    Dim LastRow As Integer
+    Dim Row As Integer
+    LastRow = sys.getLastRow(TarWBIndex, SheetIndex, SpecCol)
+    For Row = 1 To LastRow
+        If str = WorkBooks(TarWBIndex).Sheets(SheetIndex).range(SpecCol & Row).Value Then
+            getStrRow = Row
+            Exit Function
+        End If
+    Next Row
+    getStrRow = 0
+End Function
+
+Function getTatolSheetsCount(TarWBIndex, SheetIndex)
+    Dim TatolSheetsCount As Integer
+    TatolSheetsCount = WorkBooks(TarWBIndex).Sheets.count
+    getTatolSheetsCount = TatolSheetsCount
+End Function
+
+
+Sub tttt()
+    
+    Dim TatolSheetsNO As Integer
+    TatolSheetsNO = WorkBooks(SouWBIndex).Sheets.count
+'    Debug.Print getLastRow(1, 1, 1)
+'    Debug.Print getLastCol(1, 1, 2)
+    '計算迴轉率
+'    Dim LastCol As Integer
+'    LastCol = WorkBooks(TarWBIndex).Worksheets(1).Cells(1, Columns.count).End(xlToLeft).Column
+'    Dim LastRow As Integer
+'    LastRow = WorkBooks(TarWBIndex).Worksheets(1).Cells(Rows.count, 1).End(xlUp).Row '資料最後一列
+'
+'    Dim SearchString, SearchChar, MyPos
+'    SearchString = "2021/02/04"  ' 被搜尋的字串。
+'    SearchChar = "2021/02"   ' 要尋找字串 "P"。
+'    ' 從第四個字元開始，以 [文字比對] 的方式找起。傳回值為 6(小寫 p）。
+'
+'    ' 小寫 p 和大寫 P 在 [文字比對] 下是一樣的，即英文字母大小寫視同一致。
+'    MyPos = InStr(4, SearchString, SearchChar, 1)
+'
+'    ' 從第一個字元開使，以 [二進位比對] 的方式找起。傳回值為 9(大寫 P）。
+'    ' 小寫 p 和大寫 P 在 [二進位比對] 下是不一樣的。
+'    MyPos = InStr(1, SearchString, SearchChar, 0)
+'
+'    ' 預設的比對方式為 [二進位比對](最後一個引數可省略)。
+'    MyPos = InStr(SearchString, SearchChar)       ' 傳回 9。
+'    MyPos = InStr(10, SearchString, SearchChar)   ' 傳回 12。
+'
+'    MyPos = InStr(1, SearchString, "W")   ' 傳回 0。
+End Sub
+
+Function getWorkDays(y As Integer, m As Integer) As Integer
+    Dim FilePath As String
+    Dim result As String
+    Dim Data(2) As String
+    Dim LineFromFile As String
+    Dim fieldArray() As String
+    Dim j As Integer
+
+    FilePath = "S:\網通部\◎資訊\目標達成比\實體通路\" & y & "每月工作天.txt"  '文字檔案位置
+    Open FilePath For Input As #1 '開啟 FilePath 文字檔，使用編號 #1 檔案代碼
+    Do Until EOF(1) '執行迴圈，直到編號 #1 檔案遇到結尾為止
+        Line Input #1, LineFromFile '從編號 #1 檔案讀取一行資料
+
+        result = CStr(LineFromFile) '輸出一行資料
+        fieldArray = Split(result, "-")
+        For j = 0 To ArrayLen(fieldArray) - 1
+            If fieldArray(0) = m Then
+                getWorkDays = fieldArray(1)
+            End If
+        
+        Next j
+
+    Loop
+
+    Close #1 '關閉編號 #1 檔案
+End Function
+
+Function WorksheetExists(SheetName As String) As Boolean
+    
+    Dim TempSheetName As String
+    
+    TempSheetName = UCase(SheetName)
+    
+    WorksheetExists = False
+        
+    For Each Sheet In Worksheets
+        If TempSheetName = UCase(Sheet.Name) Then
+            WorksheetExists = True
+            Exit Function
+        End If
+    Next Sheet
+
+End Function
+
+Function getDataRowCountByPath(TarFilePath As String, SouFilePath As String, SouFileSheetsNO As Long, Col As Integer) As Integer
+    WorkBooks(sys.getFileName(SouFilePath)).Sheets(SouFileSheetsNO).Activate
+    Dim RowCount As Integer
+    RowCount = Cells(Rows.count, Col).End(xlUp).Row '資料最後一列
+    WorkBooks(sys.getFileName(TarFilePath)).Sheets(1).Activate
+    getDataRowCountByPath = RowCount
+End Function
+
+Function getDataRowCount(MainWB As Integer, Path As String, sheetsNO As Long, Col As Integer) As Integer
+    WorkBooks(sys.getFileName(Path)).Sheets(sheetsNO).Activate
+    Dim RowCount As Integer
+    RowCount = Cells(Rows.count, Col).End(xlUp).Row '資料最後一列
+    If sys.getWBIndexByName(sys.getFileName(Path)) <> MainWB Then
+        Windows(WorkBooks(MainWB).Name).Activate 'Windows(WorkBooks(MainWB).Name).Sheets(WorkBooks(SheetsNO).Name).Activate
+    End If
+    getDataRowCount = RowCount
+End Function
+
+Function isDigit(str As String)
+    '判斷是否為數字
+    Dim r As String
+    r = StrConv(str, vbNarrow)
+    Dim b As Boolean
+    b = False
+    Dim i As Integer
+    Dim t As Integer
+    For i = 1 To Len(r)
+        t = Asc(Mid(StrConv(r, vbNarrow), i, 1))
+        '第48~57號為0~9十個阿拉伯數字；
+        '65~90號為26個大寫英文字母，
+        '97~122號為26個小寫英文字母
+        If (t >= 48 And t <= 57) Then
+            b = True
+'            Exit For
+        Else
+            b = False
+            Exit Function
+        End If
+    Next
+    isDigit = b
+End Function
+
+Function isUCase(str As String)
+    '判斷是否為大寫
+    Dim r As String
+    r = StrConv(str, vbNarrow)
+    Dim b As Boolean
+    b = False
+    Dim i As Integer
+    Dim t As Integer
+    For i = 1 To Len(r)
+        t = Asc(Mid(StrConv(r, vbNarrow), i, 1))
+        '第48~57號為0~9十個阿拉伯數字；
+        '65~90號為26個大寫英文字母，
+        '97~122號為26個小寫英文字母
+        If (t >= 65 And t <= 90) Then
+            b = True
+'            Exit For
+        Else
+            b = False
+            Exit Function
+        End If
+    Next
+    isDigit = b
+End Function
+
+Function isLCase(str As String)
+    '判斷是否為小寫
+    Dim r As String
+    r = StrConv(str, vbNarrow)
+    Dim b As Boolean
+    b = False
+    Dim i As Integer
+    Dim t As Integer
+    For i = 1 To Len(r)
+        t = Asc(Mid(StrConv(r, vbNarrow), i, 1))
+        '第48~57號為0~9十個阿拉伯數字；
+        '65~90號為26個大寫英文字母，
+        '97~122號為26個小寫英文字母
+        If (t >= 97 And t <= 122) Then
+            b = True
+'            Exit For
+        Else
+            b = False
+            Exit Function
+        End If
+    Next
+    isDigit = b
+End Function
+
+Function findSubstring(FindStr As String, Substring As String) As Integer
+    Dim Position As Integer
+    Position = InStr(FindStr, Substring)
+    findSubstring = Position
+End Function
+
+Function isSubstringExist(FindStr As String, Substring As String) As Boolean
+    If findSubstring(FindStr, Substring) > 1 Then
+        isSubstringExist = True
+    Else
+        isSubstringExist = False
+    End If
+End Function
+
+Sub exp()
+Dim r As Boolean
+
+r = sys.isFileExsit("C:\My Documents\2020年度績效.xlsx")
+'mysentence = "C:\My Documents\2020年度績效.xlsx"
+'MsgBox InStr(mysentence, " ") > 0
+
+MsgBox r
+End Sub
+
+Function isFileExsit(Path As String) As Boolean '檔案是否存在
+'    Dim r As String
+'    Dim cmd_str As String
+'
+'    cmd_str = "IF EXIST """"""" & Path & """"""" ECHO 0"
+'    r = oShell.getValueOfShellRun(cmd_str)
+'    If r = "0" Then '已存在
+'        isFileExsit = True
+'    Else '不存在
+'        isFileExsit = False
+'    End If
+
+    If Len(Dir(Path)) <> 0 Then '已存在
+        isFileExsit = True
+    Else '不存在
+        isFileExsit = False
+    End If
+    
+End Function
+
+Sub Workbook_Open(file As String)
+
+    Application.DisplayAlerts = False '同檔名提示關閉
+    If isFileExsit(file) = True Then '檔案存在
+        If isFileOpen(file) = False Then '檔案未打開
+            WorkBooks.Open file '打開檔案
+        End If
+    Else '檔案不存在
+        Dim app_excel As Excel.Application
+        Dim book_excel As Excel.Workbook
+        Set app_excel = Excel.Application
+        Set book_excel = app_excel.WorkBooks.Add
+        book_excel.SaveAs FileName:=file, _
+        FileFormat:=xlOpenXMLWorkbookMacroEnabled, CreateBackup:=False '新建檔案
+    End If
+    Application.DisplayAlerts = True '同檔名提示開啟
+
+End Sub
+
+Sub Workbook_Open_ReadOnly(file As String)
+
+    Application.DisplayAlerts = False '同檔名提示關閉
+    If isFileExsit(file) = True Then '檔案存在
+        If isFileOpen(file) = False Then '檔案未打開
+            WorkBooks.Open FileName:=file, ReadOnly:=True '打開檔案
+        End If
+    Else '檔案不存在
+        Dim app_excel As Excel.Application
+        Dim book_excel As Excel.Workbook
+        Set app_excel = Excel.Application
+        Set book_excel = app_excel.WorkBooks.Add
+        book_excel.SaveAs FileName:=file, _
+        FileFormat:=xlOpenXMLWorkbookMacroEnabled, CreateBackup:=False '新建檔案
+    End If
+    Application.DisplayAlerts = True '同檔名提示開啟
+
+End Sub
+
+Sub openWorkbook(file As String)
+
+    Application.DisplayAlerts = False '同檔名提示關閉
+    If isFileExsit(file) = True Then '檔案存在
+        If isFileOpen(file) = False Then '檔案未打開
+            WorkBooks.Open file '打開檔案
+        End If
+    Else '檔案不存在
+        Dim app_excel As Excel.Application
+        Dim book_excel As Excel.Workbook
+        Set app_excel = Excel.Application
+        Set book_excel = app_excel.WorkBooks.Add
+        book_excel.SaveAs FileName:=file, _
+        FileFormat:=xlOpenXMLWorkbookMacroEnabled, CreateBackup:=False '新建檔案
+    End If
+    Application.DisplayAlerts = True '同檔名提示開啟
+
+End Sub
+
+Function isFileOpen(Path As String) As Boolean
+    Dim wb As Workbook
+    On Error Resume Next
+    Set wb = WorkBooks(Path)
+    On Error GoTo 0
+    If sys.getWBIndexByName(Path) = 0 Then
+        isFileOpen = False
+    Else
+        isFileOpen = True
+    End If
+End Function
+
+Function getDriveLetter(Path As String) As String
+    Dim FS, Drive
+    Set FS = CreateObject("Scripting.FileSystemObject")
+    Set Drive = FS.GetDrive(FS.GetDriveName(Path))
+    getDriveLetter = Drive.DriveLetter
+End Function
+
+'Sub ttt()
+'    MsgBox WorkBooks(WBName).fullname
+'End Sub
+
+Function getWBIndexByName(WBName As String) As Integer
+    Dim i As Integer
+    Dim FileFullPath As String
+    For i = 1 To WorkBooks.count
+'        MsgBox getUCaseDriveLetter(LCaseExtFileName(WorkBooks(i).fullname)) & "\n" & FileFullPath
+'MsgBox LCaseExtFileName(WorkBooks(i).fullname)
+'        MsgBox Windows(WBName).fullname
+'        FileFullPath = getFilePath(WorkBooks(WBName).fullname) & getFileName(WBName)
+'        MsgBox getUCaseDriveLetter(LCaseExtFileName(WorkBooks(i).fullname)) & "\n" & FileFullPath
+'MsgBox LCaseExtFileName(WorkBooks(i).fullname)
+'MsgBox FileFullPath
+        If WorkBooks(i).Name = WBName Or WorkBooks(i).Name = getFileName(WBName) Then 'Or getUCaseDriveLetter(LCaseExtFileName(WorkBooks(i).fullname)) = FileFullPath Then
+            getWBIndexByName = i
+            Exit Function
+        End If
+    Next i
+    getWBIndexByName = 0
+End Function
+
+Function getSheetIndexByName(WBName As String) As Integer
+    Dim i As Integer
+    Dim FileFullPath As String
+    For i = 1 To WorkBooks.count
+        If Sheet(i).Name = WBName Or Sheet(i).Name = getFileName(WBName) Then 'Or getUCaseDriveLetter(LCaseExtFileName(WorkBooks(i).fullname)) = FileFullPath Then
+            getSheetIndexByName = i
+            Exit Function
+        End If
+    Next i
+    getSheetIndexByName = 0
+End Function
+
+Function getUCaseDriveLetter(str As String)
+    Dim StrArr() As String
+    If InStr(str, ":\") <> 0 Then
+        StrArr = Split(str, ":\")
+        str = UCase(StrArr(0)) + ":\" + StrArr(1)
+        getUCaseDriveLetter = str
+        Exit Function
+    ElseIf InStr(str, "\\ADFS\Public\") <> 0 Then
+        getUCaseDriveLetter = str
+    End If
+End Function
+
+Function LCaseExtFileName(str As String)
+    substrArr = Split(str, "\")
+    Dim ExtFileNameArr() As String
+    For i = 0 To ArrayLen(substrArr) - 1
+        If i = ArrayLen(substrArr) - 1 Then
+'        MsgBox substrArr(i)
+            ExtFileNameArr = Split(substrArr(i), ".")
+            ExtFileNameArr(ArrayLen(ExtFileNameArr) - 1) = LCase(ExtFileNameArr(ArrayLen(ExtFileNameArr) - 1))
+            substrArr(i) = ""
+            For j = 0 To ArrayLen(ExtFileNameArr) - 1
+                If j = 0 Then
+                    substrArr(i) = substrArr(i) + ExtFileNameArr(j)
+                Else
+                    substrArr(i) = substrArr(i) + "." + ExtFileNameArr(j)
+                End If
+
+'                MsgBox substrArr(i)
+            Next j
+'            substrArr(i) = LCase(substrArr(i))
+'            MsgBox substrArr(i)
+        End If
+        If i <> 0 Then
+            NewStr = NewStr + "\" + substrArr(i)
+        Else
+            NewStr = NewStr + substrArr(i)
+        End If
+    Next i
+    LCaseExtFileName = NewStr
+End Function
+
+Function getFilePath(str As String)
+    substrArr = Split(str, "\")
+    Dim ExtFileNameArr() As String
+    For i = 0 To ArrayLen(substrArr) - 1
+'        MsgBox substrArr(i)
+        If i = ArrayLen(substrArr) - 1 Then
+            NewStr = NewStr + "\"
+            getFilePath = NewStr
+            Exit Function
+        End If
+    
+'        If i = ArrayLen(substrArr) - 1 Then
+'
+'            ExtFileNameArr = Split(substrArr(i), ".")
+'            ExtFileNameArr(ArrayLen(ExtFileNameArr) - 1) = LCase(ExtFileNameArr(ArrayLen(ExtFileNameArr) - 1))
+'            substrArr(i) = ""
+'            For j = 0 To ArrayLen(ExtFileNameArr) - 1
+'                If j = 0 Then
+'                    substrArr(i) = substrArr(i) + ExtFileNameArr(j)
+'                Else
+'                    substrArr(i) = substrArr(i) + "." + ExtFileNameArr(j)
+'                End If
+'
+'                MsgBox substrArr(i)
+'            Next j
+''            substrArr(i) = LCase(substrArr(i))
+''            MsgBox substrArr(i)
+'        End If
+        If i <> 0 Then
+            NewStr = NewStr + "\" + substrArr(i)
+        Else
+            NewStr = NewStr + substrArr(i)
+        End If
+    Next i
+    getFilePath = NewStr
+End Function
+
+Function getFileName(str As String)
+    substrArr = Split(str, "\")
+    For i = 0 To ArrayLen(substrArr) - 1
+        If i = ArrayLen(substrArr) - 1 Then
+            getFileName = substrArr(i)
+        End If
+    Next i
+End Function
+
+Function getWBIndexByWorkbook(wb As Workbook) As Integer
+    Dim i As Integer
+    For i = 1 To WorkBooks.count
+        If WorkBooks(i).Name = wb.Name Then
+            getWBIndexByWorkbook = i
+            Exit Function
+        End If
+    Next i
+    getWBIndexByWorkbook = 0
+End Function
+
+Function getBookData(WBIndex As Integer, KeyCol As String, KeyStr As String, DataCol As String)
+    'WBIndex 要取得的excel檔案開啟順序索引
+    'KeyCol 索引行
+    'KeyStr 索引字串
+    'DataCol 要取得的資料行
+    Dim sys As New System
+    Dim C As Object
+    Dim MatchAddress As String
+    Dim MatchRowArr() As String
+    Dim CheckedData As String
+    'Debug.Print sys.findSubstring("XXpXXpXXPXXP", "P")
+    With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(KeyCol & ":" & KeyCol)
+        Set C = .Find(KeyStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyStr
+        If Not C Is Nothing Then '若不為空，輸入資料
+            MatchAddress = C.Address
+            MatchRowArr = Split(MatchAddress, "$") '取列數
+            'CheckedData = WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value
+            If IsError(WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value) Then '檢查資料
+                getBookData = 0 '資料錯誤或無資料
+            Else
+                getBookData = WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value '資料正確且有資料
+            End If
+        End If
+    End With
+End Function
+
+Function getBookDataByKeyRow(WBIndex As Integer, SheetIndex As Integer, KeyCol As String, KeyColStr As String, KeyRow As String, KeyRowStr As String) As String
+    'WBIndex 要取得的excel檔案開啟順序索引
+    'KeyCol 索引行
+    'KeyColStr 索引字串
+    'KeyRow 索引行
+    'KeyRowStr 索引字串
+    Application.ScreenUpdating = False
+    Dim sys As New System
+    Dim C As Object
+    Dim MatchAddress As String
+    Dim MatchRowArr() As String
+    Dim CheckedData As String
+    Dim Row As String
+    Dim Col As String
+    Dim MainWB As Integer
+    MainWB = getWBIndexByWorkbook(ActiveWorkbook)
+    WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(SheetIndex).Activate
+    With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(SheetIndex).range(KeyCol & ":" & KeyCol)
+        Set C = .Find(KeyColStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyColStr
+        If Not C Is Nothing Then '若不為空，輸入資料
+            MatchAddress = C.Address
+            MatchRowArr = Split(MatchAddress, "$") '取列數
+            Row = MatchRowArr(2)
+            'CheckedData = WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value
+            'If IsError(WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value) Then '檢查資料
+            '    getBookData = 0 '資料錯誤或無資料
+            'Else
+            '    getBookData = WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value '資料正確且有資料
+            'End If
+        End If
+    End With
+    With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(SheetIndex).range(KeyRow & ":" & KeyRow)
+        Set C = .Find(KeyRowStr, Lookat:=xlWhole, SearchFormat:=False)    '比對KeyRowStr
+        If Not C Is Nothing Then '若不為空，輸入資料
+            MatchAddress = C.Address
+            MatchRowArr = Split(MatchAddress, "$") '取行數
+            Col = MatchRowArr(1)
+            'CheckedData = WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value
+            'If IsError(WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value) Then '檢查資料
+            '    getBookData = 0 '資料錯誤或無資料
+            'Else
+            '    getBookData = WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value '資料正確且有資料
+            'End If
+        End If
+    End With
+    WorkBooks(Application.WorkBooks(MainWB).Name).Sheets(SheetIndex).Activate
+    If Row = "" Then
+        getBookDataByKeyRow = 0
+    Else
+        If WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(SheetIndex).range(Col & Row).Value = "" Then
+            getBookDataByKeyRow = 0
+        Else
+            getBookDataByKeyRow = WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(SheetIndex).range(Col & Row).Value
+        End If
+    End If
+End Function
+
+Function getBookDataByKey(WBIndex As Integer, KeyCol As String, KeyStr As String, DataCol As String)
+    'WBIndex 要取得的excel檔案開啟順序索引
+    'KeyCol 索引行
+    'KeyStr 索引字串
+    'DataCol 要取得的資料行
+    
+    MainWB = getWBIndexByWorkbook(ActiveWorkbook)
+    Dim WS_Count As Integer
+    WorkBooks(Application.WorkBooks(WBIndex).Name).Activate
+    WS_Count = ActiveWorkbook.Worksheets.count
+    For j = 1 To WS_Count
+        WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(j).Activate
+        With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(KeyCol & ":" & KeyCol)
+            Set C = .Find(KeyStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyStr
+            If Not C Is Nothing Then '若不為空，輸入資料
+                MatchAddress = C.Address
+                MatchRowArr = Split(MatchAddress, "$") '取列數
+                index = MatchRowArr(2)
+                CheckedData = WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(DataCol & index).Value
+                If IsError(CheckedData) Then '檢查資料
+                    getBookDataByKey = 0 '資料錯誤或無資料
+                    Exit Function
+                Else
+                    getBookDataByKey = CheckedData '資料正確且有資料
+                    Exit Function
+'                    Application.ScreenUpdating = True '螢幕更新
+'                    Application.ScreenUpdating = False '關閉螢幕更新
+                End If
+            End If
+        End With
+    Next j
+End Function
+Sub try()
+'    pos = InStr("銷", "銷貨小計")
+'    MsgBox pos
+'    pos = InStr("貨", "銷貨小計")
+'    MsgBox pos
+'    pos = InStr("小", "銷貨小計")
+'    MsgBox pos
+'    pos = InStr("計", "銷貨小計")
+'    MsgBox pos
+    pos = InStr("123銷12貨小計", "銷貨小計")
+    MsgBox pos
+End Sub
+
+Function getBookDataByKeyWithSearchDown(WBIndex As Integer, SearchTargetKey As String, SearchTargetKeyCol As String, KeyCol As String, KeyStr As String, DataCol As String)
+    'WBIndex 要取得的excel檔案開啟順序索引
+    'KeyCol 索引行
+    'KeyStr 索引字串
+    'DataCol 要取得的資料行
+    MainWB = getWBIndexByWorkbook(ActiveWorkbook)
+    Dim WS_Count As Integer
+    WorkBooks(Application.WorkBooks(WBIndex).Name).Activate
+    WS_Count = ActiveWorkbook.Worksheets.count
+    For j = 1 To WS_Count
+        WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(j).Activate
+        With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(KeyCol & ":" & KeyCol)
+            Set C = .Find(KeyStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyStr
+            If Not C Is Nothing Then '若不為空，輸入資料
+                MatchAddress = C.Address
+                MatchRowArr = Split(MatchAddress, "$") '取列數
+                index = MatchRowArr(2)
+                Dim RowCount As Integer
+                RowCount = Cells(Rows.count, SearchTargetKeyCol).End(xlUp).Row '資料最後一列
+                For i = index To RowCount
+                    pos = InStr(WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(SearchTargetKeyCol & i).Value, SearchTargetKey)
+                    If pos <> 0 Then
+                        getBookDataByKeyWithSearchDown = WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(DataCol & i).Value
+                        Exit Function
+                    End If
+                Next i
+                
+'                CheckedData = WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(j).Name).range(DataCol & Index).Value
+'                If IsError(CheckedData) Then '檢查資料
+'                    getBookDataByKeyWithSearchDown = 0 '資料錯誤或無資料
+'                    Exit Function
+'                Else
+'                    getBookDataByKeyWithSearchDown = CheckedData '資料正確且有資料
+'                    Exit Function
+''                    Application.ScreenUpdating = True '螢幕更新
+''                    Application.ScreenUpdating = False '關閉螢幕更新
+'                End If
+            End If
+        End With
+    Next j
+End Function
+Function checkColTitle(TarWBIndex As Integer, TitleRow As Integer, TitleStr As String) As Boolean
+    '比對目前行是否同年月 and 比對目前列有無同年月
+    '比對目前行是否同年月
+'    Dim offsetIndex As Integer
+'    Dim tbl As Variant
+'    Set tbl = WorkBooks(TarWBindex).Sheets(1).range("C:C")
+'    Dim tblc As Variant
+'    Set tblc = WorkBooks(TarWBindex).Sheets(1).Cells(1, 3 + offsetIndex)
+'    MsgBox range("A1").SpecialCells(xlCellTypeLastCell).Column
+    Dim LastCell As range
+    
+    Set LastCell = WorkBooks(TarWBIndex).Sheets(1).Cells.Find(What:="*", After:=WorkBooks(TarWBIndex).Sheets(1).Cells(1, TitleRow), LookIn:=xlFormulas, Lookat:= _
+    xlPart, SearchOrder:=xlByColumns, SearchDirection:=xlPrevious, MatchCase:=False)
+    
+    Dim LastCol As Integer
+    LastCol = LastCell.Column
+    Dim Col As Integer
+    Col = 1
+    While Col <= LastCol 'range("A1").SpecialCells(xlCellTypeLastCell).Column
+        If WorkBooks(TarWBIndex).Sheets(1).Cells(TitleRow, Col).Value = TitleStr Then '相同則離開
+            checkColTitle = True
+            Exit Function
+        End If
+        Col = Col + 1
+    Wend
+    checkColTitle = False
+'    Debug.Print tbl.Address
+'    If WorkBooks(TarWBindex).Sheets(1).range("C1").Value = CStr(y) & "/" & CStr(m) Then '相同則離開
+'        Exit Sub
+'    Else '不同則插入新行,並填上年月,比對目前列有無同年月
+'        While tblc.Offset(0, offsetIndex).Value <> CStr(y) & "/" & CStr(m)
+''            Debug.Print tblc.Offset(0, offsetIndex).Value
+'            Debug.Print tbl.Address
+'            Debug.Print tblc.Address
+'            If tblc.Offset(0, offsetIndex).Value <> "" And tblc.Offset(0, offsetIndex).Value <> CStr(y) & "/" & CStr(m) Then
+'                offsetIndex = offsetIndex + 1
+'
+'                Debug.Print tblc.Address
+'
+'
+'                tbl.Offset(0, offsetIndex).Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
+'                Debug.Print tblc.Address
+'                Set tblc = WorkBooks(TarWBindex).Sheets(1).Cells(1, 3 + offsetIndex)
+'                Debug.Print tblc.Address
+'                tblc.Value = CStr(y) & "/" & CStr(m)
+'            Else
+'                tblc.Value = CStr(y) & "/" & CStr(m)
+'            End If
+'
+'
+'        Wend
+''        WorkBooks(TarWBindex).Sheets(1).range("C:C").Insert
+''        WorkBooks(TarWBindex).Sheets(1).range("C1").Value = CStr(y) & "/" & CStr(m)
+'    End If
+End Function
+
+'Function checkColTitle(TarWBindex As Integer, isSimilar As Boolean, titleRow As Integer, SimilarKey As String) As Boolean
+'    '比對目前行是否同年月 and 比對目前列有無同年月
+'    '比對目前行是否同年月
+''    Dim offsetIndex As Integer
+''    Dim tbl As Variant
+''    Set tbl = WorkBooks(TarWBindex).Sheets(1).range("C:C")
+''    Dim tblc As Variant
+''    Set tblc = WorkBooks(TarWBindex).Sheets(1).Cells(1, 3 + offsetIndex)
+''    MsgBox range("A1").SpecialCells(xlCellTypeLastCell).Column
+'    Dim lastCell As range
+'
+'    Set lastCell = WorkBooks(TarWBindex).Sheets(1).Cells.Find(What:="*", After:=WorkBooks(TarWBindex).Sheets(1).Cells(1, titleRow), LookIn:=xlFormulas, LookAt:= _
+'    xlPart, SearchOrder:=xlByColumns, SearchDirection:=xlPrevious, MatchCase:=False)
+'
+'    Dim lastCol As Integer
+'    lastCol = lastCell.Column
+'    Dim col As Integer
+'    col = 1
+'    While col <= lastCol 'range("A1").SpecialCells(xlCellTypeLastCell).Column
+'        If WorkBooks(TarWBindex).Sheets(1).Cells(titleRow, col).Value = CStr(y) & "/" & CStr(m) Then '相同則離開
+'            checkColTitle = True
+'            Exit Function
+'        End If
+'        col = col + 1
+'    Wend
+'    checkColTitle = False
+'End Function
+
+Sub t3()
+'    Dim a As String
+'    a = "2021/02/22"
+'    Dim a2 As String
+'    a2 = year(a) & "/" & month(a)
+'    Debug.Print a2
+'    col("3:3").Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
+'    WorkBooks(1).Sheets(1).Activate
+'    Dim sht As Worksheet
+'Dim LastColumn As Long
+'
+'Set sht = WorkBooks(2).Worksheets("Sheet1")
+'
+'  LastColumn = sht.Cells(1, sht.Columns.count).End(xlToLeft).Column
+'  LastColumn = WorkBooks(2).Worksheets("Sheet1").Cells(1, WorkBooks(2).Worksheets("Sheet1").Columns.count).End(xlToLeft).Column
+    Dim str As String
+    str = "期間: 2020/12/01 至 2021/02/28"
+    Dim StrArr() As String
+    Dim NewStrArr() As String
+    StrArr = Split(str, "期間: ")
+    Debug.Print StrArr(1)
+    NewStrArr = Split(StrArr(1), " 至 ")
+    Debug.Print NewStrArr(0)
+    Debug.Print NewStrArr(1)
+    Debug.Print year(NewStrArr(0))
+    Debug.Print month(NewStrArr(0))
+    Debug.Print NewStrArr(1)
+'    Debug.Print DateValue("2020/12/01")
+'    Debug.Print DateValue("2021/02/28")
+'        Debug.Print DateValue("2020/12/01") = DateValue("2021/02/28")
+'    Debug.Print DateValue("2021/02/28")
+'SimilarRangeArr = Split(NewStrArr, " 至 ")
+
+'For k = 0 To ArrayLen(SimilarRangeArr) - 1
+'    Debug.Print ArrayLen(SimilarRangeArr)
+'    Debug.Print SimilarRangeArr(k)
+'    ColSimilarStr = ColSimilarStr & SimilarStrArr(SimilarRangeArr(k))
+'Next
+  
+End Sub
+
+Sub testtest()
+'    Debug.Print getDatePeriod("期間: 2020/12/01 至 2021/02/28", 2)
+    pos = InStr("2020/1/2", "/")
+    Debug.Print pos
+
+End Sub
+
+Function getDatePeriod(DateStr As String, index As Integer) As String
+'    Dim StrArr() As String
+'    Dim NewStrArr() As String
+'    StrArr = Split(DateStr, "期間: ")
+''    Debug.Print StrArr(1)
+'    NewStrArr = Split(StrArr(1), " 至 ")
+''    Debug.Print NewStrArr(1)
+'    Dim MonthIndex As Integer
+'    Dim YearIndex As Integer
+'    '比較年
+'    Dim StartY As Integer
+'    Dim EndY As Integer
+'    Dim StartM As Integer
+'    Dim EndM As Integer
+'    Dim DatePeriod As String
+'    StartY = year(NewStrArr(0))
+'    EndY = year(NewStrArr(1))
+'    StartM = month(NewStrArr(0))
+'    EndM = month(NewStrArr(1))
+'    Dim i As Integer
+'    For YearIndex = StartY To EndY
+'        For MonthIndex = 1 To 12
+'            Debug.Print i
+''            If MonthIndex = i Then
+''                getDatePeriod = YearIndex & "/" & MonthIndex
+''            End If
+'            If Index = i Then
+'                getDatePeriod = YearIndex & "/" & MonthIndex
+'            End If
+'            Debug.Print YearIndex & "/" & MonthIndex
+'            i = i + 1
+'            If MonthIndex = 12 Then
+'                MonthIndex = 1
+'            End If
+'        Next MonthIndex
+'
+'    Next YearIndex
+End Function
+
+Function getWSCount(WBIndex As Integer) As Integer
+    WorkBooks(Application.WorkBooks(WBIndex).Name).Activate
+    Dim WS_Count As Integer
+    WS_Count = ActiveWorkbook.Worksheets.count
+    getWSCount = WS_Count
+End Function
+
+Sub setBookDateDataAppendByKey(MainWB As Integer, WBIndex As Integer, AppendDataCol As String, isSimilar As Boolean, SimilarRange As String, _
+    SearchTargetKey As String, SearchTargetKeyCol As String, KeyCol As String, KeyStr As String, DataCol As String, StartTitleCol As String, _
+    InsertNewTitleOffset As Integer, TitleRow As Integer, WriteDataRow As Integer)
+    'WBIndex 要取得的excel檔案開啟順序索引
+    'KeyCol 索引行
+    'KeyStr 索引字串
+    'DataCol 要取得的資料行
+'    Dim MainWB As Integer
+'    MainWB = getWBIndexByWorkbook(ActiveWorkbook)
+    Dim WS_Count As Integer
+'    WorkBooks(Application.WorkBooks(WBIndex).Name).Activate
+    WS_Count = sys.getWSCount(WBIndex)
+    Dim SimilarRangeArr() As String
+    Dim SimilarStr As String
+    Dim ColSimilarStr As String
+    Dim LastCell As range
+
+    Set LastCell = WorkBooks(MainWB).Sheets(1).Cells.Find(What:="*", After:=WorkBooks(MainWB).Sheets(1).Cells(1, TitleRow), LookIn:=xlFormulas, Lookat:= _
+    xlPart, SearchOrder:=xlByColumns, SearchDirection:=xlPrevious, MatchCase:=False)
+    
+'    Dim lastCol As Integer
+'    lastCol = lastCell.Column
+    Dim sum As Long
+    sum = 0
+    Dim s As String
+    Dim NewData As Long
+    Dim sht As Worksheet
+    Dim LastCol As Long
+    Dim WorkDays As Integer
+    Dim SalseDateTitleCol As Integer
+    For j = 1 To WS_Count
+        WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(j).Activate
+        With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(KeyCol & ":" & KeyCol)
+            Set C = .Find(KeyStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyStr
+            If Not C Is Nothing Then '若不為空，輸入資料
+                MatchAddress = C.Address
+                MatchRowArr = Split(MatchAddress, "$") '取列數
+                index = MatchRowArr(2)
+                Dim RowCount As Integer
+                RowCount = Cells(Rows.count, DataCol).End(xlUp).Row '資料最後一列
+                For i = index To RowCount
+                
+                
+                    '找停止字串
+                    pos = InStr(WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(SearchTargetKeyCol & i).Value, SearchTargetKey)
+                    WorkBooks(MainWB).Sheets(1).Activate
+                    Set sht = WorkBooks(2).Worksheets("Sheet1")
+                    
+                    LastCol = sht.Cells(1, sht.Columns.count).End(xlToLeft).Column
+'                    Set lastCell = WorkBooks(MainWB).Sheets(1).Cells.Find(What:="*", After:=WorkBooks(MainWB).Sheets(1).Cells(1, TitleRow), LookIn:=xlFormulas, LookAt:= _
+'            xlPart, SearchOrder:=xlByColumns, SearchDirection:=xlPrevious, MatchCase:=False)
+'                        lastCol = lastCell.Column
+'                        lastCol = WorkBooks(MainWB).Sheets(1).Cells.Column
+'                    lastCol = lastCol
+                    '有停止字串,則跳出sub
+                    If pos <> 0 Then
+'                        WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol + 1).Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
+'                        WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol + 1) = WorkDays
+                        Exit For
+                    Else
+'                        getBookDataByKeyAppendWithSearchDown = WorkBooks(WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(j).Name).range(DataCol & i).Value
+
+
+'                        WorkBooks(Application.WorkBooks(WBindex).Name).Sheets(j).Activate
+'                        Debug.Print lastCol
+                        NewData = WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(DataCol & i).Value
+                    
+                        '讀取銷售日期
+                        s = WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(j).Name).range(AppendDataCol & i).Value
+                        '若銷售日期不為空,則檢查是否已有checkSalseDate(s)
+                        If s <> "" Then
+                            'WorkDays = getWorkDays(year(s), month(s))
+                            WorkDays = 30
+'                            Debug.Print MainWB & " " & MainWB & " " & lastCol & " " & s
+                            
+                            If checkDateTitle(MainWB, TitleRow, LastCol, CStr(s)) = True Then '若有,則不插入新欄
+
+                                WorkBooks(Application.WorkBooks(MainWB).Name).Activate
+                                Debug.Print getDateTitleCol(MainWB, TitleRow, CStr(s))
+'                                SalseDateTitleCol = getDateTitleCol(MainWB, TitleRow, CStr(s))
+'                                WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol) = NewData + WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol)
+
+                                
+
+                            Else '若無,則插入新欄
+
+                                WorkBooks(Application.WorkBooks(MainWB).Name).Activate
+                                WorkBooks(MainWB).Sheets(1).Columns(LastCol).Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
+                                WorkBooks(MainWB).Sheets(1).Columns(LastCol).ColumnWidth = 9.25
+                                WorkBooks(MainWB).Sheets(1).Cells(TitleRow, LastCol) = CStr(year(s)) & "/" & CStr(month(s))
+                                
+'                                SalseDateTitleCol = getDateTitleCol(MainWB, TitleRow, CStr(s))
+'                                WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol) = NewData + WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol)
+
+                            End If
+                            SalseDateTitleCol = getDateTitleCol(MainWB, TitleRow, CStr(s))
+                            WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol) = NewData + WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol)
+                        
+                        End If
+                    
+
+                        
+                    End If
+
+
+
+                Next i
+
+            End If
+        End With
+    Next j
+'    Set sht = WorkBooks(2).Worksheets("Sheet1")
+'    lastCol = sht.Cells(1, sht.Columns.count).End(xlToLeft).Column
+'    For i = 0 To lastCol
+'        s = WorkBooks(Application.WorkBooks(WBindex).Name).Sheets(Application.WorkBooks(WBindex).Worksheets(j).Name).range(AppendDataCol & i).Value
+'        If s <> "" Then
+'            If checkDateTitle(MainWB, TitleRow, lastCol, CStr(s)) = True Then
+'                WorkDays = getWorkDays(year(s), month(s))
+'                SalseDateTitleCol = getDateTitleCol(MainWB, TitleRow, CStr(s))
+'                WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol) = WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol) / WorkDays
+'            End If
+'        End If
+'    Next i
+
+'    WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol) = WorkBooks(MainWB).Sheets(1).Cells(WriteDataRow, SalseDateTitleCol) / WorkDays
+End Sub
+
+Sub sstest()
+    Debug.Print sys.getDataAddress(3, 1, "10201015", "A")
+    Debug.Print sys.getDataAddress(3, 1, "10101001", "A")
+    Debug.Print sys.getDataAddress(3, 1, "10201014", "A")
+    Debug.Print sys.getDataAddress(3, 1, "10201017", "A")
+
+End Sub
+
+Function getDataAddress(WBIndex As Integer, SheetIndex As Integer, KeyStr As String, KeyCol As String) As Integer
+    WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(SheetIndex).Activate
+    With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(SheetIndex).Name).range(KeyCol & ":" & KeyCol)
+        Set C = .Find(KeyStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyStr
+        If Not C Is Nothing Then '若不為空，輸入資料
+            MatchAddress = C.Address
+            MatchRowArr = Split(MatchAddress, "$") '取列數
+            index = MatchRowArr(2)
+            getDataAddress = index
+            Exit Function
+        End If
+    End With
+    getDataAddress = 0
+End Function
+
+Function getSalseDateTitle(TitleStr As String) As String
+    Dim SimilarStr As String
+    SimilarStr = CStr(year(TitleStr)) & "/" & CStr(month(TitleStr))
+    getSalseDateTitle = SimilarStr
+End Function
+
+Function getDateYM(str As String) As String
+    Dim SimilarStr As String
+    SimilarStr = CStr(year(str)) & "/" & CStr(month(str))
+    getDateYM = SimilarStr
+End Function
+
+Function checkDateTitle(TarWBIndex As Integer, TitleRow As Integer, TitleCol As Long, TitleStr As String) As Boolean
+    '比對目前行是否同年月 and 比對目前列有無同年月
+    '比對目前行是否同年月
+'    Dim offsetIndex As Integer
+'    Dim tbl As Variant
+'    Set tbl = WorkBooks(TarWBindex).Sheets(1).range("C:C")
+'    Dim tblc As Variant
+'    Set tblc = WorkBooks(TarWBindex).Sheets(1).Cells(1, 3 + offsetIndex)
+'    MsgBox range("A1").SpecialCells(xlCellTypeLastCell).Column
+WorkBooks(Application.WorkBooks(TarWBIndex).Name).Activate
+Dim sht As Worksheet
+Dim LastCol As Long
+Set sht = WorkBooks(2).Worksheets("Sheet1")
+LastCol = sht.Cells(1, sht.Columns.count).End(xlToLeft).Column
+    Dim Col As Integer
+    Col = 1
+    Dim SimilarStr As String
+    SimilarStr = CStr(year(TitleStr)) & "/" & CStr(month(TitleStr))
+    While Col <= LastCol 'range("A1").SpecialCells(xlCellTypeLastCell).Column
+        If WorkBooks(TarWBIndex).Sheets(1).Cells(TitleRow, Col).Value = SimilarStr Then '相同則離開
+            checkDateTitle = True
+            Exit Function
+        End If
+        Col = Col + 1
+    Wend
+    checkDateTitle = False
+End Function
+Function getDateTitleCol(TarWBIndex As Integer, TitleRow As Integer, TitleStr As String) As Long
+    '比對目前行是否同年月 and 比對目前列有無同年月
+    '比對目前行是否同年月
+'    Dim offsetIndex As Integer
+'    Dim tbl As Variant
+'    Set tbl = WorkBooks(TarWBindex).Sheets(1).range("C:C")
+'    Dim tblc As Variant
+'    Set tblc = WorkBooks(TarWBindex).Sheets(1).Cells(1, 3 + offsetIndex)
+'    MsgBox range("A1").SpecialCells(xlCellTypeLastCell).Column
+    
+'    Dim lastCell As range
+'    WorkBooks(Application.WorkBooks(TarWBindex).Name).Activate
+'    Set lastCell = WorkBooks(TarWBindex).Sheets(1).Cells.Find(What:="*", After:=WorkBooks(TarWBindex).Sheets(1).Cells(1, TitleRow), LookIn:=xlFormulas, LookAt:= _
+'    xlPart, SearchOrder:=xlByColumns, SearchDirection:=xlPrevious, MatchCase:=False)
+    Dim MainWB As Integer
+    MainWB = TarWBIndex 'getWBIndexByWorkbook(ActiveWorkbook)
+    Dim sht As Worksheet
+    Dim LastCol As Long
+    Set sht = WorkBooks(2).Worksheets("Sheet1")
+    LastCol = sht.Cells(1, sht.Columns.count).End(xlToLeft).Column
+'    Dim lastCol As Integer
+'    lastCol = lastCell.Column
+    Dim Col As Long
+    Col = 1
+    Dim SimilarStr As String
+    WorkBooks(Application.WorkBooks(MainWB).Name).Activate
+    SimilarStr = CStr(year(TitleStr)) & "/" & CStr(month(TitleStr))
+    While Col <= LastCol 'range("A1").SpecialCells(xlCellTypeLastCell).Column
+'        Debug.Print WorkBooks(MainWB).Sheets(1).Cells(TitleRow, Col).Value & "77777"
+'        Debug.Print SimilarStr
+        If WorkBooks(MainWB).Sheets(1).Cells(TitleRow, Col).Value = SimilarStr Then '相同則離開
+            getDateTitleCol = Col
+            Exit Function
+        End If
+        Col = Col + 1
+    Wend
+    getDateTitleCol = 0
+End Function
+
+
+
+
+Function getBookDataBy2Key(WBIndex As Integer, KeyCol As String, KeyStr As String, KeyCol2 As String, KeyStr2 As String, DataCol As String)
+    'WBIndex 要取得的excel檔案開啟順序索引
+    'KeyCol 索引行
+    'KeyStr 索引字串
+    'DataCol 要取得的資料行
+    MainWB = getWBIndexByWorkbook(ActiveWorkbook)
+    WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(1).Activate
+    With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(KeyCol & ":" & KeyCol)
+        Set C = .Find(KeyStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyStr
+        If Not C Is Nothing Then '若不為空，輸入資料
+            MatchAddress = C.Address
+            MatchRowArr = Split(MatchAddress, "$") '取列數
+            index = MatchRowArr(2)
+            'Do While range(KeyCol2 & Index).Value <> "小計:"
+            Do While range("B" & index).Value <> "銷貨小計:"
+                If CStr(range(KeyCol2 & index - 1).Value) = KeyStr2 Then
+                    CheckedData = range("F" & index - 1).Value
+                    If IsError(CheckedData) Then '檢查資料
+                        getBookDataBy2Key = 0 '資料錯誤或無資料
+                        WorkBooks(Application.WorkBooks(MainWB).Name).Sheets(1).Activate
+                        Exit Function
+                    Else
+                        getBookDataBy2Key = CheckedData '資料正確且有資料
+                        WorkBooks(Application.WorkBooks(MainWB).Name).Sheets(1).Activate
+                        Exit Function
+                    End If
+                End If
+                index = index + 1
+            Loop
+            CheckedData = WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value
+            If IsError(CheckedData) Then '檢查資料
+                getBookDataBy2Key = 0 '資料錯誤或無資料
+            Else
+                getBookDataBy2Key = CheckedData '資料正確且有資料
+            End If
+        End If
+    End With
+End Function
+
+'取得自己IP
+Function getMyIP() As String
+    Dim ComputerStr As String
+    Dim WMIObj As Object
+    Dim IPCol As Object
+    Dim IP As Object
+    
+    ComputerStr = "."
+    Set WMIObj = GetObject("winmgmts://" & ComputerStr & "/root/cimv2")
+    Set IPCol = WMIObj.ExecQuery("Select * from Win32_NetworkAdapterConfiguration where IPEnabled=TRUE")
+    For Each IP In IPCol
+        If Not IsNull(IP.IPAddress) Then
+            getMyIP = IP.IPAddress(0)
+        End If
+    Next
+
+End Function
+
+'取得自己getMyMacAddress
+Function getMyMacAddress() As String
+    Dim ComputerStr As String
+    Dim WMIObj As Object
+    Dim IPCol As Object
+    Dim IP As Object
+    
+    ComputerStr = "."
+    Set WMIObj = GetObject("winmgmts://" & ComputerStr & "/root/cimv2")
+    Set IPCol = WMIObj.ExecQuery("Select * from Win32_NetworkAdapterConfiguration where IPEnabled=TRUE")
+    For Each IP In IPCol
+        If Not IsNull(IP.IPAddress) Then
+            getMyMacAddress = IP.IPAddress(1)
+        End If
+    Next
+
+End Function
+
+Public Sub delDoc(thePath)
+    Dim s As SHFILEOPSTRUCT
+    With s
+        .wFunc = FO_DELETE
+        .pFrom = thePath '→欲刪除之資料夾
+        '丟到資源回收桶
+        '.fFlags = FOF_ALLOWUNDO + FOF_NOCONFIRMATION
+        '直接刪除
+        .fFlags = FOF_NOCONFIRMATION
+    End With
+    SHFileOperation s
+End Sub
+
+Sub sortCol(TarWBIndex As Integer, SheetIndex As Integer, SortRow As Integer, StartCol As Integer, EndCol As Integer)
+    Dim LastCol As Integer
+    LastCol = WorkBooks(TarWBIndex).Worksheets(SheetIndex).Cells(SortRow, Columns.count).End(xlToLeft).Column
+    Dim LastRow As Integer
+    LastRow = WorkBooks(TarWBIndex).Worksheets(SheetIndex).Cells(Rows.count, StartCol).End(xlUp).Row '資料最後一列
+    WorkBooks(TarWBIndex).Worksheets(SheetIndex).Sort.SortFields.Clear
+    WorkBooks(TarWBIndex).Worksheets(SheetIndex).Sort.SortFields.Add Key:=range(sys.getColLetter(StartCol) & SortRow & ":" & sys.getColLetter(EndCol) & SortRow), _
+        SortOn:=xlSortOnValues, Order:=xlAscending, DataOption:= _
+        xlSortTextAsNumbers
+    With WorkBooks(TarWBIndex).Worksheets(SheetIndex).Sort
+        .SetRange range(sys.getColLetter(StartCol) & SortRow & ":" & sys.getColLetter(EndCol) & LastRow)
+        .Header = xlYes
+        .MatchCase = False
+        .Orientation = xlLeftToRight
+        .SortMethod = xlPinYin
+        .Apply
+    End With
+End Sub
+
+Function getColLetter(Col As Integer) As String
+    Dim vArr
+    vArr = Split(Cells(1, Col).Address(True, False), "$")
+    getColLetter = vArr(0)
+End Function
+
+Function getColNumber(ColumnLetter As String) As Integer
+    Dim ColumnNumber As Long
+    ColumnNumber = range(ColumnLetter & 1).Column
+    getColNumber = ColumnNumber
+End Function
+
+Sub testisDate()
+    Debug.Print isDate("2020/01")
+    Debug.Print isDate("2020\01")
+    Debug.Print isDate("2020/01/好")
+    Debug.Print isDate("2020/01/ok")
+End Sub
+
+Function isDate(DateStr As String) As Boolean
+    pos = InStr(DateStr, "/")
+    If pos <> 0 Then '有斜線
+        Dim vArr
+        vArr = Split(DateStr, "/")
+        For i = 0 To sys.ArrayLen(vArr) - 1 '檢查每個字串是否為數字
+            If sys.isDigit(CStr(vArr(i))) = False Then
+                isDate = False
+                Exit Function
+            End If
+        Next i
+        isDate = True
+        Exit Function
+    Else '無斜線
+        isDate = False
+        Exit Function
+    End If
+End Function
