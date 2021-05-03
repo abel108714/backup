@@ -1,0 +1,8 @@
+Sub openWorkbooks()
+    Application.DisplayAlerts = False
+    Dim File As String
+    '"COPR2320210414000111"+"202104140001"
+    'COPR2320210414000111202104140001.XLSX
+    File = "C:\My Documents\" & Dir("C:\My Documents\COPR2320210414000111" & getTodayStr() & "*.xlsx") '& "0003.xlsx"
+    run File
+End Sub
