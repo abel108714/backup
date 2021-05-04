@@ -429,6 +429,28 @@ def isWorkday():
             print("isWorkday")
             return True
     return False
+# def isHoliday(day=None):
+#     c=d.Date()
+#     s=["01/01","02/10","02/11","02/12","02/15","02/16","03/01","04/02","04/05","04/30","06/14","09/20","09/21","10/11","12/31"]
+#     if d==None:
+        
+#         print(c.getDay())
+#         print(c.getMonth())
+#         print(c.getYear())
+#         d_str = c.getMonth()+ "/"+ c.getDay()#c.getYear()+ "/"+
+#         # d_str="2/10"
+        
+
+#     else:
+#         d_str = c.getMonth()+ "/"+ day#c.getYear()+ "/"+
+    
+#     for s_str in s:
+#         print(d_str)
+#         print(s_str)
+#         if d_str ==s_str:
+#             print("isHoliday")
+#             return True
+#     return False    
 def isHoliday():
     c=d.Date()
     print(c.getDay())
@@ -444,6 +466,8 @@ def isHoliday():
             print("isHoliday")
             return True
     return False
+        
+
 def checkExpPerf():
     # print("checkExpPerf")
     weekno = datetime.today().weekday()+1
@@ -475,6 +499,11 @@ def checkExpPerf():
         # newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部每月預入績效.txt')
         # updateArr=[]
         #寫入資料
+        # # if a.getMonth()==
+        # day=25
+        # while isHoliday(day)==True :
+        #     day=day+1
+
         updateArr=['25','2,000,000']
         newDataAccess.setData('全聯',updateArr)
         updateArr=['','']
@@ -483,7 +512,7 @@ def checkExpPerf():
         newDataAccess.setData('東森',updateArr)
     # else:
     # print('day3')
-
+# RunStatusCount=0
 def job2():
     #your_id="立修"
     #print("I'm working...")
@@ -493,14 +522,30 @@ def job2():
     #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", TextSendMessage(text=str("1")))
     tz = timezone(timedelta(hours=+8))
     date = datetime.now(tz)
-    #print('123')
+    # print('123')
+    # print(RunStatusCount)
+    # if RunStatusCount==0:
+    #     RunStatus="--"
+    # elif RunStatusCount==1:
+    #     RunStatus="\\"
+    # elif RunStatusCount==2:
+    #     RunStatus="|"
+    # elif RunStatusCount==3:
+    #     RunStatus="/"
+    
+    # if RunStatusCount==3:
+    #     RunStatusCount=0
+    # else:
+    #     RunStatusCount=RunStatusCount+1
+
+    # print(str(date.strftime("%H:%M"))+str(RunStatus))
     print(str(date.strftime("%H:%M")))
     weekno = datetime.today().weekday()+1
     
     
         
     #line_bot_api.push_message("C4ec4e31c55ca25cc823f5ab5b4e1b040", TextSendMessage(text=str(date.strftime("%H:%M"))))
-    if date.strftime("%H:%M") == "17:45":#自動發網通報表
+    if date.strftime("%H:%M") == "17:39":#自動發網通報表
         print('isHoliday() = '+str(isHoliday()))
         print('isWorkday() = '+str(isWorkday()))
         if isWorkday() == True:
