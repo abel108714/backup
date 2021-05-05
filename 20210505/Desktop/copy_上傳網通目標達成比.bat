@@ -1,0 +1,1 @@
+copy C:\Users\udev77\source\repos\OCReportUpLoad\OCReportUpLoad\bin\Debug\OCReportUpLoad.exe C:\Users\udev77\Desktop\上傳網通目標達成比.exe
