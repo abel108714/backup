@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "OCReportUpLoad", "OCReportUpLoad\OCReportUpLoad.vbproj", "{BF5D849A-F08D-40B8-A62F-16BAA3126040}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF5D849A-F08D-40B8-A62F-16BAA3126040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF5D849A-F08D-40B8-A62F-16BAA3126040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF5D849A-F08D-40B8-A62F-16BAA3126040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF5D849A-F08D-40B8-A62F-16BAA3126040}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21CC78F9-FF27-4E6C-82B2-1FDA540578E8}
+	EndGlobalSection
+EndGlobal

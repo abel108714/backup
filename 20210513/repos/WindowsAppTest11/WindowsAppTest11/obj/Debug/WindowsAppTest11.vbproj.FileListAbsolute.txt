@@ -1,0 +1,12 @@
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\bin\Debug\WindowsAppTest11.exe.config
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\bin\Debug\WindowsAppTest11.exe
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\bin\Debug\WindowsAppTest11.pdb
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\bin\Debug\WindowsAppTest11.xml
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\obj\Debug\WindowsAppTest11.vbprojAssemblyReference.cache
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\obj\Debug\WindowsAppTest11.StateObject.resources
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\obj\Debug\WindowsAppTest11.Resources.resources
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\obj\Debug\WindowsAppTest11.vbproj.GenerateResource.cache
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\obj\Debug\WindowsAppTest11.vbproj.CoreCompileInputs.cache
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\obj\Debug\WindowsAppTest11.exe
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\obj\Debug\WindowsAppTest11.xml
+C:\Users\udev77\source\repos\WindowsAppTest11\WindowsAppTest11\obj\Debug\WindowsAppTest11.pdb
