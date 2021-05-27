@@ -959,9 +959,9 @@ def handle_message(event):#
     # @app.route('/', methods=['GET'])
     # def get_tasks():
     if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
-        print('REMOTE_ADDR ip:'+ request.environ['REMOTE_ADDR'] + str("(REMOTE_ADDR)"))
+        print('ip: '+ request.environ['REMOTE_ADDR'] + str(" (REMOTE_ADDR)"))
     else:
-        print('ip:'+ request.environ['HTTP_X_FORWARDED_FOR'] + str("(HTTP_X_FORWARDED_FOR)"))
+        print('ip: '+ request.environ['HTTP_X_FORWARDED_FOR'] + str(" (HTTP_X_FORWARDED_FOR)"))
 
     msg = event.message.text
     user_id = event.source.user_id
@@ -1337,8 +1337,8 @@ def handle_message(event):#
         print("[網通報表測試]")
         #昱慧
         line_bot_api.push_message("Ud8ea127ff725488a20e30380eda16fbb", OCPerformanceReport())
-    if '在?' in msg and user_id == "Uee6224531167e863e3c08504055d6ed2" :
-        print("在?")
+    if ('在?' in msg or '在？' in msg or '在嗎' in msg ) and user_id == "Uee6224531167e863e3c08504055d6ed2" :
+        # print("在?")
         #自己
         line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str('我在')))
 
