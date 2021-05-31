@@ -1,0 +1,40 @@
+SetCursorPos(827,500)'827,500 輸入密碼位置 
+My.Computer.Keyboard.SendKeys("01439", True) '輸入密碼  
+SetCursorPos(792,598)'792,598 按確定位置
+SetCursorPos(218,178)'218,178 程式搜尋位置
+My.Computer.Keyboard.SendKeys("COPR38", True) '輸入代碼COPR38
+SetCursorPos(248,223)'248,223 選擇
+SendKeys.Send("{ENTER}") '雙擊或enter
+SetCursorPos(335,553) '335,553 
+My.Computer.Keyboard.SendKeys("2020/06/01", True) '輸入開始日期 ex:2020/06/01
+SendKeys.Send("{TAB}") '按tab
+My.Computer.Keyboard.SendKeys("2020/06/17", True) '輸入結束日期 ex:2020/06/17
+
+SetCursorPos(990,261) '990,261 按確定
+SendKeys.Send("{ENTER}") '按enter
+SetCursorPos(258,93) '258,93 按報表工作佇列
+SetCursorPos(462,431) '462,431 
+SetCursorPos(480,369) '480,369 存成excel
+SendKeys.Send("{ENTER}") '按enter
+SendKeys.Send("{RIGHT}") '按右
+SendKeys.Send("{ENTER}") '按enter
+SetCursorPos(463,342) '463,342 關閉報表
+
+
+218,178 程式搜尋位置 輸入代碼COPR38
+248,223 選擇並雙擊
+335,553 輸入開始日期 ex:2020/06/01
+按tab
+輸入結束日期 ex:2020/06/01
+990,261 按確定
+按enter
+258,93 按報表工作佇列
+462,431 
+480,369 存成excel
+按enter
+按右
+按enter
+463,342 關閉報表
+
+944,312 關閉報表工作佇列
+838,80 關閉系統
