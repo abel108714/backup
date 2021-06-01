@@ -42,15 +42,18 @@ class FileDataAccess:
                     count+=1
 
     def getData(self,Index,KeyStr):
+        # print("getData0")
         file1 = open(self.FileName, 'r') 
         Lines = file1.readlines() 
         count = 0
         DataRow = self.getDataRow(KeyStr)
+        # print("getData")
         # print(KeyStr)
         for line in Lines: 
             # print("count: "+str(count))
             # print("DataRow: "+str(DataRow))
             if count == DataRow:
+                # print("4556")
                 return line.strip().split(self.SplitStr)[Index]
             else:
                 count+=1

@@ -486,6 +486,7 @@ def checkExpPerf():
     #全聯預入,自動於25日以後的第一個工作天中午12點清除預入金額
     if int(a.getDay()) >= 25 and weekno<=6 and date.strftime("%H:%M") == "12:00": 
         print('day1')
+        newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部每月預入績效.txt')
         # newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部每月預入績效.txt')
         # updateArr=[]
         #寫入資料
@@ -498,7 +499,7 @@ def checkExpPerf():
             updateArr=['','']
             newDataAccess.setData('全聯',updateArr)
     #全聯預入,自動於1日的11點30輸入預入金額
-    elif int(a.getDay()) == 1 and date.strftime("%H:%M") == "11:30": 
+    elif int(a.getDay()) == 1 and date.strftime("%H:%M") == "17:22": #"11:30": 
         print('day2')
         # newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部每月預入績效.txt')
         # updateArr=[]
@@ -507,11 +508,13 @@ def checkExpPerf():
         # day=25
         # while isHoliday(day)==True :
         #     day=day+1
-        newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\全聯下個月預入績效.txt')
-        PreEntryDate=newDataAccess.getData(1,"全聯")
-        PreEntryAmount=newDataAccess.getData(2,"全聯")
+        NextMonthDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\全聯下個月預入績效.txt')
+        PreEntryDate=NextMonthDataAccess.getData(1,"全聯")
+        PreEntryAmount=NextMonthDataAccess.getData(2,"全聯")
         print("全聯預入日: " + str(PreEntryDate))
         print("全聯預入金額: " + str(PreEntryAmount))
+        
+        newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\網通部資料暫存區\★網通部績效小幫手專用★\網通部每月預入績效.txt')
         updateArr=[str(PreEntryDate), str(PreEntryAmount)]
         newDataAccess.setData('全聯',updateArr)
         updateArr=['','']
@@ -1066,10 +1069,18 @@ def handle_message(event):#
         else:
             print('match: 全聯預入績效格式不符')
 
+    # admin_user_id="123"
+    guest_id="123"
+    admin_user_id="Uee6224531167e863e3c08504055d6ed2"
+    # guest_id="Uee6224531167e863e3c08504055d6ed2"
 
-
-    if msg.isdigit():
-        newDataAccess=FileDataAccess(0,'2','-', 'C:\\linebot\\' + str(user_id) + '.txt')
+    if msg.isdigit() and (user_id == admin_user_id or user_id == guest_id):
+        print("msg : " + msg)
+        print("user_id : " + user_id)
+        path='C:\\linebot\\msg\\'
+        if not os.path.isdir(path):#沒有資料夾就建資料夾
+            os.makedirs(path)
+        newDataAccess=FileDataAccess(0,'2','-', path + str(user_id) + '.txt')
         title_match=str(user_id)
         updateArr=[msg]
         print(title_match)
@@ -1092,10 +1103,7 @@ def handle_message(event):#
     # except:
     #     # 當程式出現異常時執行這邊的程式碼
     #     print("無rich_menu_id，準備新增")
-    admin_user_id="123"
-    # guest_id="123"
-    # admin_user_id="Uee6224531167e863e3c08504055d6ed2"
-    guest_id="Uee6224531167e863e3c08504055d6ed2"
+
     if msg != "在?" and (user_id == admin_user_id or user_id == guest_id):
         if isRichMenu(line_bot_api) == True and (user_id == admin_user_id or user_id == guest_id):#若有RichMenu，則刪除，準備新增
             delRichMenu(line_bot_api)
@@ -1420,41 +1428,54 @@ def handle_message(event):#
 
     if '[補發門市報表]' in msg and user_id == admin_user_id :
         print("[補發門市報表]")
-        # #怡君
+        #怡君
+        line_bot_api.push_message(
+            "Uca283ed15fe7664dab50d50ca20f2846", [
+                StorePerformanceReport(),
+                StoreNewGroupPerformanceReport()
+            ]
+        )
+        #自己
+        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str('已補發門市報表')))
         # line_bot_api.push_message(
-        #     "Uca283ed15fe7664dab50d50ca20f2846", [
+        #     "Uee6224531167e863e3c08504055d6ed2", [
         #         StorePerformanceReport(),
         #         StoreNewGroupPerformanceReport()
         #     ]
         # )
-        # #自己
-        # line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str('已補發門市報表')))
-        # # line_bot_api.push_message(
-        # #     "Uee6224531167e863e3c08504055d6ed2", [
-        # #         StorePerformanceReport(),
-        # #         StoreNewGroupPerformanceReport()
-        # #     ]
-        # # )
     if '[庫存查詢]' in msg and (user_id == admin_user_id or user_id == guest_id):
         print("[庫存查詢]")
-        PID=newDataAccess.getData(1,updateArr)
-        #品號查庫存
-        #getINV(PID)
+        print("123")
+        print("user_id : "+str(user_id))
+        path='C:\\linebot\\msg\\'
+        if not os.path.isdir(path):#沒有資料夾就建資料夾
+            os.makedirs(path)
+        newDataAccess=FileDataAccess(0,'2','-', path + str(user_id) + '.txt')
+        PID=newDataAccess.getData(1,user_id)
+        if str(PID) == "":
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str('請先輸入品號')))
+        else:
+            print(user_id+"查"+str(PID)+"庫存")
+            print("查"+str(PID)+"庫存")
+            #品號查庫存
+            print("庫存為:" + str(getINV(PID)))
+            updateArr=[""]
+            newDataAccess.setData(user_id,updateArr)
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str(getINV(PID))))
 
     if '[補發網通報表]' in msg and user_id == admin_user_id :
         print("[補發網通報表]")
-        # #網通群組
-        # line_bot_api.push_message("Caa547d0a89e353969160556a34444c64", OCPerformanceReport())
-        # #自己
-        # #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", OCPerformanceReport())
+        #網通群組
+        line_bot_api.push_message("Caa547d0a89e353969160556a34444c64", OCPerformanceReport())
+        #自己
+        #line_bot_api.push_message("Uee6224531167e863e3c08504055d6ed2", OCPerformanceReport())
     if '[網通報表測試]' in msg and user_id == admin_user_id :
         print("[網通報表測試]")
-        # #昱慧
-        # line_bot_api.push_message("Ud8ea127ff725488a20e30380eda16fbb", OCPerformanceReport())
+        #昱慧
+        line_bot_api.push_message("Ud8ea127ff725488a20e30380eda16fbb", OCPerformanceReport())
     if '[下一頁]' in msg and (user_id == admin_user_id or user_id == guest_id) :
         print("[下一頁]")
-        # #昱慧
-        # line_bot_api.push_message("Ud8ea127ff725488a20e30380eda16fbb", OCPerformanceReport())
+
     if ('在?' in msg or '在？' in msg or '在嗎' in msg ) and user_id == admin_user_id :
         # print("在?")
         #自己
