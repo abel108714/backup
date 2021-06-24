@@ -1,0 +1,1 @@
+copy C:\Users\udev77\source\repos\ResiTest\ResiTest\bin\Debug\ResiTest.exe C:\Users\udev77\Desktop\自動控制程式.exe
