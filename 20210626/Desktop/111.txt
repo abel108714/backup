@@ -1,0 +1,65 @@
+CREATE Table inv (
+	id bigint(255) NOT NULL, #id
+	product_id integer(255), #品號
+	product_name varchar(50) character set utf8, #品名
+	packing varchar(50) character set utf8, #包裝方式
+	inv_qty integer(50), #庫存數量
+	packing_qty varchar(50) character set utf8, #包裝量
+	exp varchar(50) character set utf8, #有效期限
+	avg_mthly_sales integer(50), #每月均銷量
+	avg_daily_sales integer(50), #每日均銷量
+	days_sold_out integer(50), #預估幾日售完
+	days_of_arrival integer(50), #到貨天數
+	rep_notice varchar(50) character set utf8, #補貨通知
+	mfd varchar(50) character set utf8, #製造日期
+	days_after_manu integer(50)  default '0', #製造後天數
+	six_mos_warning varchar(50) character set utf8, #六個月賣不完
+	three_mos_warning varchar(50) character set utf8, #三個月賣不完
+	seq integer(10) default '0', #分組流水號
+	datetime timestamp default CURRENT_TIMESTAMP, #資料儲存時間
+	PRIMARY KEY (id) #設定主鍵
+)ENGINE = InnoDB;
+
+	FOREIGN KEY (product_id) REFERENCES product(product_id) ON DELETE SET NULL #設定外鍵
+
+
+CREATE Table product (
+	product_id integer(255), #品號
+	product_name varchar(50) character set utf8, #品名
+	origin varchar(50) character set utf8, #產地
+	Ingredients varchar(50) character set utf8, #成份
+	specification varchar(50) character set utf8, #規格
+	product_pic blob, #產品圖
+	original_price integer(50), #原價
+	website varchar(255), #網址
+	PRIMARY KEY (product_id,product_name) #設定主鍵
+)ENGINE = InnoDB;
+
+insert product values(12,load_file('Z:\13962133061700.jpg'))
+DELETE FROM inv WHERE product_id = 10903004;
+
+存圖
+ADD FOREIGN KEY (product_id) REFERENCES product(product_id);
+
+Origin
+
+Ingredients
+
+specification
+
+product picture
+
+Original price
+cost price
+discount
+
+Normal Bundle +1.2 Tier
+
+select product_id as 品號,product_name as 品名,packing as 包裝方式,inv_qty as 庫存數量,packing_qty as 包裝數量,exp as 有效期限,avg_mthly_sales as 每月均銷量,avg_daily_sales as 每日均銷量,days_sold_out as 預估幾日售完,days_of_arrival as 到貨日期,rep_notice as 補貨通知,mfd as 製造日期,days_after_manu as 製造後天數,six_mos_warning as 六個月賣不完,three_mos_warning as 三個月賣不完 from inv;#顯示資料
+
+select product_id as 品號,product_name as 品名,packing as 包裝方式,inv_qty as 庫存數量,packing_qty as 包裝數量,exp as 有效期限,avg_mthly_sales as 每月均銷量,avg_daily_sales as 每日均銷量,days_sold_out as 預估幾日售完,days_of_arrival as 到貨日期,rep_notice as 補貨通知,mfd as 製造日期,days_after_manu as 製造後天數,six_mos_warning as 六個月賣不完,three_mos_warning as 三個月賣不完,datetime as 時間 from inv;#顯示資料
+
+select product_id as 品號,product_name as 品名,packing as 包裝方式,inv_qty as 庫存數量,packing_qty as 包裝數量,exp as 有效期限,avg_mthly_sales as 每月均銷量,avg_daily_sales as 每日均銷量,days_sold_out as 預估幾日售完,days_of_arrival as 到貨日期,rep_notice as 補貨通知,mfd as 製造日期,days_after_manu as 製造後天數,six_mos_warning as 六個月賣不完,three_mos_warning as 三個月賣不完 from inv where product_id=10903004;#顯示資料
+
+select product_id as 品號,product_name as 品名,packing as 包裝方式,inv_qty as 庫存數量,packing_qty as 包裝數量,exp as 有效期限,avg_mthly_sales as 每月均銷量,avg_daily_sales as 每日均銷量,days_sold_out as 預估幾日售完,days_of_arrival as 到貨日期,rep_notice as 補貨通知,mfd as 製造日期,days_after_manu as 製造後天數,six_mos_warning as 六個月賣不完,three_mos_warning as 三個月賣不完 from inv where product_name like '十穀米';#顯示資料
+
