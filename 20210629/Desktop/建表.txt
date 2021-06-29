@@ -1,0 +1,11 @@
+CREATE TABLE users (
+	UID varchar(255) NOT NULL,
+	Dept varchar(50) character set utf8,
+	Name varchar(50) character set utf8,
+	checked varchar(50) character set utf8,
+	PRIMARY KEY(UID)
+);
+
+
+
+
