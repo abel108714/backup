@@ -1,0 +1,1 @@
+copy C:\Users\udev77\source\repos\GetPreOrderField\GetPreOrderField\bin\Debug\GetPreOrderField.exe C:\Users\udev77\Desktop\¸Á¤ı¨Åºë¹wÁÊÄæ¦ì.exe
