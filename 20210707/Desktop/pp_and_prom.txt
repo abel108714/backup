@@ -1,0 +1,62 @@
+﻿Item No.
+
+International barcode
+
+product_name
+
+
+
+
+spec (number of boxes)
+
+broken_number
+suggested_price
+
+purchase_price
+
+tax_exempt
+
+normal_gift
+
+shelf life
+
+Average price
+
+First order
+
+Second order
+
+First-order average price
+
+Second-order average price
+
+More than five boxes
+
+CREATE Table pp_and_prom (
+	id bigint(255) NOT NULL, #id
+	spec varchar(50) character set utf8, #規格
+	broken_number integer(50), #折數
+	suggested_price integer(50), #建議售價
+	purchase_price integer(50), #進價
+	tax_exempt varchar(50) character set utf8, #免應稅
+	normal_gift
+varchar(50) character set utf8, #常態搭贈
+
+	average_price
+integer(50), #均價
+	first_order
+varchar(50) character set utf8, #第一階
+	second_order
+varchar(50) character set utf8, #第二階
+	first_order_average_price
+varchar(50) character set utf8, #第一階均價
+	second_order_average_price
+varchar(50) character set utf8, #第二階均價
+	more_than_five_boxes
+varchar(50) character set utf8, #五箱以上
+
+	days_sold_out integer(50), #預估幾日售完
+	days_of_arrival integer(50), #到貨天數
+
+	PRIMARY KEY (id) #設定主鍵
+)ENGINE = InnoDB;
