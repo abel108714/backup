@@ -1,0 +1,12 @@
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\obj\Debug\ControlScreen.vbprojAssemblyReference.cache
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\obj\Debug\ControlScreen.Form1.resources
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\obj\Debug\ControlScreen.Resources.resources
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\obj\Debug\ControlScreen.vbproj.GenerateResource.cache
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\obj\Debug\ControlScreen.vbproj.CoreCompileInputs.cache
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\bin\Debug\ControlScreen.exe.config
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\bin\Debug\ControlScreen.exe
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\bin\Debug\ControlScreen.pdb
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\bin\Debug\ControlScreen.xml
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\obj\Debug\ControlScreen.exe
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\obj\Debug\ControlScreen.xml
+C:\Users\udev77\source\repos\ControlScreen\ControlScreen\obj\Debug\ControlScreen.pdb
