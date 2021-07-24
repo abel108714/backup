@@ -1,0 +1,153 @@
+curl -v -X POST https://api.line.me/v2/bot/richmenu ^
+-H 'Authorization: Bearer {8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=}' ^
+-H 'Content-Type: application/json' ^
+-d ^
+'{ ' ^
+  "size":{' ^
+      "width":2500,' ^
+      "height":1686' ^
+  },' ^
+  "selected": false,' ^
+  "name": "LINE Developers Info",' ^
+  "chatBarText": "Tap to open",' ^
+  "areas": [' ^
+      {' ^
+          "bounds": {' ^
+              "x": 34,' ^
+              "y": 24,' ^
+              "width": 169,' ^
+              "height": 193' ^
+          },' ^
+          "action": {' ^
+              "type": "uri",' ^
+              "uri": "https://developers.line.biz/en/news/"' ^
+          }' ^
+      },' ^
+      {' ^
+          "bounds": {' ^
+              "x": 229,' ^
+              "y": 24,' ^
+              "width": 207,' ^
+              "height": 193' ^
+          },' ^
+          "action": {' ^
+              "type": "uri",' ^
+              "uri": "https://www.line-community.me/"' ^
+          }' ^
+      },' ^
+      {' ^
+          "bounds": {' ^
+              "x": 461,' ^
+              "y": 24,' ^
+              "width": 173,' ^
+              "height": 193' ^
+          },' ^
+          "action": {' ^
+              "type": "flex",' ^
+              "altText": "LINE Developers Site More Options",' ^
+              "contents": {' ^
+                  "type": "bubble",' ^
+                  "hero": {' ^
+                      "type": "image",' ^
+                      "url": "devSiteImageUrl",' ^
+                      "size": "full",' ^
+                      "margin": "none",' ^
+                      "gravity": "top",' ^
+                      "aspectRatio": "1200:630"' ^
+                  }' ^
+              }' ^
+          }' ^
+      }' ^
+  ]' ^
+}' \
+
+headers = {"Authorization":"Bearer 8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json"}
+
+body = {
+    "size": {"width": 2500, "height": 1686},
+    "selected": "true",
+    "name": "Controller",
+    "chatBarText": "Controller",
+    "areas":[
+        {
+          "bounds": {"x": 551, "y": 325, "width": 321, "height": 321},
+          "action": {"type": "message", "text": "up"}
+        },
+        {
+          "bounds": {"x": 876, "y": 651, "width": 321, "height": 321},
+          "action": {"type": "message", "text": "right"}
+        },
+        {
+          "bounds": {"x": 551, "y": 972, "width": 321, "height": 321},
+          "action": {"type": "message", "text": "down"}
+        },
+        {
+          "bounds": {"x": 225, "y": 651, "width": 321, "height": 321},
+          "action": {"type": "message", "text": "left"}
+        },
+        {
+          "bounds": {"x": 1433, "y": 657, "width": 367, "height": 367},
+          "action": {"type": "message", "text": "btn b"}
+        },
+        #{
+        #  "bounds": {"x": 1907, "y": 657, "width": 367, "height": 367},
+        #  "action": {"type": "message", "text": "btn a"}
+        #}
+    ]
+  }
+
+req = requests.request('POST', 'https://api.line.me/v2/bot/richmenu', 
+                       headers=headers,data=json.dumps(body).encode('utf-8'))
+
+curl -v -X POST https://api.line.me/v2/bot/richmenu ^
+-H 'Authorization: Bearer {8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=}' ^
+-H 'Content-Type: application/json' ^
+-d ^
+'{^
+    "size": {"width": 2500, "height": 1686},^
+    "selected": "true",^
+    "name": "Controller",^
+    "chatBarText": "Controller",^
+    "areas":[^
+        {^
+          "bounds": {"x": 551, "y": 325, "width": 321, "height": 321},^
+          "action": {"type": "message", "text": "up"}^
+        },^
+        {^
+          "bounds": {"x": 876, "y": 651, "width": 321, "height": 321},^
+          "action": {"type": "message", "text": "right"}^
+        },^
+        {^
+          "bounds": {"x": 551, "y": 972, "width": 321, "height": 321},^
+          "action": {"type": "message", "text": "down"}^
+        },^
+        {^
+          "bounds": {"x": 225, "y": 651, "width": 321, "height": 321},^
+          "action": {"type": "message", "text": "left"}^
+        },^
+        {^
+          "bounds": {"x": 1433, "y": 657, "width": 367, "height": 367},^
+          "action": {"type": "message", "text": "btn b"}^
+        },^
+        {^
+          "bounds": {"x": 1907, "y": 657, "width": 367, "height": 367},^
+          "action": {"type": "message", "text": "btn a"}^
+        }^
+    ]^
+}'
+
+
+curl -v -X GET https://api.line.me/v2/profile^
+-H 'Authorization: Bearer 8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU='
+
+curl -v -X GET https://api.line.me/v2/profile^
+-H "Authorization: Bearer {8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=}"
+
+^
+-d ^
+'{ ^
+  "userId":"U4af4980629...", ^
+  "displayName":"Brown", ^
+  "pictureUrl":"https://profile.line-scdn.net/abcdefghijklmn", ^
+  "statusMessage":"Hello, LINE!" ^
+}'

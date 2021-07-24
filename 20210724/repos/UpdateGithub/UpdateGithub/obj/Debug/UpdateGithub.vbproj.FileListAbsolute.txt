@@ -1,0 +1,12 @@
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\obj\Debug\UpdateGithub.vbprojAssemblyReference.cache
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\obj\Debug\UpdateGithub.Form1.resources
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\obj\Debug\UpdateGithub.Resources.resources
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\obj\Debug\UpdateGithub.vbproj.GenerateResource.cache
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\obj\Debug\UpdateGithub.vbproj.CoreCompileInputs.cache
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\bin\Debug\UpdateGithub.exe.config
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\bin\Debug\UpdateGithub.exe
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\bin\Debug\UpdateGithub.pdb
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\bin\Debug\UpdateGithub.xml
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\obj\Debug\UpdateGithub.exe
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\obj\Debug\UpdateGithub.xml
+C:\Users\udev77\source\repos\UpdateGithub\UpdateGithub\obj\Debug\UpdateGithub.pdb
