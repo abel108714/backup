@@ -1,0 +1,12 @@
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\bin\Debug\WinStatusTest.exe.config
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\bin\Debug\WinStatusTest.exe
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\bin\Debug\WinStatusTest.pdb
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\bin\Debug\WinStatusTest.xml
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\obj\Debug\WinStatusTest.Form1.resources
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\obj\Debug\WinStatusTest.Resources.resources
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\obj\Debug\WinStatusTest.vbproj.GenerateResource.cache
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\obj\Debug\WinStatusTest.vbproj.CoreCompileInputs.cache
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\obj\Debug\WinStatusTest.exe
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\obj\Debug\WinStatusTest.xml
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\obj\Debug\WinStatusTest.pdb
+C:\Users\udev77\source\repos\WinStatusTest\WinStatusTest\obj\Debug\WinStatusTest.vbprojAssemblyReference.cache
