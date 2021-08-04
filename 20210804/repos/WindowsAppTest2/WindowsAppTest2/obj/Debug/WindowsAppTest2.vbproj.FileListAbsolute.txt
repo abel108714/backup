@@ -1,0 +1,12 @@
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\obj\Debug\WindowsAppTest2.vbprojAssemblyReference.cache
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\obj\Debug\WindowsAppTest2.Form1.resources
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\obj\Debug\WindowsAppTest2.Resources.resources
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\obj\Debug\WindowsAppTest2.vbproj.GenerateResource.cache
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\obj\Debug\WindowsAppTest2.vbproj.CoreCompileInputs.cache
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\bin\Debug\WindowsAppTest2.exe.config
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\bin\Debug\WindowsAppTest2.exe
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\bin\Debug\WindowsAppTest2.pdb
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\bin\Debug\WindowsAppTest2.xml
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\obj\Debug\WindowsAppTest2.exe
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\obj\Debug\WindowsAppTest2.xml
+C:\Users\udev77\source\repos\WindowsAppTest2\WindowsAppTest2\obj\Debug\WindowsAppTest2.pdb
