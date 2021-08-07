@@ -1,0 +1,499 @@
+連鎖+北區
+
+中區
+
+南區
+
+實體通路
+
+製表日期:	2020/7/24				 2020/07/01-2020/07/24							
+業務員	今日績效	每日目標	當日達成比	07月銷貨淨額	07月目標	累計達成比	750B	N1	綠動椅	太和	協助小天使	備註
+
+
+
+
+    '字型字體大小
+    With Cells.Font
+        .Name = "微軟正黑體"
+        .Size = 22
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+    End With
+    
+    '欄位寬度
+    Columns("A:A").ColumnWidth = 14
+    Columns("B:B").ColumnWidth = 27.88
+    Columns("C:C").ColumnWidth = 25
+    Columns("D:D").ColumnWidth = 20
+    Columns("E:E").ColumnWidth = 30
+    Columns("F:F").ColumnWidth = 32.75
+
+    '調整檢視畫面大小
+    Columns("A:P").Select
+    ActiveWindow.Zoom = True
+    
+    '黑色字體
+    With Selection.Font
+        .ThemeColor = xlThemeColorLight1
+        .TintAndShade = 0
+    End With
+    
+    '粗體
+    Cells.Font.Bold = True
+    
+    '數值格式
+    range("B3:C" & rowNum & ",E3:F" & rowNum).Select
+    Selection.NumberFormatLocal = "0.00_);[紅色](0.00)"
+    Selection.NumberFormatLocal = "#,##0_);[紅色]-#,##0"
+
+    '紅色字體欄位
+    range("E2:E" & rowNum).Select
+    With Selection.Font
+        .Color = -16776961
+        .TintAndShade = 0
+    End With
+    
+    '尚需努力的數字欄位公式
+    i = 3
+    While i <= rowNum
+        range("E" & i).Value = "= B" & i & "-C" & i
+        i = i + 1
+    Wend
+    
+    '組合年月日字串
+    d = Date
+    If Len(Month(d)) = 1 Then
+        month_str = "0" & CStr(Month(d))
+    Else
+        month_str = CStr(Month(d))
+    End If
+    If Len(Day(d)) = 1 Then
+        day_str = "0" & CStr(Day(d))
+    Else
+        day_str = CStr(Day(d))
+    End If
+    dateStr = Year(d) & month_str & day_str
+    
+    '業務員欄位格式,儲存格置中,靠左對齊
+    range("A:A").Select
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    With Selection
+        .HorizontalAlignment = xlGeneral
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    
+    '其它欄位,儲存格置中,置中對齊
+    range("B2:F2").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    range("B3:F8").Select
+    With Selection
+        .HorizontalAlignment = xlRight
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    
+    '流通網企網通部列,欄位儲存格顏色
+    range("A5:E5").Select '流通列
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    range("A7:E7").Select '網企列
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    range("A8:E8").Select '網通部列
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 5296274
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    '當日績效行,儲存格顏色
+    range("F2").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent6
+        .TintAndShade = 0.799981688894314
+        .PatternTintAndShade = 0
+    End With
+    range("F5").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    range("F7").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 65535
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    range("F8").Select
+    With Selection.Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .Color = 5296274
+        .TintAndShade = 0
+        .PatternTintAndShade = 0
+    End With
+    
+    '表格框線
+    range("A2:F8").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    
+    '合併儲存格
+    range("A1:B1").Value = ""
+    range("A1:B1").Merge
+    range("A1").Value = "累計達成比(實際績效)"
+    range("C1:D1").Value = ""
+    range("C1:D1").Merge
+    range("C1").Value = Year(d) & "/" & month_str & "/" & "01~" & month_str & "/" & day_str
+    range("I1:M1").Value = ""
+    range("I1:M1").Merge
+    range("I1").Value = month_str & "01_" & month_str & day_str & "累計達成比"
+    
+    '累計達成比欄位,跨欄置中,儲存格置中,靠左對齊
+    range("A1:B1").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    
+    '日期欄位,跨欄置中,儲存格置中,靠左對齊
+    range("C1:D1").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    Selection.Merge
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    '預入績效
+    range("A2:E8").Select
+    range("E2").Activate
+    Selection.Copy
+    range("A11:E17").Select
+    range("E11").Activate
+    ActiveSheet.Paste
+    range("F11:G11").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    '合併儲存格
+    range("A10:D10").Value = ""
+    range("A10:D10").Merge
+    range("A10").Value = "累計達成比(預入績效)"
+    If getExpePerf(1, "date") <> "" Then
+        range("F12").Value = "全聯" & Month(d) & "/" & getExpePerf(1, "date") & "止預入"
+        range("G12").Value = getExpePerf(1, "amount")
+    End If
+    With range("F12")
+        .HorizontalAlignment = xlRight
+        .VerticalAlignment = xlBottom
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    range("F15:F16").Value = ""
+    range("F15:F16").Merge
+    range("F15").Value = "博客來" & Month(d) & "/" & getExpePerf(2, "date") & "止預入" & Chr(10) & "東森" & Month(d) & "/" & getExpePerf(3, "date") & "止預入"
+    range("G15").Value = getExpePerf(2, "amount")
+    range("G16").Value = getExpePerf(3, "amount")
+    With range("F15:F16")
+        .HorizontalAlignment = xlRight
+        .VerticalAlignment = xlCenter
+        .WrapText = True
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    range("G:G").Select
+    With Selection
+        .VerticalAlignment = xlCenter
+        .WrapText = True
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+    End With
+    range("B17").Value = "=B14+B16"
+    
+    '調整檢視畫面大小
+    Columns("A:P").Select
+    ActiveWindow.Zoom = True
+    
+    '調整長寬
+    Rows.RowHeight = 36
+    Columns.ColumnWidth = 9.43
+    Columns("A:A").ColumnWidth = 16
+    Columns("B:B").ColumnWidth = 31.86
+    Columns("C:C").ColumnWidth = 28.57
+    Columns("D:D").ColumnWidth = 22.86
+    Columns("F:F").ColumnWidth = 37.43
+    Columns("E:E").ColumnWidth = 34.29
+    Columns("G:G").ColumnWidth = 27.43
+    
+    '調整檢視畫面大小
+    Columns("A:P").Select
+    ActiveWindow.Zoom = True
+    
+    '預入績效表格框線
+    range("F11:G17").Select
+    Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+    Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+    With Selection.Borders(xlEdgeLeft)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeTop)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeBottom)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlEdgeRight)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideVertical)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    With Selection.Borders(xlInsideHorizontal)
+        .LineStyle = xlContinuous
+        .ColorIndex = 0
+        .TintAndShade = 0
+        .Weight = xlThin
+    End With
+    
+    '預入績效
+    range("F11:G11").Value = ""
+    range("F11:G11").Merge
+    range("F11").Value = "預入績效"
+    With range("F11:G11").Interior
+        .Pattern = xlSolid
+        .PatternColorIndex = xlAutomatic
+        .ThemeColor = xlThemeColorAccent5
+        .TintAndShade = 0.799981688894314
+        .PatternTintAndShade = 0
+    End With
+    With range("F11:G11")
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlBottom
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = True
+    End With
+    range("B12").Value = "=B3+G12"
+    range("B15").Value = "=B6+G15+G16"
+    
+    With range("F15:F16")
+        .HorizontalAlignment = xlRight
+        .VerticalAlignment = xlCenter
+        .WrapText = True
+        .Orientation = 0
+        .AddIndent = True
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+    End With
