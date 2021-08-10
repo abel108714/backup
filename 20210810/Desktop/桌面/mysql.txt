@@ -1,0 +1,29 @@
+C:\MySQL\mysql-8.0.20-winx64\bin>mysqld --initialize --user=mysql --console
+2020-05-08T06:30:55.491877Z 0 [System] [MY-013169] [Server] C:\MySQL\mysql-8.0.2
+0-winx64\bin\mysqld.exe (mysqld 8.0.20) initializing of server in progress as pr
+ocess 8420
+2020-05-08T06:30:55.893917Z 1 [System] [MY-013576] [InnoDB] InnoDB initializatio
+n has started.
+2020-05-08T06:31:09.906318Z 1 [System] [MY-013577] [InnoDB] InnoDB initializatio
+n has ended.
+2020-05-08T06:31:47.935120Z 6 [Note] [MY-010454] [Server] A temporary password i
+s generated for root@localhost: p0Fr4xS<ib9q
+
+C:\MySQL\mysql-8.0.20-winx64\bin>mysqld --install MySQL
+Install/Remove of the Service Denied!
+That operation should be made by an user with Administrator privileges!
+
+
+C:\MySQL\mysql-8.0.20-winx64\bin>mysqld --initialize --user=mysql --console
+2020-05-08T07:16:55.710981Z 0 [System] [MY-013169] [Server] C:\MySQL\mysql-8.0.2
+0-winx64\bin\mysqld.exe (mysqld 8.0.20) initializing of server in progress as pr
+ocess 9468
+2020-05-08T07:16:55.989981Z 0 [ERROR] [MY-010457] [Server] --initialize specifie
+d but the data directory has files in it. Aborting.
+2020-05-08T07:16:55.989982Z 0 [ERROR] [MY-013236] [Server] The designated data d
+irectory C:\MySQL\mysql-8.0.20-winx64\data\ is unusable. You can remove all file
+s that the server added to it.
+2020-05-08T07:16:56.102981Z 0 [ERROR] [MY-010119] [Server] Aborting
+2020-05-08T07:16:56.217981Z 0 [System] [MY-010910] [Server] C:\MySQL\mysql-8.0.2
+0-winx64\bin\mysqld.exe: Shutdown complete (mysqld 8.0.20)  MySQL Community Serv
+er - GPL.

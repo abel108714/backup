@@ -1,0 +1,12 @@
+C:\Users\udev77\source\repos\DGVtest\DGVtest\bin\Debug\DGVtest.exe.config
+C:\Users\udev77\source\repos\DGVtest\DGVtest\bin\Debug\DGVtest.exe
+C:\Users\udev77\source\repos\DGVtest\DGVtest\bin\Debug\DGVtest.pdb
+C:\Users\udev77\source\repos\DGVtest\DGVtest\bin\Debug\DGVtest.xml
+C:\Users\udev77\source\repos\DGVtest\DGVtest\obj\Debug\DGVtest.vbprojAssemblyReference.cache
+C:\Users\udev77\source\repos\DGVtest\DGVtest\obj\Debug\DGVtest.Form1.resources
+C:\Users\udev77\source\repos\DGVtest\DGVtest\obj\Debug\DGVtest.Resources.resources
+C:\Users\udev77\source\repos\DGVtest\DGVtest\obj\Debug\DGVtest.vbproj.GenerateResource.cache
+C:\Users\udev77\source\repos\DGVtest\DGVtest\obj\Debug\DGVtest.vbproj.CoreCompileInputs.cache
+C:\Users\udev77\source\repos\DGVtest\DGVtest\obj\Debug\DGVtest.exe
+C:\Users\udev77\source\repos\DGVtest\DGVtest\obj\Debug\DGVtest.xml
+C:\Users\udev77\source\repos\DGVtest\DGVtest\obj\Debug\DGVtest.pdb
