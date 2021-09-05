@@ -1,0 +1,184 @@
+curl -v -X POST https://api.line.me/v2/bot/richmenu ^
+-H 'Authorization: Bearer {8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=}' ^
+-H 'Content-Type: application/json' ^
+-d ^
+'{ ^
+    "size": { ^
+      "width": 2500, ^
+      "height": 1686 ^
+    }, ^
+    "selected": false, ^
+    "name": "Nice richmenu", ^
+    "chatBarText": "Tap here", ^
+    "areas": [ ^
+      { ^
+        "bounds": { ^
+          "x": 0, ^
+          "y": 0, ^
+          "width": 2500, ^
+          "height": 1686 ^
+        }, ^
+        "action": { ^
+          "type": "postback", ^
+          "data": "action=buy&itemid=123" ^
+        } ^
+      } ^
+   ] ^
+}' ^D
+
+
+
+
+
+
+curl -v -X GET ^
+'https://api.line.me/oauth2/v2.1/verify?access_token=8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU='
+
+
+
+curl -v -X POST https://api.line.me/oauth2/v2.1/token ^
+-H 'Content-Type: application/x-www-form-urlencoded' ^
+-d 'grant_type=authorization_code' ^
+-d 'code=xxx' ^
+-d 'redirect_uri=https://e35c95b64831.ngrok.io/callback' ^
+-d 'client_id=1655094366' ^
+-d 'client_secret=3a4aed1e40707e83f48bf67ab2f418ed'
+
+https://access.line.me/oauth2/v2.1/authorize?response_type=8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=&client_id=1655094366&redirect_uri=https://e35c95b64831.ngrok.io/callback&state=a4692&scope=profile%20openid%20email
+
+https://access.line.me/oauth2/v2.1/authorize?response_type=8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=&client_id=1655094366&redirect_uri=https://e35c95b64831.ngrok.io/callback&state=a4692&scope=profile&nonce=09876xyz
+
+curl -v -X https://api.line.me/oauth2/v2.1/token -H 'Content-Type: application/json' ^
+
+
+
+
+
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1655094366&redirect_uri=e35c95b64831.ngrok.io&state=a461192
+
+
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1655094366&redirect_uri=localhost:4040&state=a461192
+
+
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1655094366&redirect_uri=f17b6da90544.ngrok.io&state=a461192
+
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1655094366&redirect_uri=linebot-test-20201020.herokuapp.com/callback&state=a461192
+
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id=1655094366&redirect_uri=https://linebot-test-20201020.herokuapp.com/callback&state=123abc
+
+
+
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id={1655094366}&redirect_uri={f17b6da90544.ngrok.io}&state={a461192}
+
+https://access.line.me/dialog/oauth/weblogin?response_type=code&client_id={Channel ID}&redirect_uri={Callback URL}&state={State}
+
+
+https://localhost:5000
+127.0.0.1:4040
+https://0ccf9df95f14.ngrok.io/callback
+http://localhost:4040/login/line/return
+
+https://access.line.me/dialog/oauth/weblogin?forceSecondVerification=&response_type=code&client_id=1655094366&showPermissionApproval=&response_mode=&displayType=b&otpId=&idProvider=1&scope=&state=a4692&redirect_uri=https%3A%2F%2Fe35c95b64831.ngrok.io%2Fcallback&error=server_error&errorCode=445&errorMessage=ACCOUNT_LOGIN_FAIL
+
+
+
+
+
+
+
+
+richmenu-2bb69f84ab35fe2c9e65f906b5cc330e
+
+
+
+rich_menu_to_create = RichMenu(
+    size=RichMenuSize(width=2500, height=843),
+    selected=False,
+    name="Nice richmenu",
+    chat_bar_text="Tap here",
+    areas=[RichMenuArea(
+        bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
+        action=URIAction(label='Go to line.me', uri='https://line.me'))]
+)
+rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
+
+with open(<file_path>, 'rb') as f:
+    line_bot_api.set_rich_menu_image(<rich_menu_id>, <content_type>, f)
+
+content = line_bot_api.get_rich_menu_image(<rich_menu_id>)
+with open(file_path, 'wb') as fd:
+    for chunk in content.iter_content():
+        fd.write(chunk)
+
+curl -v GET https://api.line.me/v2/bot/richmenu/list ^
+-H "Authorization: Bearer 8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU="
+
+curl -v -X POST https://api-data.line.me/v2/bot/richmenu/richmenu-2bb69f84ab35fe2c9e65f906b5cc330e/content ^
+-H "Authorization: Bearer 8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU=" ^
+-H "Content-Type: image/jpeg" ^
+-T image.jpg
+
+
+curl -v -X POST https://api.line.me/v2/bot/user/all/richmenu/richmenu-2bb69f84ab35fe2c9e65f906b5cc330e ^
+-H "Authorization: Bearer 8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU="
+
+
+curl -v GET https://api.line.me/v2/bot/richmenu/richmenu-2bb69f84ab35fe2c9e65f906b5cc330e ^
+-H "Authorization: Bearer 8GR7MNmmUmntbkHzoZK4YszKb4hOktoAxy+Bzp429ktQgNCMPP+KnKGwxeotxQY2ti1GrWqcgez0P0egY1iIA1BXx8/9WTMdPGnTaK/rUMD3wSn6eHzuU6cg/aj4BPx/phaQusTMdx3bYwh2iQfStgdB04t89/1O/w1cDnyilFU="
+
+rich_menu_to_create = RichMenu(
+    size=RichMenuSize(width=2500, height=843),
+    selected=False,
+    name="Nice richmenu",
+    chat_bar_text="Tap here",
+    areas=[RichMenuArea(
+        bounds=RichMenuBounds(x=0, y=0, width=2500, height=843),
+        action=URIAction(label='Go to line.me', uri='https://line.me'))]
+)
+rich_menu_id = line_bot_api.create_rich_menu(rich_menu=rich_menu_to_create)
+
+with open(<file_path>, 'rb') as f:
+    line_bot_api.set_rich_menu_image(<rich_menu_id>, <content_type>, f)
+
+content = line_bot_api.get_rich_menu_image(<rich_menu_id>)
+with open(file_path, 'wb') as fd:
+    for chunk in content.iter_content():
+        fd.write(chunk)
+
+from linebot import LineBotApi
+from linebot.exceptions import LineBotApiError
+
+rich_menu_list = line_bot_api.get_rich_menu_list()
+rich_menu = line_bot_api.get_rich_menu(rich_menu_id)
+line_bot_api.link_rich_menu_to_user(<user_id>, <rich_menu_id>)
+
+rich_menu_id = line_bot_api.get_rich_menu_id_of_user(<user_id>)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
