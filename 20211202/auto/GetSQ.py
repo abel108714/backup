@@ -1,4 +1,4 @@
-
+﻿
 import calendar
 import datetime
 from datetime import timedelta
@@ -1032,7 +1032,7 @@ if __name__ == "__main__":
 
     today=d.Date()
     #正式
-    file_name=str("C:\My Documents\\") + str("COPR23") + str(today.getYear(days=1))+str("1027")+str("000070")+str(today.getYear(days=1))+ str(today.getMonth(days=1))+ str(today.getDay(days=1))+str("0001.XLSX")
+    file_name=str("C:\My Documents\\") + str("COPR23") + str(today.getYear(days=1))+str("1027")+str("000070")+str(today.getYear(days=1))+ str(today.getMonth(days=1))+ str(today.getDay(days=1)).zfill(2)+str("0001.XLSX")
     #用前一天測試
     #file_name=str("C:\My Documents\\") + str("COPR23") + str(today.getYear(days=1))+str("1027")+str("000070")+str(today.getYear(days=1))+ str(today.getMonth(days=1))+ str(today.getDay(days=2))+str("0001.XLSX")
     #file_name = str("C:\My Documents\\") + "COPR2320211027000070202111160001.XLSX"
