@@ -1,0 +1,3 @@
+SELECT * FROM sq where id=11301182 ORDER BY sale_date ASC limit 1;
+
+SELECT sum(untaxed_amount_in_local_currency) FROM sq where year(sale_date)=(select year(now())) and month(sale_date)=(select month(now())) and day(sale_date)=(select day(now())) and group_name='Áp·ù';
