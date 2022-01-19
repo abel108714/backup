@@ -1,0 +1,20 @@
+SELECT * FROM sq where id=11301182 ORDER BY sale_date ASC limit 1;
+
+SELECT sum(untaxed_amount_in_local_currency) FROM sq where year(sale_date)=(select year(now())) and month(sale_date)=(select month(now())) and day(sale_date)=(select day(now())) and group_name='聯盟';
+
+
+
+
+UPDATE `sq` SET `Name` = 'newaurora'  WHERE `id` = '12'  ;
+
+
+pyinstaller -F -w .\GetSQ.py & xcopy /y dist\GetSQ.exe GetSQ.exe & rd /q/s dist & rd /q/s build & del /q/s GetSQ.spec & rd /q/s __pycache__
+
+
+
+UPDATE CU SET group_name = '實體團購' WHERE customer_code = 'C069901921';
+UPDATE CU SET group_name = '實體團購' WHERE customer_code = 'C069903386';
+UPDATE CU SET group_name = '實體團購' WHERE customer_code = 'C069902646';
+UPDATE CU SET group_name = '實體團購' WHERE customer_code = 'C069903638';
+UPDATE CU SET group_name = '實體團購' WHERE customer_code = 'C069903306';
+UPDATE CU SET group_name = '實體團購' WHERE customer_code = 'C069903235';
