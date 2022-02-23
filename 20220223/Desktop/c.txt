@@ -1,0 +1,41 @@
+CREATE Table mssq(
+    id bigint(255) NOT NULL, #id+店號+年
+    store_code varchar(50) character set utf8, #店號
+    product_id bigint(255) NOT NULL, #id
+    product_name varchar(50) character set utf8, #品名
+    year varchar(50) character set utf8, #年
+    january varchar(50) character set utf8, #一月
+    february varchar(50) character set utf8, #二月
+    march varchar(50) character set utf8, #三月
+    april varchar(50) character set utf8, #四月
+    may varchar(50) character set utf8, #五月
+    june varchar(50) character set utf8, #六月
+    july varchar(50) character set utf8, #七月
+    august varchar(50) character set utf8, #八月
+    september varchar(50) character set utf8, #九月
+    october varchar(50) character set utf8, #十月
+    november varchar(50) character set utf8, #十一月
+    december varchar(50) character set utf8, #十二月	
+    PRIMARY KEY (id) #設定主鍵
+)ENGINE = InnoDB;
+
+CREATE Table ssq(
+    id bigint(255) NOT NULL, #id+店號
+    product_id bigint(255) NOT NULL, #品號
+    store_code varchar(50) character set utf8, #店號
+    product_name varchar(50) character set utf8, #品名
+    spec varchar(50) character set utf8, #規格
+    sales_quantity varchar(50) character set utf8, #銷貨數量
+    total_sales varchar(50) character set utf8, #銷售總額
+    total_sales_before_tax varchar(50) character set utf8, #未稅銷售總金額
+    average_unit_price varchar(50) character set utf8, #平均單價
+    net_sales varchar(50) character set utf8, #銷售淨額
+    total_amount_of_discount varchar(50) character set utf8, #折價總金額
+    number_of_giveaways varchar(50) character set utf8, #贈品數量
+    weight varchar(50) character set utf8, #重量
+    giveaway_weight varchar(50) character set utf8, #贈品重量
+    cost_of_goods_sold varchar(50) character set utf8, #銷貨成本
+    gross_sales varchar(50) character set utf8, #銷售毛利
+    gross_profit_margin varchar(50) character set utf8, #毛利率
+    PRIMARY KEY (product_id) #設定主鍵
+)ENGINE = InnoDB;
