@@ -1096,14 +1096,34 @@ def handle_message(event):#
     dict = {}
     #加入值為array的資料
     # dict['id'] = ["Uee6224531167e863e3c08504055d6ed2","U8ec81edfb39499a39625be8c3e335ce0"]U3c77f40434fa99e97e2f6e9cfb6ff0f6
+    
+    
+    
+    
+    #寫死
     dict['id'] = ["U8ec81edfb39499a39625be8c3e335ce0","U3c77f40434fa99e97e2f6e9cfb6ff0f6","U4516a5c0c8ee5368ad79385a28482cfd","U3ecca7dbd50deb231004b055b07d755c","U7a8e507cdeb7304da1963ecdb6b43506","U70849fb74ae0d474e52feb96c12ee31d","U1a39ae260a8d4892abc3101bff50e8fd","U6df2ce1fcbd41372eec173b3f869df9f","Ub865ed90253c4ad6d756af6115093154","U536c0e2bbe48a8a300e0d8d86a6dc8ac","U1b14e7c863a29b5960138da88f7c02b8","Uc698b38f99be4fcf5183b89c2d67f8fe","U45269b35f85175b922c5ba904e2e2644"]
     admin_user_id="Uee6224531167e863e3c08504055d6ed2"
+    admin_user_id=""
+    #改成去資料庫讀取
+    #getLineID
+    
+    
     #admin_user_id=""
     # dict['id'] = ["U8ec81edfb39499a39625be8c3e335ce0","U3c77f40434fa99e97e2f6e9cfb6ff0f6","U4516a5c0c8ee5368ad79385a28482cfd","Uee6224531167e863e3c08504055d6ed2","U3ecca7dbd50deb231004b055b07d755c","U7a8e507cdeb7304da1963ecdb6b43506","U70849fb74ae0d474e52feb96c12ee31d","U1a39ae260a8d4892abc3101bff50e8fd","U6df2ce1fcbd41372eec173b3f869df9f","Ub865ed90253c4ad6d756af6115093154","U536c0e2bbe48a8a300e0d8d86a6dc8ac","U1b14e7c863a29b5960138da88f7c02b8","Uc698b38f99be4fcf5183b89c2d67f8fe"]
     # admin_user_id="123"
-    if user_id != admin_user_id:
-        for value in dict.values():
-            print("Result:", value)
+    # if user_id != admin_user_id:
+    #     for value in dict.values():
+    #         print("Result:", value)
+    #     i=0
+    #     for i in range(len(value)):
+    #         print("i:", i)
+    #         print("Result:", value[i])
+    #         if value[i] == user_id:
+    #             print("ok")
+    #             salesman_id=user_id
+    #     print("salesman_id:" ,salesman_id)
+    for value in dict.values():#核對業務員名單
+        print("Result:", value)
         i=0
         for i in range(len(value)):
             print("i:", i)
@@ -1111,7 +1131,36 @@ def handle_message(event):#
             if value[i] == user_id:
                 print("ok")
                 salesman_id=user_id
-    print("salesman_id:" ,salesman_id)
+                print("salesman_id:" ,salesman_id)
+
+        
+    if user_id == admin_user_id:#核對管理者
+        admin_user_id = user_id
+
+    if salesman_id == "" and user_id != admin_user_id:#不是業務也不是管理者，即不是會員
+        if '加入會員' in msg:#and (user_id != admin_user_id) and (user_id != salesman_id):
+            print("=======================加入會員")
+
+            line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str("請輸入姓名")))
+            print(text)
+            print(msg)
+            # print("123")
+            print("user_id : "+str(user_id))
+
+            
+            path='C:\\linebot\\msg\\'
+            if not os.path.isdir(path):#沒有資料夾就建資料夾
+                os.makedirs(path)
+            print("456")
+            try:
+                newDataAccess=FileDataAccess(0,'2','-', path + str(user_id) + '.txt')
+                PID=newDataAccess.getData(1,user_id)
+            except:
+                print("無PID")
+
+            print("PID :"+str(PID))
+    
+
     
 
 
@@ -1180,7 +1229,33 @@ def handle_message(event):#
     #         print("加入")
     #         #JoinMembership()
 
+    # if '加入會員' in msg and (user_id != admin_user_id) and (user_id != salesman_id):
+    #     print("=======================加入會員")
 
+    #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str("請輸入姓名")))
+    #     print(text)
+    #     print(msg)
+    #     # print("123")
+    #     print("user_id : "+str(user_id))
+
+        
+    #     path='C:\\linebot\\msg\\'
+    #     if not os.path.isdir(path):#沒有資料夾就建資料夾
+    #         os.makedirs(path)
+    #     print("456")
+
+
+    #     print("789")
+    #     try:
+    #         newDataAccess=FileDataAccess(0,'2','-', path + str(user_id) + '.txt')
+    #         PID=newDataAccess.getData(1,user_id)
+    #     except:
+    #         print("無PID")
+
+    #     print("PID :"+str(PID))
+    # if '加入會員' in msg and ((user_id == admin_user_id) or (user_id == salesman_id)):
+    #     print("已是會員")
+    #     line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str("已是會員")))
 
     #     path='C:\\linebot\\msg\\'
     #     if not os.path.isdir(path):#沒有資料夾就建資料夾
@@ -1623,31 +1698,7 @@ def handle_message(event):#
     # print(style.YELLOW + "Hello, World!")
 
     # print(style.YELLOW + "Hello, World!")
-    if '加入會員' in msg and (user_id != admin_user_id) and (user_id != salesman_id):
-        print("=======================加入會員")
 
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str("請輸入姓名")))
-        print(text)
-        print(msg)
-        # print("123")
-        print("user_id : "+str(user_id))
-        path='C:\\linebot\\msg\\'
-        if not os.path.isdir(path):#沒有資料夾就建資料夾
-            os.makedirs(path)
-        print("456")
-
-
-        print("789")
-        try:
-            newDataAccess=FileDataAccess(0,'2','-', path + str(user_id) + '.txt')
-            PID=newDataAccess.getData(1,user_id)
-        except:
-            print("無PID")
-
-        print("PID :"+str(PID))
-    if '加入會員' in msg and ((user_id == admin_user_id) or (user_id == salesman_id)):
-        print("已是會員")
-        line_bot_api.reply_message(event.reply_token, TextSendMessage(text=str("已是會員")))
 
         #insertLineId()
     if '[run]' in msg and user_id == "Uee6224531167e863e3c08504055d6ed2" :
