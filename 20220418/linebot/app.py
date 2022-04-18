@@ -159,6 +159,7 @@ import INVDB01002
 #from INVDB import getDataArr
 #from INVDB01002 import getDataArr
 from PPAndProm import getDataArrOfPPAndProm,isExistProm,isExistPP,getDataArrOfProm,getDataArrOfPP
+from Line import getLineFriendName,insertLineFriendName
 # import INVDB as invdb
 # import INVDB as idb
 # from controller.notify_controller import NotifyController
@@ -428,6 +429,9 @@ from PPAndProm import getDataArrOfPPAndProm,isExistProm,isExistPP,getDataArrOfPr
 # print(req.text)
 # import webbrowser
 # webbrowser.open("C:\\Users\\udev77\\Desktop\\t.html")
+
+
+
 newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\\★網通部績效小幫手專用★\\網通部每月預入績效.txt')
 updateArr=[]
 def isWorkday():
@@ -1103,7 +1107,7 @@ def handle_message(event):#
     #寫死
     dict['id'] = ["U8ec81edfb39499a39625be8c3e335ce0","U3c77f40434fa99e97e2f6e9cfb6ff0f6","U4516a5c0c8ee5368ad79385a28482cfd","U3ecca7dbd50deb231004b055b07d755c","U7a8e507cdeb7304da1963ecdb6b43506","U70849fb74ae0d474e52feb96c12ee31d","U1a39ae260a8d4892abc3101bff50e8fd","U6df2ce1fcbd41372eec173b3f869df9f","Ub865ed90253c4ad6d756af6115093154","U536c0e2bbe48a8a300e0d8d86a6dc8ac","U1b14e7c863a29b5960138da88f7c02b8","Uc698b38f99be4fcf5183b89c2d67f8fe","U45269b35f85175b922c5ba904e2e2644"]
     admin_user_id="Uee6224531167e863e3c08504055d6ed2"
-    admin_user_id=""
+    #admin_user_id=""
     #改成去資料庫讀取
     #getLineID
     
@@ -1147,18 +1151,39 @@ def handle_message(event):#
             # print("123")
             print("user_id : "+str(user_id))
 
-            
+            Name=""
             path='C:\\linebot\\msg\\'
             if not os.path.isdir(path):#沒有資料夾就建資料夾
                 os.makedirs(path)
             print("456")
             try:
                 newDataAccess=FileDataAccess(0,'2','-', path + str(user_id) + '.txt')
-                PID=newDataAccess.getData(1,user_id)
+                Name=newDataAccess.getData(1,user_id)
             except:
-                print("無PID")
+                print("無Name")
 
-            print("PID :"+str(PID))
+            print("PID :"+str(Name))
+        else:
+            print("非會員msg...")
+            print("Name : " + str(Name))
+            print("user_id : " + str(user_id))
+            #寫入資料庫
+            insertLineFriendName(user_id,Name)
+
+
+
+
+
+            # path='C:\\linebot\\msg\\'
+            # if not os.path.isdir(path):#沒有資料夾就建資料夾
+            #     os.makedirs(path)
+
+            # newDataAccess=FileDataAccess(0,'2','-', path + str(user_id) + '.txt')
+            # title_match=str(user_id)
+            # updateArr=[msg]
+            # print(title_match)
+            # print(updateArr)
+            # newDataAccess.setData(title_match,updateArr)
     
 
     
