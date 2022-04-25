@@ -512,8 +512,8 @@ def checkExpPerf():
     # print(int(a.getDay()) >= 25)
     # print("123")
 
-    #全聯預入,自動於25日以後的第一個工作天中午12點清除預入金額
-    if int(a.getDay()) >= 25 and weekno <= 6 and date.strftime("%H:%M") == "12:00" or int(a.getDay()) == 24 and weekno == 5 and date.strftime("%H:%M") == "12:00": 
+    #全聯預入,自動於25日以後的第一個工作天16點清除預入金額
+    if int(a.getDay()) >= 25 and weekno <= 6 and date.strftime("%H:%M") == "16:10" or int(a.getDay()) == 24 and weekno == 5 and date.strftime("%H:%M") == "16:10": 
         print('day1')
         newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\★網通部績效小幫手專用★\網通部每月預入績效.txt')
         # newDataAccess=FileDataAccess(0,'3','-','S:\\網通部\★網通部績效小幫手專用★\網通部每月預入績效.txt')
@@ -1165,16 +1165,21 @@ def handle_message(event):#
     #加入值為array的資料
     # dict['id'] = ["Uee6224531167e863e3c08504055d6ed2","U8ec81edfb39499a39625be8c3e335ce0"]U3c77f40434fa99e97e2f6e9cfb6ff0f6
     
-    
+    admin_user_id=""
     
     
     #寫死
     dict['id'] = ["U8ec81edfb39499a39625be8c3e335ce0","U3c77f40434fa99e97e2f6e9cfb6ff0f6","U4516a5c0c8ee5368ad79385a28482cfd","U3ecca7dbd50deb231004b055b07d755c","U7a8e507cdeb7304da1963ecdb6b43506","U70849fb74ae0d474e52feb96c12ee31d","U1a39ae260a8d4892abc3101bff50e8fd","U6df2ce1fcbd41372eec173b3f869df9f","Ub865ed90253c4ad6d756af6115093154","U536c0e2bbe48a8a300e0d8d86a6dc8ac","U1b14e7c863a29b5960138da88f7c02b8","Uc698b38f99be4fcf5183b89c2d67f8fe","U45269b35f85175b922c5ba904e2e2644"]
-    admin_user_id="Uee6224531167e863e3c08504055d6ed2"
-    #admin_user_id=""
+    # admin_user_id="Uee6224531167e863e3c08504055d6ed2"
+    # admin_user_id=""
     print("A")
     if isLineFriendName(user_id) == True:
         print("是好友")
+        if user_id=="Uee6224531167e863e3c08504055d6ed2":
+            admin_user_id=user_id
+            admin_user_id=""
+        else:
+            salesman_id=user_id
     else:
         print("不是好友")
     print("B")

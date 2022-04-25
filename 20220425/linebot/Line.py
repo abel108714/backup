@@ -96,7 +96,8 @@ def getPermission(user_id):
                 print("NULL")   
                 return "NULL"
             else:
-                print(myresult[0])   
+                print(myresult[0])
+                getPermissionArr(myresult[0])
                 return myresult[0]
             #sql="INSERT line (line_id,name) VALUES ('" + str(user_id) + "','" + str(Name)+"')"
             #sql="INSERT line (line_id,name) VALUES ('Uee6224531167e863e3c08504055d6ed2','周立修')"
@@ -111,6 +112,47 @@ def getPermission(user_id):
         conn.commit()
         cursor.close()
 
+
+def getPermissionArr(permission_name):
+    print("checkPermission")
+    conn = pymysql.connect(**setDB())
+    print("conn")
+    print('permission_name: ' + str(permission_name))
+    with conn.cursor() as cursor:
+        try:
+            print("select")
+            sql="select `order`, dsv_inv, finished_product_inv, pp, prom from line_permission where permission_name = '" + str(permission_name) + "'"
+            print(sql)
+            #sql="select * from line_permission where = " + str(permission_name)
+
+            cursor.execute(sql)
+            myresult = cursor.fetchall()
+            for myresultArr in myresult:
+                print(myresultArr)
+            print("myresult = " + str(myresult))      
+            print("1") 
+            myresult = cursor.fetchone()
+            print("2")
+            print("myresult = " + str(myresult))   
+            print("myresult[0] = " + str(myresult[0]))   
+            if str(myresult[0]) == "None":
+                print("NULL")   
+                return "NULL"
+            else:
+                print(myresult[0])   
+                return myresult[0]
+            #sql="INSERT line (line_id,name) VALUES ('" + str(user_id) + "','" + str(Name)+"')"
+            #sql="INSERT line (line_id,name) VALUES ('Uee6224531167e863e3c08504055d6ed2','周立修')"
+
+            #return 0
+        except Exception as e:
+            print("UPDATE")
+            #sql="UPDATE line SET name="+str(Name)+" where line_id="+str(user_id)
+            #print(sql)
+            #cursor.execute(sql)          
+
+        conn.commit()
+        cursor.close()
 
 
 if __name__ == "__main__":
