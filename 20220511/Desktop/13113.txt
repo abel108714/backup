@@ -1,0 +1,11 @@
+select sale_date as 日期, sales_number as 銷貨單號, sales_quantity as 銷貨數量, gift_spare_quantity as "贈/備品量", units as 單位, currencies as 幣別, unit_price as 單價, original_currency_untaxed_amount as 本幣銷貨金額, untaxed_amount_in_local_currency as 本幣銷貨稅額, datetime from sq where sale_date="2022/05/09" and salesman="林渝涔";
+
+
+
+
+select sale_date as 日期, sales_number as 銷貨單號, sales_quantity as 銷貨數量, gift_spare_quantity as "贈/備品量", units as 單位, currencies as 幣別, unit_price as 單價, original_currency_untaxed_amount as 本幣銷貨金額, untaxed_amount_in_local_currency as 本幣銷貨稅額, datetime from sq where sale_date="2022/05/09" and salesman="林渝涔";
+
+
+
+
+客戶代號	客戶簡稱	salesman as 業務員	品號	品名	日期	銷貨單號	銷貨數量	贈/備品量	單位	幣別	單價	本幣銷貨金額	untaxed_amount_in_local_currency as 本幣銷貨稅額

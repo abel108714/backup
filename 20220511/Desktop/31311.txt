@@ -1,0 +1,6 @@
+ sq where sale_date="2022/05/06" and salesman="林渝涔";
+
+
+
+
+select sale_date as 日期, sales_number as 銷貨單號, sales_quantity as 銷貨數量, gift_spare_quantity as "贈/備品量", units as 單位, currencies as 幣別, unit_price as 單價, original_currency_untaxed_amount as 本幣銷貨金額, untaxed_amount_in_local_currency as 本幣銷貨稅額 from sq where sale_date="2022/05/06" and salesman="林渝涔";
