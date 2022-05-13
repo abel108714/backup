@@ -1,0 +1,16 @@
+update sq set product_name = 代工費(有機鮮枸杞原漿禮盒8入-集慧), customer_code = C159900049, sale_date = 2022/05/06,sales_number = 231 -20220506029-0001, sales_quantity = 1505.0, sales_packaging_quantity = 0.0, units = 盒, currencies = NTD, unit_price = 8.0, original_currency_untaxed_amount = 11467.0,untaxed_amount_in_local_currency = 11467.0, cost_of_goods_sold = 0
+.0, gross_profit_margin = 0.0, invoice_coupon = 電子發票, salesman = 徐春貴, factory_code = 01, library_code = 01002, group_name = , gift_spare_quantity = 0.0 )  where id = 90101168;
+
+
+(djangogirls_venv) C:\auto>
+
+
+
+
+update sq set product_name = "代工費(有機鮮枸杞原漿禮盒8入-集慧)", customer_code = "C159900049", sale_date = "2022/05/06" where id = "90101168";
+
+
+
+
+update sq set product_name = "代工費(有機鮮枸杞原漿禮盒8入-集慧)", customer_code = "C159900049", sale_date = "2022/05/06",sales_quantity = "1505.0", sales_packaging_quantity = "0.0", units = "盒", currencies = "NTD", unit_price = "8.0", original_currency_untaxed_amount = "11467.0",untaxed_amount_in_local_currency = "11467.0", cost_of_goods_sold = "0
+.0", gross_profit_margin = "0.0", invoice_coupon = "電子發票", salesman = "徐春貴", factory_code = "01", library_code = "01002", group_name = "", gift_spare_quantity = "0.0" where id = "90101168";
