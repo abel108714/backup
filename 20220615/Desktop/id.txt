@@ -1,0 +1,32 @@
+U1b14e7c863a29b5960138da88f7c02b8永齊
+Ub865ed90253c4ad6d756af6115093154
+U3ecca7dbd50deb231004b055b07d755c世鵬
+U7a8e507cdeb7304da1963ecdb6b43506三和
+U70849fb74ae0d474e52feb96c12ee31d陳巧芬
+msg: 陳昕卉
+user_id: U1a39ae260a8d4892abc3101bff50e8fd
+msg: 麗玲
+user_id: U6df2ce1fcbd41372eec173b3f869df9f
+msg: 陳安睫
+user_id: Ub865ed90253c4ad6d756af6115093154
+msg: 嘉芬
+user_id: U536c0e2bbe48a8a300e0d8d86a6dc8ac
+
+
+17:20 永宗 小幫手建議：輸入錯誤或無庫存，是否請小幫手回應查無此品？
+17:21 立修 ok
+17:21 永宗 或是有更好的說法
+17:21 立修 可以
+17:21 永宗 回覆：缺貨或無此品項
+17:21 立修 好
+17:22 永宗 也可以是缺貨的品項，直接還是有回覆資料，但庫存寫0
+
+
+msg: 李雅蓉
+user_id: Uc698b38f99be4fcf5183b89c2d67f8fe
+
+msg: 林渝涔
+user_id: U45269b35f85175b922c5ba904e2e2644
+
+
+INSERT line (line_id,name,permission_name) VALUES ('U1b14e7c863a29b5960138da88f7c02b8','李永齊','業務');
