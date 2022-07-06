@@ -1,0 +1,1642 @@
+Option Explicit
+Dim DateStr As String
+Dim month_str, day_str As String
+
+Sub openWorkbooks()
+    Application.DisplayAlerts = False
+    實體通路目標達成比
+End Sub
+
+Function isFileExsit(Path As String) As Boolean '檔案是否存在
+
+    If Len(Dir(Path)) = 0 Then '已存在
+        isFileExsit = False
+    Else '不存在
+        isFileExsit = True
+    End If
+    
+End Function
+
+Function isFileOpen(Path As String) As Boolean
+
+    Dim iFile As Integer
+    Dim iErr As Integer
+    
+    On Error Resume Next
+    iFile = FreeFile()
+    Open Path For Input Lock Read As #iFile  '以鎖定方式開啟，開啟指定檔案後直接關閉檔案
+    Close iFile
+    
+    iErr = Err  '將錯誤號碼帶入iErr變數中，然後依照數字即可得知檔案狀態
+    On Error GoTo 0
+    Select Case iErr
+        Case 0
+            isFileOpen = False 'False
+        Case 70
+            isFileOpen = True
+        Case 53
+            MsgBox "找不到檔案，請再確認！"
+            isFileOpen = False
+        Case 76
+            MsgBox "找不到路徑，請再確認！"
+            isFileOpen = False
+    End Select
+    
+End Function
+
+Private Sub Workbook_Open(File As String)
+
+    Application.DisplayAlerts = False '同檔名提示關閉
+    If isFileExsit(File) = True Then '檔案存在
+        If isFileOpen(File) = False Then '檔案未打開
+            WorkBooks.Open File '打開檔案
+        End If
+    Else '檔案不存在
+        Dim app_excel As Excel.Application
+        Dim book_excel As Excel.Workbook
+        Set app_excel = Excel.Application
+        Set book_excel = app_excel.WorkBooks.Add
+        book_excel.SaveAs FileName:=File, _
+        FileFormat:=xlOpenXMLWorkbookMacroEnabled, CreateBackup:=False '新建檔案
+    End If
+    Application.DisplayAlerts = True '同檔名提示開啟
+
+End Sub
+
+Sub updateDBTargetByUID(Target As Long, UID As Long)
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim Dept As String
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    Dim str As String
+    'Rs.Open "UPDATE ugovori_dt SET br_ugovora='" & (Cells(1, 1).Values) & "'", Cn
+    str = "UPDATE members SET target='" & Target & "' WHERE UID='" & UID & "'"
+    Rs.Open str, Cn, 1, 3
+    'SQL是delete,update,insert 執行以後都會返回一個關閉的記錄集
+    'Rs.Close'執行完以後自動關閉記錄集，最後只需要關閉連接就可以了
+    Cn.Close
+End Sub
+
+Sub updateDBTargetByName(Target As Long, Name As String)
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim Dept As String
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    Dim str As String
+    'Rs.Open "UPDATE ugovori_dt SET br_ugovora='" & (Cells(1, 1).Values) & "'", Cn
+    str = "UPDATE members SET target='" & Target & "' WHERE Name='" & Name & "'"
+    Debug.Print str
+    Rs.Open str, Cn, 1, 3
+    'SQL是delete,update,insert 執行以後都會返回一個關閉的記錄集
+    'Rs.Close'執行完以後自動關閉記錄集，最後只需要關閉連接就可以了
+    Cn.Close
+End Sub
+
+Sub updateDBCumDiffByUID(cum_diff As Long, UID As Long)
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim Dept As String
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    Dim str As String
+    'Rs.Open "UPDATE ugovori_dt SET br_ugovora='" & (Cells(1, 1).Values) & "'", Cn
+    str = "UPDATE members SET cum_diff='" & cum_diff & "' WHERE UID='" & UID & "'"
+    Rs.Open str, Cn, 1, 3
+    'SQL是delete,update,insert 執行以後都會返回一個關閉的記錄集
+    'Rs.Close'執行完以後自動關閉記錄集，最後只需要關閉連接就可以了
+    Cn.Close
+End Sub
+
+Sub insertSalseName(SalseName As String, Dept As String)
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim newUID As String
+
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    Dim str As String
+    newUID = getNewUID()
+    Debug.Print newUID
+    str = "insert members(UID,Dept,Name) values('" & newUID & "','" & Dept & "','" & SalseName & "')"
+    Debug.Print str
+    'Rs.Open "UPDATE ugovori_dt SET br_ugovora='" & (Cells(1, 1).Values) & "'", Cn
+    'str = "UPDATE members SET target='" & Target & "' WHERE Name='" & Name & "'"
+    'str = "SELECT IFNULL( (SELECT Name FROM members WHERE Name='" & Name & "') ,'not found')"
+    'Debug.Print str
+    Rs.Open str, Cn, 1, 3
+    'SQL是delete,update,insert 執行以後都會返回一個關閉的記錄集
+    'Rs.Close'執行完以後自動關閉記錄集，最後只需要關閉連接就可以了
+    Cn.Close
+End Sub
+
+Function getNewUID()
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim Dept As String
+    Dim result As Integer
+    Dim newUID As String
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    Dim str As String
+    str = "select UID from members order by UID desc limit 1"
+    Rs.Open str, Cn, 1, 3
+    result = Rs.Fields("UID")
+    'Debug.Print str
+    
+    'result = Rs.Fields("IFNULL( (SELECT Name FROM members WHERE Name='" & Name & "') ,'not found')")
+    'SQL是delete,update,insert 執行以後都會返回一個關閉的記錄集
+    'Rs.Close'執行完以後自動關閉記錄集，最後只需要關閉連接就可以了
+    Cn.Close
+    getNewUID = CInt(result) + 1
+End Function
+
+Function isExsitUIDbyName(Name As String)
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim Dept As String
+    Dim result As String
+
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    Dim str As String
+    'Rs.Open "UPDATE ugovori_dt SET br_ugovora='" & (Cells(1, 1).Values) & "'", Cn
+    'str = "UPDATE members SET target='" & Target & "' WHERE Name='" & Name & "'"
+
+    str = "SELECT IFNULL( (SELECT Name FROM members WHERE Name='" & Name & "') ,'not found')"
+    'Debug.Print str
+    Rs.Open str, Cn, 1, 3
+    result = Rs.Fields("IFNULL( (SELECT Name FROM members WHERE Name='" & Name & "') ,'not found')")
+    'SQL是delete,update,insert 執行以後都會返回一個關閉的記錄集
+    'Rs.Close'執行完以後自動關閉記錄集，最後只需要關閉連接就可以了
+    Cn.Close
+    isExsitUIDbyName = result
+End Function
+
+Function getDeptByName(Name As String)
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim Dept As String
+    Dim result As String
+
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    Dim str As String
+    'Rs.Open "UPDATE ugovori_dt SET br_ugovora='" & (Cells(1, 1).Values) & "'", Cn
+    'str = "UPDATE members SET target='" & Target & "' WHERE Name='" & Name & "'"
+    str = "select Dept from members where Name = '" & Name & "'"
+    'str = "SELECT IFNULL( (SELECT Name FROM members WHERE Name='" & Name & "') ,'not found')"
+    Debug.Print str
+    Rs.Open str, Cn, 1, 3
+    result = Rs.Fields("Dept")
+    Debug.Print result
+    'SQL是delete,update,insert 執行以後都會返回一個關閉的記錄集
+    'Rs.Close'執行完以後自動關閉記錄集，最後只需要關閉連接就可以了
+    Cn.Close
+    getDeptByName = result
+End Function
+
+Function getDBCumDiffByUID(UID As String)
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim Dept As String
+    Dim result As String
+
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    Dim str As String
+    'Rs.Open "UPDATE ugovori_dt SET br_ugovora='" & (Cells(1, 1).Values) & "'", Cn
+    'str = "UPDATE members SET target='" & Target & "' WHERE Name='" & Name & "'"
+    str = "select cum_diff from members where UID = '" & UID & "'"
+    'str = "SELECT IFNULL( (SELECT Name FROM members WHERE Name='" & Name & "') ,'not found')"
+    Debug.Print str
+    Rs.Open str, Cn, 1, 3
+    result = Rs.Fields("cum_diff")
+    Debug.Print result
+    'SQL是delete,update,insert 執行以後都會返回一個關閉的記錄集
+    'Rs.Close'執行完以後自動關閉記錄集，最後只需要關閉連接就可以了
+    Cn.Close
+    getDBCumDiffByUID = result
+End Function
+
+Sub checkPASalseTarget()
+
+    Dim d As String
+    d = Date
+    Dim i As Integer
+    Dim WBIndex As Integer
+    WBIndex = 2
+    Dim SalseName As String
+    Dim SalseTarget As Long
+    Dim File As String
+    Dim Dept As String
+    Dim PreSalseName As String
+    'file = "S:\開發部\◆業績資料\★開發部績效小幫手專用★\" & Year(d) & "-" & Month(d) & "月個人目標.xlsx"
+    File = "S:\開發部\◆業績資料\★開發部績效小幫手專用★\個人目標.xlsx"
+    WorkBooks.Open File
+    i = 3
+    If Day(Date) >= 1 Then '若今日是月初則更新業積目標
+        WBIndex = sys.getWBIndexByName("個人目標.xlsx") '(Year(d) & "-" & Month(d) & "月個人目標.xlsx")
+        Do
+            SalseName = range("A" & i).Value
+            
+            SalseTarget = sys.getBookDataByKeyRow(WBIndex, 2, "A", SalseName, "2", month(d) & "月目標")
+            If isExsitUIDbyName(SalseName) = "not found" Then '如果查無業務員就新增
+                Dept = getDeptByName(PreSalseName)
+                insertSalseName SalseName, Dept
+            End If
+            PreSalseName = range("A" & i).Value
+            updateDBTargetByName SalseTarget, SalseName
+continue:
+            i = i + 1
+            If range("A" & i).Value = "連鎖+北區" Or range("A" & i).Value = "中區" Then
+                GoTo continue
+            ElseIf range("A" & i).Value = "南區" Then
+                Exit Do
+            End If
+        Loop While range("A" & i).Value <> ""
+    End If
+    'WorkBooks.Close file
+    ActiveWorkbook.Close
+    
+End Sub
+
+Sub 實體通路目標達成比()
+    
+    '檢查業績目標
+    checkPASalseTarget
+    
+    Dim File As String
+    File = "C:\My Documents\" & getTodayStr() & "實體通路目標達成比.xlsm"
+    Workbook_Open (File)
+    Windows(WorkBooks(2).Name).Activate
+    Cells.ClearContents
+    Cells.ClearFormats
+    'C:\My Documents\COPR3820200902000180202011110001.xlsx
+    'C:\My Documents\COPR3820200902000181202011110001.xlsx
+
+    
+    '字型字體大小
+    With Cells.Font
+        .Name = "微軟正黑體"
+        .Size = 22
+        .Strikethrough = False
+        .Superscript = False
+        .Subscript = False
+        .OutlineFont = False
+        .Shadow = False
+        .Underline = xlUnderlineStyleNone
+        .TintAndShade = 0
+        .ThemeFont = xlThemeFontNone
+        .Bold = True
+    End With
+    
+    '調整長寬
+    Rows.RowHeight = 36
+    Columns.ColumnWidth = 8.38
+    Columns("A:A").ColumnWidth = 18.25
+    Columns("B:B").ColumnWidth = 23.75
+    Columns("C:C").ColumnWidth = 19.5
+    Columns("D:D").ColumnWidth = 22.13
+    Columns("E:E").ColumnWidth = 25.13
+    Columns("F:F").ColumnWidth = 27.63
+    Columns("G:G").ColumnWidth = 21.25
+    Columns("H:H").ColumnWidth = 31.38
+    Columns("I:I").ColumnWidth = 36.38
+    Columns("J:J").ColumnWidth = 13.63
+    Columns("K:K").ColumnWidth = 17.5
+    Columns("L:L").ColumnWidth = 11.38
+    Columns("M:M").ColumnWidth = 10.75
+    Columns("N:N").ColumnWidth = 10.75
+    Columns("O:O").ColumnWidth = 10.75
+    Columns("P:P").ColumnWidth = 10.75
+    Columns("Q:Q").ColumnWidth = 12.5
+    Columns("R:R").ColumnWidth = 10.75
+    Columns("S:S").ColumnWidth = 10.75
+    Columns("T:T").ColumnWidth = 22.38
+    Columns("U:U").ColumnWidth = 10.75
+    Columns("V:V").ColumnWidth = 10.75
+    Columns("W:W").ColumnWidth = 10.75
+    Columns("X:X").ColumnWidth = 7.63
+    Columns("Y:Y").ColumnWidth = 18.25
+    Columns("Z:Z").ColumnWidth = 13.88
+    Columns("AA:AA").ColumnWidth = 17.5
+    Columns("AB:AB").ColumnWidth = 9.88
+    Columns("AC:AC").ColumnWidth = 9.88
+    Columns("AC:AC").ColumnWidth = 11.63
+    Columns("AD:AD").ColumnWidth = 11.63
+    Columns("AE:AE").ColumnWidth = 21
+    Columns("AF:AF").ColumnWidth = 15.13
+    Columns("AG:AG").ColumnWidth = 8.38
+
+    '調整檢視畫面大小
+    Columns("A:P").Select
+    ActiveWindow.Zoom = True
+    
+    '取得年月日字串
+    'Dim d As Date
+    'Dim dateStr As String
+    'Dim month_str, day_str As String
+    'd = Date
+    'If Len(Month(d)) = 1 Then
+    '    month_str = "0" & CStr(Month(d))
+    'Else
+    '    month_str = CStr(Month(d))
+    'End If
+    'If Len(Day(d)) = 1 Then
+    '    day_str = "0" & CStr(Day(d))
+    'Else
+    '    day_str = CStr(Day(d))
+    'End If
+    'DateStr = Year(d) & month_str & day_str
+    'MsgBox DateStr
+    '固定讀取檔案
+    Dim Filename1 As String
+    Dim Filename2 As String
+    Dim Filename3 As String
+    
+    'TargetFile = DateStr & "實體通路目標達成比" & ".xlsm"
+    'Filename1 = "C:\My Documents\" & "COPR3820200902000180" & getYesdayStr() & "0001.xlsx" '& "0001.xlsx"
+'Dim Now As String
+'Now = "16:01"
+    'Filename1 = "C:\My Documents\" & Dir("C:\My Documents\COPR3820200902000180" & getYesdayStr() & "*.xlsx") '& "0003.xlsx"
+    If (Format(Now, "HH:mm") >= "16:00") And (Format(Now, "HH:mm") <= "16:59") Then
+        Filename1 = "C:\My Documents\" & Dir("C:\My Documents\COPR3820211207000307" & getYesdayStr() & "*.xlsx")
+        'COPR3820211207000307202112210001.XLSX
+    Else
+        Filename1 = "C:\My Documents\" & "COPR3820210922000108" & getYesdayStr() & "0001.xlsx" '& "0001.xlsx"
+    End If
+    '變動COPR3820200902000180202101290001
+    'Filename2 = "C:\My Documents\" & "COPR3820200902000181" & getYesdayStr() & "0001.xlsx" '& "0001.xlsx"
+    If (Format(Now, "HH:mm") >= "16:00") And (Format(Now, "HH:mm") <= "16:59") Then
+        Filename2 = "C:\My Documents\" & Dir("C:\My Documents\COPR3820211207000308" & getYesdayStr() & "*.xlsx")
+        'COPR3820211207000308202112210001
+    Else
+        Filename2 = "C:\My Documents\" & "COPR3820210922000116" & getYesdayStr() & "0001.xlsx" '& "0001.xlsx"
+    End If
+'    Filename1 = "C:\My Documents\" & Dir("C:\My Documents\COPR3820200902000180" & getYesdayStr() & "*.xlsx") '& "0001.xlsx"
+'    '變動COPR3820200902000180202101290001
+'    Filename2 = "C:\My Documents\" & Dir("C:\My Documents\COPR3820200902000181" & getYesdayStr() & "*.xlsx") '& "0001.xlsx"
+'    '變動
+    'Filename3 = "C:\My Documents\COPR2320201021000058" & getYesdayStr() & "0001.xlsx"
+
+
+    '測試用
+    Filename1 = "C:\My Documents\" & Dir("C:\My Documents\COPR3820211207000307" & getYesdayStr() & "*.xlsx")
+    Filename2 = "C:\My Documents\" & Dir("C:\My Documents\COPR3820211207000308" & getYesdayStr() & "*.xlsx")
+
+    'MsgBox getYesdayStr()
+    Dim sn As Object
+    Set sn = Excel.Application
+    sn.WorkBooks.Open Filename1
+    sn.WorkBooks.Open Filename2
+    'sn.Workbooks.Open Filename3
+    Set sn = Nothing
+    'Windows(Filename1).Activate
+    Windows(WorkBooks(2).Name).Activate
+    Dim RowNum As Integer
+    RowNum = Cells(Rows.count, 1).End(xlUp).Row '資料最後一列
+    '所有品號及資料列載入
+    'Windows(file).Activate
+    Windows(WorkBooks(2).Name).Activate
+    
+    
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    Dim Dept As String
+    'SQLIP = "10.10.0.160"
+    SQLIP = "172.21.7.39"
+    'SQLIP = "172.21.7.38"
+    'SQLIP = "172.21.7.66"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    
+    Dept = "北區"
+    Dim str As String
+    
+    '部門取id   依id去取資料
+    Dim i As Integer
+    i = 0
+    Dim DataRowIndex As Long
+    Dim ChannelRowStart As Integer
+    Dim DataRowNum As Integer
+    Dim ChannelRowEnd As Integer
+    Dim OnlineRowStart As Integer
+    Dim OnlineRowEnd As Integer
+    Dim d As String
+    'uid = newQueue.popData
+    
+    '組合年月日字串
+    d = Date
+    If Len(month(d)) = 1 Then
+        month_str = "0" & CStr(month(d))
+    Else
+        month_str = CStr(month(d))
+    End If
+    If Len(Day(d)) = 1 Then
+        day_str = "0" & CStr(Day(d))
+    Else
+        day_str = CStr(Day(d))
+    End If
+    DateStr = year(d) & month_str & day_str
+    
+    'Dim newdata As New TwoFieldDataAccess
+    'newdata.setFile "C:\Users\udev77\Documents\ExpePerfRef.txt"
+    
+    Dim EndOfMonth As Byte
+    EndOfMonth = Day(DateSerial(year(Date), month(Date) + 1, 0)) '表示當前月的月底
+    'MsgBox EndOfMonth
+    
+    '欄位名
+    range("A1").Value = "製表日期:"
+    range("B1").Value = Date
+    range("F1").Value = year(d) & "/" & month_str & "/" & "01" & "-" & Date
+    range("A2").Value = "業務員"
+    range("B2").Value = "今日績效"
+    range("C2").Value = "每日目標"
+    range("D2").Value = "當日達成比"
+    range("E2").Value = month_str & "月銷貨淨額"
+    range("F2").Value = month_str & "月目標"
+
+    range("G2").Value = month_str & "月累計差異"
+    range("H2").Value = "累計達成比"
+    range("I2").Value = "累積每日進度指標"
+    range("J2").Value = "本月尚需努力的數字"
+    range("K2").Value = "750B"
+    range("L2").Value = "BW980"
+    range("M2").Value = "水平床"
+    range("N2").Value = "BS1"
+    range("O2").Value = "BM1"
+    range("P2").Value = "BG1"
+    range("Q2").Value = "R1"
+    range("R2").Value = "律動儀"
+    range("S2").Value = "Fit1"
+    range("T2").Value = "貴妃椅"
+    range("U2").Value = "IVIB5050A"
+    range("V2").Value = "VF8"
+    range("W2").Value = "BS1"
+    range("X2").Value = "VF9"
+    range("Y2").Value = "N1"
+    range("Z2").Value = "BW760B"
+    range("AA2").Value = "綠動椅"
+    range("AB2").Value = "BW750" '"綠動椅(BR1)"
+    range("AC2").Value = "太和"
+    range("AD2").Value = "6055"
+    range("AE2").Value = "760B"
+    range("AF2").Value = "協助小天使"
+    range("AG2").Value = "備註"
+    
+    'range("G2").Value = "累計達成比"
+    'range("H2").Value = "累積每日進度指標"
+    'range("I2").Value = "本月尚需努力的數字"
+    'range("J2").Value = "750B"
+    'range("K2").Value = "BW980"
+    'range("L2").Value = "水平床"
+    'range("M2").Value = "BS1"
+    'range("N2").Value = "BM1"
+    'range("O2").Value = "BG1"
+    'range("P2").Value = "R1"
+    'range("Q2").Value = "律動儀"
+    'range("R2").Value = "Fit1"
+    'range("S2").Value = "貴妃椅"
+    'range("T2").Value = "IVIB5050A"
+    'range("U2").Value = "VF8"
+    'range("V2").Value = "BS1"
+    'range("W2").Value = "VF9"
+    'range("X2").Value = "N1"
+    'range("Y2").Value = "BW760B"
+    'range("Z2").Value = "綠動椅"
+    'range("AA2").Value = "BW750" '"綠動椅(BR1)"
+    'range("AB2").Value = "太和"
+    'range("AC2").Value = "6055"
+    'range("AD2").Value = "760B"
+    'range("AE2").Value = "協助小天使"
+    'range("AF2").Value = "備註"
+    
+    Dim NorthDistrictRowStart As Integer
+    Dim CentralDistrictRowStart As Integer
+    Dim SouthDistrictRowStart As Integer
+    Dim NorthDistrictRowEnd As Integer
+    Dim CentralDistrictRowEnd As Integer
+    Dim SouthDistrictRowEnd As Integer
+    
+    setRowBordersThin "A:AF", 2
+    DataRowIndex = 3
+    NorthDistrictRowStart = 3
+    'newdata.setData getUID("網電", i)
+    Do While getUID("北區", i) <> ""
+        'MsgBox getUID("北區", i)
+        str = "select Dept,Name,Target from members where UID = """ & getUID("北區", i) & """"
+        Rs.Open str, Cn, 1, 3
+        If isNameExsit(Rs.Fields("Name")) Then
+            range("A" & DataRowIndex).Value = Rs.Fields("Name")
+            range("B" & DataRowIndex).Value = getDayPerf(Rs.Fields("Name")) 'Day performance 當日業績
+            range("C" & DataRowIndex).Value = "=F" & DataRowIndex & "/" & sys.getWorkDays(year(d), month(d))
+            range("D" & DataRowIndex).Value = "=IF(ISERROR(B" & DataRowIndex & "/C" & DataRowIndex & "),"""",B" & DataRowIndex & "/C" & DataRowIndex & ")"
+            range("E" & DataRowIndex).Value = getCumPerf(Rs.Fields("Name")) 'Cumulative performance 累積業績
+            range("F" & DataRowIndex).Value = Rs.Fields("Target")
+            
+            range("G" & DataRowIndex).Value = getDBCumDiffByUID(getUID("北區", i))
+            range("H" & DataRowIndex).Value = "=IF(ISERROR(E" & DataRowIndex & "/F" & DataRowIndex & "),"""",E" & DataRowIndex & "/F" & DataRowIndex & ")"
+            range("I" & DataRowIndex).Value = "=E" & DataRowIndex & "-C" & DataRowIndex & "*2"
+            range("J" & DataRowIndex).Value = "=E" & DataRowIndex & "-F" & DataRowIndex
+            If day_str = EndOfMonth Then '月底則儲存業績到資料表(members)上個月累計差異(cum_diff)欄位
+                updateDBCumDiffByUID range("J" & DataRowIndex).Value, getUID("北區", i)
+            End If
+            range("K" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "750B", 2, 5)
+            range("X" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "BW980", 2, 5)
+            range("Z" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "N1", 2, 5)
+            range("AA" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "綠動椅", 2, 5)
+            range("AB" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "BW750", 2, 5)
+            range("AC" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "太和", 2, 5)
+            range("AE" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "6055", 2, 5)
+            range("AF" & DataRowIndex).Value = getAssistant(range("A" & DataRowIndex).Value)
+            setRowBordersThin "A:AG", DataRowIndex
+            DataRowIndex = DataRowIndex + 1
+        End If
+        Rs.MoveNext
+        Rs.Close
+        i = i + 1
+    Loop
+    
+    DataRowNum = Cells(Rows.count, 1).End(xlUp).Row
+    range("A" & DataRowIndex).Value = "連鎖+北區"
+    range("B" & DataRowIndex).Value = "=SUM(B" & NorthDistrictRowStart & ":B" & DataRowNum & ")"
+    range("C" & DataRowIndex).Value = "=SUM(C" & NorthDistrictRowStart & ":C" & DataRowNum & ")"
+    range("D" & DataRowIndex).Value = "=IF(ISERROR(B" & DataRowIndex & "/C" & DataRowIndex & "),"""",B" & DataRowIndex & "/C" & DataRowIndex & ")" '=IF(ISERROR(CheckedData),"",CheckedData) '=IF(ISERROR(B5/C5),"",B5/C5)
+    range("E" & DataRowIndex).Value = "=SUM(E" & NorthDistrictRowStart & ":E" & DataRowNum & ")"
+    range("F" & DataRowIndex).Value = "=SUM(F" & NorthDistrictRowStart & ":F" & DataRowNum & ")"
+    range("G" & DataRowIndex).Value = "=IF(ISERROR(E" & DataRowIndex & "/F" & DataRowIndex & "),"""",E" & DataRowIndex & "/F" & DataRowIndex & ")"
+    range("H" & DataRowIndex).Value = "=E" & DataRowIndex & "-C" & DataRowIndex & "*2"
+    range("I" & DataRowIndex).Value = "=E" & DataRowIndex & "-F" & DataRowIndex
+    range("J" & DataRowIndex).Value = "=SUM(J" & NorthDistrictRowStart & ":J" & DataRowIndex - 1 & ")"
+    range("K" & DataRowIndex).Value = "=SUM(K" & NorthDistrictRowStart & ":K" & DataRowIndex - 1 & ")"
+    range("X" & DataRowIndex).Value = "=SUM(X" & NorthDistrictRowStart & ":X" & DataRowIndex - 1 & ")"
+    range("Z" & DataRowIndex).Value = "=SUM(Z" & NorthDistrictRowStart & ":Z" & DataRowIndex - 1 & ")"
+    range("AA" & DataRowIndex).Value = "=SUM(AA" & NorthDistrictRowStart & ":AA" & DataRowIndex - 1 & ")"
+    range("AB" & DataRowIndex).Value = "=SUM(AB" & NorthDistrictRowStart & ":AB" & DataRowIndex - 1 & ")"
+    range("AC" & DataRowIndex).Value = "=SUM(AC" & NorthDistrictRowStart & ":AC" & DataRowIndex - 1 & ")"
+    range("A" & DataRowIndex & ":AF" & DataRowIndex).Interior.Color = 65535 '黃色
+    setRowBordersThin "A:AF", DataRowIndex
+    NorthDistrictRowEnd = DataRowIndex
+    DataRowIndex = DataRowIndex + 1
+    
+    i = 0
+    CentralDistrictRowStart = DataRowIndex
+    Do While getUID("中區", i) <> ""
+        'MsgBox getUID("中區", i)
+        str = "select Dept,Name,Target from members where UID = """ & getUID("中區", i) & """"
+        Rs.Open str, Cn, 1, 3
+        If isNameExsit(Rs.Fields("Name")) Then
+            range("A" & DataRowIndex).Value = Rs.Fields("Name")
+            range("B" & DataRowIndex).Value = getDayPerf(Rs.Fields("Name")) 'Day performance 當日業績
+            range("C" & DataRowIndex).Value = "=F" & DataRowIndex & "/" & sys.getWorkDays(year(d), month(d))
+            range("D" & DataRowIndex).Value = "=IF(ISERROR(B" & DataRowIndex & "/C" & DataRowIndex & "),"""",B" & DataRowIndex & "/C" & DataRowIndex & ")"
+            range("E" & DataRowIndex).Value = getCumPerf(Rs.Fields("Name")) 'Cumulative performance 累積業績
+            range("F" & DataRowIndex).Value = Rs.Fields("Target")
+            range("G" & DataRowIndex).Value = "=IF(ISERROR(E" & DataRowIndex & "/F" & DataRowIndex & "),"""",E" & DataRowIndex & "/F" & DataRowIndex & ")"
+            range("H" & DataRowIndex).Value = "=E" & DataRowIndex & "-C" & DataRowIndex & "*2"
+            range("I" & DataRowIndex).Value = "=E" & DataRowIndex & "-F" & DataRowIndex
+            If day_str = EndOfMonth Then '月底則儲存業績到資料表(members)上個月累計差異(cum_diff)欄位
+                updateDBCumDiffByUID range("I" & DataRowIndex).Value, getUID("北區", i)
+            End If
+            range("J" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "750B", 2, 5)
+            range("K" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "BW980", 2, 5)
+            range("X" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "N1", 2, 5)
+            range("Z" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "綠動椅", 2, 5)
+            range("AA" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "BW750", 2, 5)
+            range("AB" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "太和", 2, 5)
+            range("AC" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "6055", 2, 5)
+            range("AE" & DataRowIndex).Value = getAssistant(range("A" & DataRowIndex).Value)
+            setRowBordersThin "A:AF", DataRowIndex
+            DataRowIndex = DataRowIndex + 1
+        End If
+        Rs.MoveNext
+        Rs.Close
+        i = i + 1
+    Loop
+    
+    DataRowNum = Cells(Rows.count, 1).End(xlUp).Row
+    range("A" & DataRowIndex).Value = "中區"
+    range("B" & DataRowIndex).Value = "=SUM(B" & CentralDistrictRowStart & ":B" & DataRowNum & ")"
+    range("C" & DataRowIndex).Value = "=SUM(C" & CentralDistrictRowStart & ":C" & DataRowNum & ")"
+    range("D" & DataRowIndex).Value = "=IF(ISERROR(B" & DataRowIndex & "/C" & DataRowIndex & "),"""",B" & DataRowIndex & "/C" & DataRowIndex & ")" '=IF(ISERROR(CheckedData),"",CheckedData) '=IF(ISERROR(B5/C5),"",B5/C5)
+    range("E" & DataRowIndex).Value = "=SUM(E" & CentralDistrictRowStart & ":E" & DataRowNum & ")"
+    range("F" & DataRowIndex).Value = "=SUM(F" & CentralDistrictRowStart & ":F" & DataRowNum & ")"
+    range("G" & DataRowIndex).Value = "=IF(ISERROR(E" & DataRowIndex & "/F" & DataRowIndex & "),"""",E" & DataRowIndex & "/F" & DataRowIndex & ")"
+    range("H" & DataRowIndex).Value = "=E" & DataRowIndex & "-C" & DataRowIndex & "*2"
+    range("I" & DataRowIndex).Value = "=E" & DataRowIndex & "-F" & DataRowIndex
+    range("J" & DataRowIndex).Value = "=SUM(J" & CentralDistrictRowStart & ":J" & DataRowIndex - 1 & ")"
+    range("K" & DataRowIndex).Value = "=SUM(K" & CentralDistrictRowStart & ":K" & DataRowIndex - 1 & ")"
+    range("X" & DataRowIndex).Value = "=SUM(X" & CentralDistrictRowStart & ":X" & DataRowIndex - 1 & ")"
+    range("Z" & DataRowIndex).Value = "=SUM(Z" & CentralDistrictRowStart & ":Z" & DataRowIndex - 1 & ")"
+    range("AA" & DataRowIndex).Value = "=SUM(AA" & CentralDistrictRowStart & ":AA" & DataRowIndex - 1 & ")"
+    range("AB" & DataRowIndex).Value = "=SUM(AB" & CentralDistrictRowStart & ":AB" & DataRowIndex - 1 & ")"
+    range("AC" & DataRowIndex).Value = "=SUM(AC" & CentralDistrictRowStart & ":AC" & DataRowIndex - 1 & ")"
+    range("A" & DataRowIndex & ":AF" & DataRowIndex).Interior.Color = 65535 '黃色
+    setRowBordersThin "A:AF", DataRowIndex
+    CentralDistrictRowEnd = DataRowIndex
+    DataRowIndex = DataRowIndex + 1
+    
+    DataRowNum = Cells(Rows.count, 1).End(xlUp).Row
+    i = 0
+    SouthDistrictRowStart = DataRowIndex
+    Do While getUID("南區", i) <> ""
+        'MsgBox getUID("南區", i)
+        str = "select Dept,Name,Target from members where UID = """ & getUID("南區", i) & """"
+        Rs.Open str, Cn, 1, 3
+        If isNameExsit(Rs.Fields("Name")) Then
+            range("A" & DataRowIndex).Value = Rs.Fields("Name")
+            range("B" & DataRowIndex).Value = getDayPerf(Rs.Fields("Name")) 'Day performance 當日業績
+            range("C" & DataRowIndex).Value = "=F" & DataRowIndex & "/" & sys.getWorkDays(year(d), month(d))
+            range("D" & DataRowIndex).Value = "=IF(ISERROR(B" & DataRowIndex & "/C" & DataRowIndex & "),"""",B" & DataRowIndex & "/C" & DataRowIndex & ")"
+            range("E" & DataRowIndex).Value = getCumPerf(Rs.Fields("Name")) 'Cumulative performance 累積業績
+            range("F" & DataRowIndex).Value = Rs.Fields("Target")
+            range("G" & DataRowIndex).Value = "=IF(ISERROR(E" & DataRowIndex & "/F" & DataRowIndex & "),"""",E" & DataRowIndex & "/F" & DataRowIndex & ")"
+            range("H" & DataRowIndex).Value = "=E" & DataRowIndex & "-C" & DataRowIndex & "*2"
+            range("I" & DataRowIndex).Value = "=E" & DataRowIndex & "-F" & DataRowIndex
+            If day_str = EndOfMonth Then '月底則儲存業績到資料表(members)上個月累計差異(cum_diff)欄位
+                updateDBCumDiffByUID range("I" & DataRowIndex).Value, getUID("北區", i)
+            End If
+            range("J" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "750B", 2, 5)
+            range("K" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "BW980", 2, 5)
+            range("X" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "N1", 2, 5)
+            range("Z" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "綠動椅", 2, 5)
+            range("AA" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "BW750", 2, 5)
+            range("AB" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "太和", 2, 5)
+            range("AC" & DataRowIndex).Value = getSalesQuantity(range("A" & DataRowIndex).Value, "6055", 2, 5)
+            range("AE" & DataRowIndex).Value = getAssistant(range("A" & DataRowIndex).Value)
+            setRowBordersThin "A:AF", DataRowIndex
+            DataRowIndex = DataRowIndex + 1
+        End If
+        Rs.MoveNext
+        Rs.Close
+        i = i + 1
+    Loop
+    
+    DataRowNum = Cells(Rows.count, 1).End(xlUp).Row
+    range("A" & DataRowIndex).Value = "南區"
+    range("B" & DataRowIndex).Value = "=SUM(B" & SouthDistrictRowStart & ":B" & DataRowNum & ")"
+    range("C" & DataRowIndex).Value = "=SUM(C" & SouthDistrictRowStart & ":C" & DataRowNum & ")"
+    range("D" & DataRowIndex).Value = "=IF(ISERROR(B" & DataRowIndex & "/C" & DataRowIndex & "),"""",B" & DataRowIndex & "/C" & DataRowIndex & ")" '=IF(ISERROR(CheckedData),"",CheckedData) '=IF(ISERROR(B5/C5),"",B5/C5)
+    range("E" & DataRowIndex).Value = "=SUM(E" & SouthDistrictRowStart & ":E" & DataRowNum & ")"
+    range("F" & DataRowIndex).Value = "=SUM(F" & SouthDistrictRowStart & ":F" & DataRowNum & ")"
+    range("G" & DataRowIndex).Value = "=IF(ISERROR(E" & DataRowIndex & "/F" & DataRowIndex & "),"""",E" & DataRowIndex & "/F" & DataRowIndex & ")"
+    range("H" & DataRowIndex).Value = "=E" & DataRowIndex & "-C" & DataRowIndex & "*2"
+    range("I" & DataRowIndex).Value = "=E" & DataRowIndex & "-F" & DataRowIndex
+    range("J" & DataRowIndex).Value = "=SUM(J" & SouthDistrictRowStart & ":J" & DataRowIndex - 1 & ")"
+    range("K" & DataRowIndex).Value = "=SUM(K" & SouthDistrictRowStart & ":K" & DataRowIndex - 1 & ")"
+    range("X" & DataRowIndex).Value = "=SUM(X" & SouthDistrictRowStart & ":X" & DataRowIndex - 1 & ")"
+    range("Z" & DataRowIndex).Value = "=SUM(Z" & SouthDistrictRowStart & ":Z" & DataRowIndex - 1 & ")"
+    range("AA" & DataRowIndex).Value = "=SUM(AA" & SouthDistrictRowStart & ":AA" & DataRowIndex - 1 & ")"
+    range("AB" & DataRowIndex).Value = "=SUM(AB" & SouthDistrictRowStart & ":AB" & DataRowIndex - 1 & ")"
+    range("AC" & DataRowIndex).Value = "=SUM(AC" & SouthDistrictRowStart & ":AC" & DataRowIndex - 1 & ")"
+    setRowBordersThin "A:AF", DataRowIndex
+    range("A" & DataRowIndex & ":AF" & DataRowIndex).Interior.Color = 65535 '黃色
+    SouthDistrictRowEnd = DataRowIndex
+    DataRowIndex = DataRowIndex + 1
+    
+    range("A" & DataRowIndex).Value = "實體通路"
+    range("A" & DataRowIndex & ":AF" & DataRowIndex).Interior.Color = 5296274 '綠色
+    range("B" & DataRowIndex).Value = "=SUM(B" & NorthDistrictRowEnd & ",B" & CentralDistrictRowEnd & ",B" & SouthDistrictRowEnd & ")"
+    range("C" & DataRowIndex).Value = "=SUM(C" & NorthDistrictRowEnd & ",C" & CentralDistrictRowEnd & ",C" & SouthDistrictRowEnd & ")"
+    range("D" & DataRowIndex).Value = "=B" & DataRowIndex & "/C" & DataRowIndex
+    range("E" & DataRowIndex).Value = "=SUM(E" & NorthDistrictRowEnd & ",E" & CentralDistrictRowEnd & ",E" & SouthDistrictRowEnd & ")"
+    range("F" & DataRowIndex).Value = "=SUM(F" & NorthDistrictRowEnd & ",F" & CentralDistrictRowEnd & ",F" & SouthDistrictRowEnd & ")"
+    range("D" & DataRowIndex).Value = "=B" & DataRowIndex & "/C" & DataRowIndex
+    range("G" & DataRowIndex).Value = "=IF(ISERROR(E" & DataRowIndex & "/F" & DataRowIndex & "),"""",E" & DataRowIndex & "/F" & DataRowIndex & ")"
+    range("H" & DataRowIndex).Value = "=E" & DataRowIndex & "-C" & DataRowIndex & "*2"
+    range("I" & DataRowIndex).Value = "=E" & DataRowIndex & "-F" & DataRowIndex
+    range("J" & DataRowIndex).Value = "=SUM(J" & NorthDistrictRowEnd & ",J" & CentralDistrictRowEnd & ",J" & SouthDistrictRowEnd & ")"
+    range("K" & DataRowIndex).Value = "=SUM(K" & NorthDistrictRowEnd & ",K" & CentralDistrictRowEnd & ",K" & SouthDistrictRowEnd & ")"
+    range("X" & DataRowIndex).Value = "=SUM(X" & NorthDistrictRowEnd & ",X" & CentralDistrictRowEnd & ",X" & SouthDistrictRowEnd & ")"
+    range("Z" & DataRowIndex).Value = "=SUM(Z" & NorthDistrictRowEnd & ",Z" & CentralDistrictRowEnd & ",Z" & SouthDistrictRowEnd & ")"
+    range("AA" & DataRowIndex).Value = "=SUM(AA" & NorthDistrictRowEnd & ",AA" & CentralDistrictRowEnd & ",AA" & SouthDistrictRowEnd & ")"
+    range("AB" & DataRowIndex).Value = "=SUM(AB" & NorthDistrictRowEnd & ",AB" & CentralDistrictRowEnd & ",AB" & SouthDistrictRowEnd & ")"
+    range("AC" & DataRowIndex).Value = "=SUM(AC" & NorthDistrictRowEnd & ",AC" & CentralDistrictRowEnd & ",AC" & SouthDistrictRowEnd & ")"
+    setRowBordersThin "A:AF", DataRowIndex
+
+    '數值格式
+    range("A3:C" & DataRowIndex).NumberFormatLocal = "#,##0_ ;[紅色]-#,##0 "
+    range("E3:G" & DataRowIndex).NumberFormatLocal = "#,##0_ ;[紅色]-#,##0 "
+    range("D3:D" & DataRowIndex).NumberFormatLocal = "0.00%"
+    range("G3:G" & DataRowIndex).NumberFormatLocal = "0.00%"
+    range("H3:H" & DataRowIndex).NumberFormatLocal = "#,##0_ ;[紅色]-#,##0 "
+    range("I3:I" & DataRowIndex).NumberFormatLocal = "#,##0_ ;[紅色]-#,##0 "
+    range("J:AC").NumberFormatLocal = "#,##" '不顯示0
+    range("AC2").NumberFormatLocal = "G/通用格式"
+    range("I2").Font.Color = -16776961 '紅色
+    
+    '調整檢視畫面大小
+    ActiveWindow.Zoom = 50
+    
+    '調整長寬
+    range("B2:AF2").Select
+    With Selection
+        .HorizontalAlignment = xlCenter
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    range("B1").Select
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+    range("F1").Select
+    With Selection
+        .HorizontalAlignment = xlLeft
+        .VerticalAlignment = xlCenter
+        .WrapText = False
+        .Orientation = 0
+        .AddIndent = False
+        .IndentLevel = 0
+        .ShrinkToFit = False
+        .ReadingOrder = xlContext
+        .MergeCells = False
+    End With
+
+    '需刪除人員
+    Dim C As Object
+    Dim MatchRowArr() As String
+    With range("A:A")
+        Set C = .Find("鄭吉珽", LookIn:=xlValues)
+        If Not C Is Nothing Then '單頭資料符合條件
+            MatchRowArr = Split(C.Address, "$")
+            Rows(MatchRowArr(2) & ":" & MatchRowArr(2)).Delete Shift:=xlUp
+        End If
+    End With
+
+    '插入欄位
+    'Columns("I:I").Select
+    'Selection.Insert Shift:=xlToRight, CopyOrigin:=xlFormatFromLeftOrAbove
+    'range("I2").Value = month_str & "月累計差異"
+
+    '隱藏欄位
+    Columns("H:I").Select
+    Selection.EntireColumn.Hidden = True
+    Columns("L:W").Select
+    Selection.EntireColumn.Hidden = True
+    Columns("Y:Y").Select
+    Selection.EntireColumn.Hidden = True
+    Columns("AD:AD").Select
+    Selection.EntireColumn.Hidden = True
+    Columns("A:X").Select
+    Columns("A:A").Select
+    
+    '凍結欄位
+    With ActiveWindow
+        .SplitColumn = 1
+        .SplitRow = 0
+    End With
+    ActiveWindow.FreezePanes = True
+    
+    '調整檢視畫面大小
+    'Columns("A:P").Select
+    ActiveWindow.Zoom = 50
+    
+    '自定義排序 (符合報表的人名順序)
+    Application.AddCustomList ListArray:=Array("柯世鵬", "李永齊", "陳安睫") ', "陳巧芬", "駱麗玲", "林成洲", "黃三和", "鄭吉珽", "張嘉芬")
+    range("A3:AE" & "5").Sort key1:=range("A:A"), order1:=xlAscending, OrderCustom:=Application.CustomListCount + 1
+    Application.DeleteCustomList Application.CustomListCount
+    
+    Application.AddCustomList ListArray:=Array("陳巧芬", "駱麗玲", "林成洲") ', "陳巧芬", "駱麗玲", "林成洲", "黃三和", "鄭吉珽", "張嘉芬")
+    range("A7:AE" & "9").Sort key1:=range("A:A"), order1:=xlAscending, OrderCustom:=Application.CustomListCount + 1
+    Application.DeleteCustomList Application.CustomListCount
+    
+    Application.AddCustomList ListArray:=Array("黃三和", "鄭吉珽", "張嘉芬", "楊孟偉") ', "陳巧芬", "駱麗玲", "林成洲", "黃三和", "鄭吉珽", "張嘉芬")
+    range("A11:AE" & "13").Sort key1:=range("A:A"), order1:=xlAscending, OrderCustom:=Application.CustomListCount + 1
+    Application.DeleteCustomList Application.CustomListCount
+    Application.DisplayAlerts = False
+    ActiveWorkbook.SaveAs FileName:="\\ADFS\Public\開發部\◆業績資料\★開發部績效小幫手專用★\" & DateStr & "實體通路目標達成比" & ".xlsm", _
+    FileFormat:=xlOpenXMLWorkbookMacroEnabled, CreateBackup:=False
+    Application.DisplayAlerts = True
+    Dim myret As Long
+    
+    '網通目標達成比截圖
+    'WorkBooks(file).Sheets("Sheet1").Activate
+    WorkBooks(WorkBooks(2).Name).Sheets("Sheet1").Activate
+    'Sheets("Sheet1").Select
+    Application.WindowState = xlMaximized '放大視窗
+    ActiveWindow.Zoom = 70 '50
+    Rows(DataRowIndex + 2).Select
+    ActiveWindow.ScrollRow = 1
+    'myret = Shell("C:\Users\udev77\Desktop\上傳網通目標達成比.exe")
+    
+    
+'    MsgBox sys.getFileName(Filename1)
+'    MsgBox sys.getWBIndexByName(sys.getFileName(Filename1))
+'    MsgBox sys.getWBIndexByName(sys.getFileName(Filename3))
+'    Windows(sys.getWBIndexByName(sys.getFileName(Filename3))).Close
+'    MsgBox sys.getWBIndexByName(sys.getFileName(Filename2))
+'    Windows(sys.getWBIndexByName(sys.getFileName(Filename2))).Close
+'    MsgBox sys.getWBIndexByName(sys.getFileName(Filename1))
+'    Windows(sys.getWBIndexByName(sys.getFileName(Filename1))).Close
+'
+'    delFile (Filename1)
+'    delFile (Filename2)
+'    delFile (Filename3)
+
+    '關閉
+    Excel.Application.Quit
+    
+End Sub
+'Sub delFile(file As String)
+'    Kill (file)
+'End Sub
+Function isNameExsit(SaleName As String) As Boolean
+    If getBookDataStr(3, "A", SaleName, "A") <> "" Then
+        isNameExsit = True
+    Else
+        isNameExsit = False
+    End If
+End Function
+
+Sub Ex()
+    MsgBox isNameExsit("柯世鵬")
+    MsgBox isNameExsit("鄭吉珽")
+End Sub
+
+Sub setRowBordersThin(DataColRange As String, DataRowIndex As Long)
+
+    Dim DataColRangeStart As String
+    Dim DataColRangeEnd As String
+    Dim ColStart As Integer
+    Dim ColEnd As Integer
+    Dim i As Long
+    i = 0
+    DataColRangeStart = Split(DataColRange, ":")(0)
+    If Len(DataColRange) > 1 Then '如果有範圍
+        On Error GoTo ErrorHandler '啟用錯誤處理機制
+        DataColRangeEnd = Split(DataColRange, ":")(1)
+        ColEnd = getCellsColumnByLetter(DataColRangeEnd) '取範圍結尾
+    End If
+    ColStart = getCellsColumnByLetter(DataColRangeStart) '取範圍開頭
+    For i = ColStart To ColEnd
+        setBorders getCellsLetterByColumn(i) & DataRowIndex, "l", "t", "b", "r"
+        setBordersWeight getCellsLetterByColumn(i) & DataRowIndex, "t", "t", "t", "t"
+    Next i
+    Exit Sub
+ErrorHandler: '錯誤處理用的程式碼
+    Debug.Print "DataColRange請輸入分號或完整範圍"
+    Resume Next       ' 繼續往下執行
+
+End Sub
+
+Function getCellsLetterByColumn(ColumnNumber As Long) As String 'NumberToLetter
+
+    Dim ColumnLetter As String
+    ColumnLetter = Split(Cells(1, ColumnNumber).Address, "$")(1)
+    getCellsLetterByColumn = ColumnLetter
+  
+End Function
+
+Function getCellsColumnByLetter(ColumnLetter As String) As Long 'Letter2Number
+
+    Dim ColumnNumber As Long
+    ColumnNumber = range(ColumnLetter & 1).Column
+    getCellsColumnByLetter = ColumnNumber
+    
+End Function
+
+Sub gg()
+    
+    
+    Dim ColumnLetter As String
+    ColumnLetter = Split("A:C", ":")(1)
+    MsgBox ColumnLetter
+    'MsgBox setBordersRow(5)
+    
+    'MsgBox isExpePerfExsit(11)
+    'MsgBox isExpePerfExsit(13)
+    'MsgBox 123
+End Sub
+
+Function isExpePerfExsit(UID As Integer) As Integer
+    Dim FilePath As String
+    Dim result As String
+    Dim count As Integer
+    Dim data(2) As String
+    count = 0
+    Dim Field As Integer
+    Dim LineFromFile As String
+    Dim fieldArray() As String
+    Dim DataArr() As String
+    Dim j As Integer
+    Dim index As Integer
+    Dim data_field As String
+    Field = 1
+
+    FilePath = "C:\Users\udev77\Documents\" & "ExpePerfRef.txt"  '文字檔案位置
+    Open FilePath For Input As #1 '開啟 FilePath 文字檔，使用編號 #1 檔案代碼
+    Do Until EOF(1) '執行迴圈，直到編號 #1 檔案遇到結尾為止
+        Line Input #1, LineFromFile '從編號 #1 檔案讀取一行資料
+
+        result = CStr(LineFromFile) '輸出一行資料
+        fieldArray = Split(result, "-")
+        
+        If Val(fieldArray(0)) = UID Then
+            isExpePerfExsit = Val(fieldArray(1))
+            Close #1 '關閉編號 #1 檔案
+            Exit Function
+        Else
+            isExpePerfExsit = 0
+        End If
+
+    Loop
+    
+    Close #1 '關閉編號 #1 檔案
+End Function
+
+Function getExpePerf(index As Integer, data_field As String) As String
+    Dim FilePath As String
+    Dim result As String
+    Dim count As Integer
+    Dim data(2) As String
+    
+    count = 0
+    Dim Field As String
+    Field = 1
+    Dim LineFromFile As String
+    Dim fieldArray() As String
+    Dim j As Integer
+
+    FilePath = "S:\網通部\網通部資料暫存區\★網通部績效小幫手專用★\" & "網通部每月預入績效.txt"  '文字檔案位置
+    Open FilePath For Input As #1 '開啟 FilePath 文字檔，使用編號 #1 檔案代碼
+    Do Until EOF(1) '執行迴圈，直到編號 #1 檔案遇到結尾為止
+        Line Input #1, LineFromFile '從編號 #1 檔案讀取一行資料
+
+        result = CStr(LineFromFile) '輸出一行資料
+        fieldArray = Split(result, "-")
+        count = count + 1
+        For j = 0 To BasicLibrary.ArrayLen(fieldArray) - 1
+            If count = index Then
+                If Field = 2 And data_field = "date" Then
+                    getExpePerf = fieldArray(j)
+                ElseIf Field = 3 And data_field = "amount" Then
+                    getExpePerf = fieldArray(j)
+                End If
+                Field = Field + 1
+            End If
+        
+        Next j
+
+    Loop
+
+    Close #1 '關閉編號 #1 檔案
+End Function
+
+'Day performance 當日業績
+Function getDayPerf(SaleName As String) As Long
+    getDayPerf = getBookData(4, "A", SaleName, "D")
+End Function
+
+'Cumulative performance 累積業績
+Function getCumPerf(SaleName As String) As Long
+    getCumPerf = getBookData(3, "A", SaleName, "D")
+End Function
+
+Function getBookData(WBIndex As Integer, KeyCol As String, KeyStr As String, DataCol As String) As Long
+    'WBIndex 要取得的excel檔案開啟順序索引
+    'KeyCol 索引行
+    'KeyStr 索引字串
+    'DataCol 要取得的資料行
+    Dim C As Object
+    Dim MatchAddress As String
+    Dim MatchRowArr() As String
+    Dim CheckedData As String
+    With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(KeyCol & ":" & KeyCol)
+        Set C = .Find(KeyStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyStr
+        If Not C Is Nothing Then '若不為空，輸入資料
+            MatchAddress = C.Address
+            MatchRowArr = Split(MatchAddress, "$") '取列數
+            CheckedData = WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value
+            If IsError(CheckedData) Then '檢查資料
+                getBookData = 0 '資料錯誤或無資料
+            Else
+                getBookData = CheckedData '資料正確且有資料
+            End If
+        End If
+    End With
+End Function
+
+Function getBookDataStr(WBIndex As Integer, KeyCol As String, KeyStr As String, DataCol As String) As String
+    'WBIndex 要取得的excel檔案開啟順序索引
+    'KeyCol 索引行
+    'KeyStr 索引字串
+    'DataCol 要取得的資料行
+    Dim C As Object
+    Dim MatchAddress As String
+    Dim MatchRowArr() As String
+    Dim CheckedData As String
+    With WorkBooks(Application.WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(KeyCol & ":" & KeyCol)
+        Set C = .Find(KeyStr, LookIn:=xlValues, SearchFormat:=False)    '比對KeyStr
+        If Not C Is Nothing Then '若不為空，輸入資料
+            MatchAddress = C.Address
+            MatchRowArr = Split(MatchAddress, "$") '取列數
+            CheckedData = WorkBooks(WorkBooks(WBIndex).Name).Sheets(Application.WorkBooks(WBIndex).Worksheets(1).Name).range(DataCol & MatchRowArr(2)).Value
+            If IsError(CheckedData) Then '檢查資料
+                getBookDataStr = "" '資料錯誤或無資料
+                Exit Function
+            Else
+                getBookDataStr = CheckedData '資料正確且有資料
+                Exit Function
+            End If
+        End If
+    End With
+    getBookDataStr = ""
+End Function
+
+Function getUID(Dept As String, Order As Integer)
+    '資料庫連線
+    Dim Cn As New ADODB.Connection
+    Dim Rs As New ADODB.Recordset
+    Dim SQLIP As String
+    Dim SQLNAME As String
+    Dim SQLID As String
+    Dim SQLPWD As String
+    
+    SQLIP = "172.21.7.39"
+    SQLNAME = "membersDB"
+    SQLID = "root"
+    SQLPWD = "16264386"
+    Cn.Open "DRIVER=MySQL ODBC 5.1 Driver;SERVER=" & Trim(SQLIP) & _
+    ";DATABASE=" & Trim(SQLNAME) & _
+    ";UID=" & Trim(SQLID) & _
+    ";password=" & Trim(SQLPWD)
+    
+    Dim newQueue As New Queue
+
+
+    Dim str As String
+    Dim StrArr()
+    Dim N As Integer
+    N = 1
+    
+    
+    str = "select UID from members where Dept = """ & Dept & """"
+    Rs.Open str, Cn, 1, 3
+    Dim i As Integer
+    i = 0
+    Do Until Rs.EOF
+        'newQueue.pushData Rs.Fields("UID")
+        ReDim Preserve StrArr(N)
+        N = N + 1
+        StrArr(i) = Rs.Fields("UID")
+        i = i + 1
+        Rs.MoveNext
+    Loop
+    Rs.Close
+    getUID = StrArr(Order)
+
+
+End Function
+
+
+Sub ReadDataFromCloseFile()
+    'On Error GoTo ErrHandler
+    Application.ScreenUpdating = False
+    
+    Dim src As Workbook
+    
+    ' OPEN THE SOURCE EXCEL WORKBOOK IN "READ ONLY MODE".
+    Set src = WorkBooks.Open("C:\My Documents\COPR3820200902000180202011110001.xlsx", True, True)
+    
+    ' GET THE TOTAL ROWS FROM THE SOURCE WORKBOOK.
+    Dim iTotalRows As Integer
+    iTotalRows = src.Worksheets("sheet1").range("B1:B" & Cells(Rows.count, "B").End(xlUp).Row).Rows.count
+   
+    ' COPY DATA FROM SOURCE (CLOSE WORKGROUP) TO THE DESTINATION WORKBOOK.
+    Dim iCnt As Integer         ' COUNTER.
+    For iCnt = 1 To iTotalRows
+        Worksheets("Sheet1").range("B" & iCnt).Formula = src.Worksheets("Sheet1").range("B" & iCnt).Formula
+    Next iCnt
+    
+    ' CLOSE THE SOURCE FILE.
+    src.Close False             ' FALSE - DON'T SAVE THE SOURCE FILE.
+    Set src = Nothing
+    
+ErrHandler:
+    Application.EnableEvents = True
+    Application.ScreenUpdating = True
+End Sub
+
+Sub test2()
+    'Workbook_Open
+    Windows(WorkBooks(2).Name).Activate
+    Cells.ClearContents
+    Cells.ClearFormats
+    'C:\My Documents\COPR3820200902000180202011110001.xlsx
+    'C:\My Documents\COPR3820200902000181202011110001.xlsx
+    
+    '取得年月日字串
+    Dim d As Date
+    Dim DateStr As String
+    'Dim month_str, day_str As String
+    d = Date
+    
+    
+    Dim EndOfMonth As Byte
+    EndOfMonth = Day(DateSerial(year(Date), month(Date), 0)) '表示上個月的月底
+    'MsgBox EndOfMonth
+    'MsgBox Month(DateSerial(Year(Date), Month(Date), 0))
+    'MsgBox Year(DateSerial(Year(Date), Month(Date), 0))
+    
+    
+
+    'Dim yes_day_str, t_day_str, Filename1, Filename2 As String
+    
+    'If CStr(Day(d)) = 1 And CStr(Month(d)) <> 1 Then '月初
+    
+    '    If Len(Month(d) - 1) = 1 Then
+    '        last_month_str = "0" & CStr(Month(d) - 1)
+    '    Else
+    '        last_month_str = CStr(Month(d) - 1)
+    '    End If
+    '
+    '    If Len(Month(d)) = 1 Then
+    '        month_str = "0" & CStr(Month(d))
+    '    Else
+    '        month_str = CStr(Month(d))
+    '    End If
+    '
+    '    yes_day_str = EndOfMonth
+    '    t_day_str = "0" & CStr(Day(d))
+    '
+    '    If CStr(Month(d)) = 1 Then '年初
+    '        last_year_str = Year(DateSerial(Year(Date), Month(Date), 0))
+    '        DateStr = last_year_str & last_month_str & yes_day_str
+    '    Else '非年初
+    '        DateStr = Year(d) & last_month_str & yes_day_str
+    '    End If
+
+    'Else '非月初
+    '
+    '    If Len(Month(d)) = 1 Then
+    '        month_str = "0" & CStr(Month(d))
+    '    Else
+    '        month_str = CStr(Month(d))
+    '    End If
+    '
+    '    If Len(Day(d)) = 1 Then
+    '        yes_day_str = "0" & CStr(Day(d) - 1)
+    '        t_day_str = "0" & CStr(Day(d))
+    '    Else
+    '        yes_day_str = CStr(Day(d) - 1)
+    '        t_day_str = CStr(Day(d))
+    '    End If
+    '
+    '    DateStr = Year(d) & month_str & yes_day_str
+    '
+    'End If
+    
+    
+
+    'dateStr = Year(d) & month_str & yes_day_str
+    'MsgBox dateStr
+    'MsgBox dateStr
+    '固定讀取檔案
+    Filename1 = "C:\My Documents\COPR3820200902000180" & year(d) & month_str & yes_day_str & "0001.xlsx"
+    '變動
+    Filename2 = "C:\My Documents\COPR3820200902000181" & year(d) & month_str & yes_day_str & "0001.xlsx"
+
+    Dim sn As Object
+    Set sn = Excel.Application
+    sn.WorkBooks.Open Filename1
+    sn.WorkBooks.Open Filename2
+    Set sn = Nothing
+End Sub
+
+
+
+Sub FindYesterdaysDateRow()
+
+Dim Yesterday As Date
+Dim ToDay As Date
+Dim Tomorrow As Date
+Dim DataArr() As String
+
+MsgBox Date
+MsgBox Day(Date)
+MsgBox month(Date)
+MsgBox year(Date)
+
+Yesterday = DateAdd("d", -1, Date)
+
+MsgBox Yesterday
+
+DataArr = Split(Yesterday, "/")
+
+MsgBox DataArr(0)
+MsgBox DataArr(1)
+MsgBox DataArr(2)
+
+ToDay = DateAdd("d", 0, Date)
+
+MsgBox ToDay
+
+Tomorrow = DateAdd("d", 1, Date)
+
+MsgBox Tomorrow
+
+End Sub
+
+
+Function getTodayStr()
+    Dim d As String
+    d = Date '取得今天日期串(有斜線)
+    If Len(month(d)) = 1 Then
+        month_str = "0" & CStr(month(d))
+    Else
+        month_str = CStr(month(d))
+    End If
+    If Len(Day(d)) = 1 Then
+        day_str = "0" & CStr(Day(d))
+    Else
+        day_str = CStr(Day(d))
+    End If
+    getTodayStr = year(d) & month_str & day_str '取得今天日期串(無斜線)
+End Function
+
+Function getYesdayStr()
+    Dim Yesday As Date
+    Dim DataArr() As String
+    Yesday = DateAdd("d", -1, Date) '取得昨天日期串(有斜線)
+    DataArr = Split(Yesday, "/")
+    If Len(DataArr(1)) = 1 Then
+        month_str = "0" & DataArr(1)
+    Else
+        month_str = DataArr(1)
+    End If
+    If Len(DataArr(2)) = 1 Then
+        day_str = "0" & DataArr(2)
+    Else
+        day_str = DataArr(2)
+    End If
+    getYesdayStr = DataArr(0) & month_str & day_str '取得昨天日期串(無斜線)
+End Function
+
+Sub d()
+    
+    MsgBox getTodayStr
+    MsgBox getYesdayStr
+    'FindYesterdaysDateRow
+    'output = getUID("流通", 1)
+    'MsgBox output
+    
+End Sub
+
+Sub setBordersWeight(range_str As String, EdgeLeftWeight As String, EdgeTopWeight As String, EdgeBottomWeight As String, EdgeRightWeight As String)
+    Dim item_arr As Variant
+    Dim EdgeSize_arr As Variant
+    Dim EdgeSize As Variant
+    Dim Item As Variant
+    item_arr = Array(xlEdgeLeft, xlEdgeTop, xlEdgeBottom, xlEdgeRight)
+    Dim i As Integer
+    i = 0
+    
+    For Each Item In item_arr
+        EdgeSize_arr = Array(EdgeLeftWeight, EdgeTopWeight, EdgeBottomWeight, EdgeRightWeight)
+        EdgeSize = EdgeSize_arr(i)
+        If StrComp(EdgeSize, "t", vbTextCompare) = 0 Then
+            range(range_str).Borders(Item).Weight = xlThin
+        ElseIf StrComp(EdgeSize, "m", vbTextCompare) = 0 Then
+            range(range_str).Borders(Item).Weight = xlMedium
+        ElseIf StrComp(EdgeSize, "th", vbTextCompare) = 0 Then
+            range(range_str).Borders(Item).Weight = xlThick
+        End If
+        i = i + 1
+    Next
+    
+End Sub
+
+Sub setBorders(range_str As String, _
+ EdgeLeft As String, _
+ EdgeTop As String, _
+ EdgeBottom As String, _
+ EdgeRight As String _
+)
+    If EdgeLeft = "l" Then
+        With range(range_str).Borders(xlEdgeLeft)
+            .LineStyle = xlContinuous
+            .ColorIndex = xlAutomatic
+            .TintAndShade = 0
+            .Weight = xlThin
+        End With
+    End If
+    If EdgeTop = "t" Then
+        With range(range_str).Borders(xlEdgeTop)
+            .LineStyle = xlContinuous
+            .ColorIndex = xlAutomatic
+            .TintAndShade = 0
+            .Weight = xlThin
+        End With
+    End If
+    If EdgeBottom = "b" Then
+        With range(range_str).Borders(xlEdgeBottom)
+            .LineStyle = xlContinuous
+            .ColorIndex = xlAutomatic
+            .TintAndShade = 0
+            .Weight = xlThin
+        End With
+    End If
+    If EdgeRight = "r" Then
+        With range(range_str).Borders(xlEdgeRight)
+            .LineStyle = xlContinuous
+            .ColorIndex = xlAutomatic
+            .TintAndShade = 0
+            .Weight = xlThin
+        End With
+    End If
+End Sub
+
+Function ArrayLen(arr As Variant) As Integer
+    ArrayLen = UBound(arr) - LBound(arr) + 1
+End Function
+
+
+Function getSalesQuantity(SalesmanName As String, ProductName As String, TargetWorkbooksNO As Integer, SourceWorkbooksNO As Integer) As Integer
+    Dim d As String
+    Dim yes_day_str As String
+    Dim t_day_str As String
+    d = Date
+    If Len(month(d)) = 1 Then
+        month_str = "0" & CStr(month(d))
+    Else
+        month_str = CStr(month(d))
+    End If
+    If Len(Day(d) - 1) = 1 Then
+        yes_day_str = "0" & CStr(Day(d) - 1)
+        t_day_str = "0" & CStr(Day(d))
+    Else
+        yes_day_str = CStr(Day(d) - 1)
+        t_day_str = CStr(Day(d))
+    End If
+    'DateStr = Year(d) & month_str & day_str
+    
+    
+    Dim sum As Integer
+    Dim temp As Integer
+    sum = 0
+    Dim FileName As String
+    'filename = "S:\網通部\◎資訊\目標達成比\實體通路\202007月實體通路機具.xlsx"
+    'filename = "S:\網通部\◎資訊\目標達成比\實體通路\COPR2320200925000041202009230001.XLSX"
+    'COPR2320200925000073 202010110001
+    'filename = "S:\網通部\◎資訊\目標達成比\實體通路\COPR23" & "20200925" & "000073" & Year(d) & month_str & yes_day_str & "0001.XLSX"
+    'FileName = "C:\My Documents\COPR23" & "20201021" & "000058" & Year(d) & month_str & yes_day_str & "0001.XLSX"
+Dim Now As String
+Now = "16:01"
+    'Filename1 = "C:\My Documents\" & Dir("C:\My Documents\COPR3820200902000180" & getYesdayStr() & "*.xlsx") '& "0003.xlsx"
+    If (Format(Now, "HH:mm") >= "16:00") And (Format(Now, "HH:mm") <= "16:59") Then
+        FileName = "C:\My Documents\" & Dir("C:\My Documents\COPR2320211207000328" & getYesdayStr() & "*.xlsx")
+        'COPR2320211207000328202112210001.XLSX
+    Else
+        FileName = "C:\My Documents\" & Dir("C:\My Documents\COPR2320210922000205" & getYesdayStr() & "*.xlsx")
+    End If
+    
+    
+    
+    
+    Dim sn As Object
+    Set sn = Excel.Application
+    sn.WorkBooks.Open FileName
+    ' sn.Workbooks(filename).Close ' 關閉
+    '
+    Set sn = Nothing
+
+    Dim WS_Count As Integer
+    Dim i As Integer
+    Dim C As Object
+    Dim FirstAddress As String
+    Dim pre_pointer As String
+    Dim nd() As String
+    Dim index As String
+    WS_Count = ActiveWorkbook.Worksheets.count
+    WorkBooks(Application.WorkBooks(SourceWorkbooksNO).Name).Activate
+    For i = 1 To WS_Count
+        With WorkBooks(Application.WorkBooks(SourceWorkbooksNO).Name).Worksheets(i).range("S:S") 'range("P:P")
+            Sheets(WorkBooks(Application.WorkBooks(SourceWorkbooksNO).Name).Worksheets(i).Name).Activate
+            Set C = .Find(SalesmanName, LookIn:=xlValues)
+            If Not C Is Nothing Then
+               FirstAddress = C.Address '記錄第一個
+               pre_pointer = C.Address
+               'MsgBox (C.Address)
+               'MsgBox "c.Address:" & c.Address
+               Do
+                   nd = Split(C.Address, "$")
+                   Set C = .FindNext(C)
+                   If getProductID(Val(nd(2)), FileName) = 12301096 And ProductName = "750B" Then
+                       sum = sum + range("F" & nd(2) - 1).Value
+                   ElseIf getProductID(Val(nd(2)), FileName) = 12301099 And ProductName = "N1" Then
+                       sum = sum + range("F" & nd(2) - 1).Value
+                   ElseIf (getProductID(Val(nd(2)), FileName) = 12301016 Or getProductID(Val(nd(2)), FileName) = 12301110 Or getProductID(Val(nd(2)), FileName) = 12301076 Or getProductID(Val(nd(2)), FileName) = 12301101 Or getProductID(Val(nd(2)), FileName) = 12301108 Or getProductID(Val(nd(2)), FileName) = 12301109) And ProductName = "綠動椅" Then
+                       sum = sum + range("F" & nd(2) - 1).Value
+                   ElseIf getProductID(Val(nd(2)), FileName) = 12301015 And ProductName = "BW750" Then
+                       sum = sum + range("F" & nd(2) - 1).Value
+                   ElseIf getProductID(Val(nd(2)), FileName) = 12301027 And ProductName = "太和" Then
+                       sum = sum + range("F" & nd(2) - 1).Value
+                   ElseIf getProductID(Val(nd(2)), FileName) = 12301112 And ProductName = "6055" Then
+                       sum = sum + range("F" & nd(2) - 1).Value
+                   ElseIf getProductID(Val(nd(2)), FileName) = 12301111 And ProductName = "BW980" Then
+                       sum = sum + range("F" & nd(2) - 1).Value
+                   End If
+     
+                    If C Is Nothing Then '為空就跳出
+                        GoTo ndDoneFinding
+                    End If
+                    index = C.Address '記錄上一個
+                Loop While C.Address <> FirstAddress
+                
+                
+                getSalesQuantity = sum
+    
+              End If
+ndDoneFinding:
+        End With
+    Next i
+
+    WorkBooks(Application.WorkBooks(TargetWorkbooksNO).Name).Activate
+
+End Function
+
+Function getAssistant(SalesmanName As String) As String
+    Dim FilePath As String
+    Dim result As String
+    Dim data(2) As String
+    Dim LineFromFile As String
+    Dim fieldArray() As String
+    Dim j As Integer
+
+    FilePath = "S:\網通部\◎資訊\目標達成比\實體通路\" & "實體通路協助小天使.txt"  '文字檔案位置
+    Open FilePath For Input As #1 '開啟 FilePath 文字檔，使用編號 #1 檔案代碼
+    Do Until EOF(1) '執行迴圈，直到編號 #1 檔案遇到結尾為止
+        Line Input #1, LineFromFile '從編號 #1 檔案讀取一行資料
+
+        result = CStr(LineFromFile) '輸出一行資料
+        fieldArray = Split(result, "-")
+        For j = 0 To ArrayLen(fieldArray) - 1
+            If fieldArray(0) = SalesmanName Then
+                getAssistant = fieldArray(1)
+            End If
+        
+        Next j
+
+    Loop
+
+    Close #1 '關閉編號 #1 檔案
+End Function
+
+Function getProductID(DataRow As Integer, FileName As String) As String
+    Dim sum As Integer
+    Dim temp As Integer
+    sum = 0
+    Dim index As Integer
+    'Dim filename As String
+    'COPR2320200813000187202008130001
+    'FileName = "S:\網通部\◎資訊\目標達成比\實體通路\202008月實體通路機具.xlsx"
+    'filename = "S:\網通部\◎資訊\目標達成比\實體通路\COPR2320200923000041202009230001.XLSX"
+    'FileName = "C:\MyDocu~1\COPR2320200922000035202009220001.xlsx"
+    'filename = "S:\網通部\◎資訊\目標達成比\實體通路\COPR2320200813000187202008130001.xlsx"
+    Dim sn As Object
+    Set sn = Excel.Application
+    
+    If getWbNameIndex(FileName) = 0 Then
+        sn.WorkBooks.Open FileName
+    End If
+    Set sn = Nothing
+    With WorkBooks(Application.WorkBooks(getWbNameIndex(FileName)).Name).Worksheets(1).range("A:A")
+        index = Val(DataRow)
+        Do
+            If range("A" & index).Value <> "" And index Mod 2 = 0 Then
+                getProductID = range("A" & index).Value
+                Exit Function
+            End If
+            index = index - 1
+        Loop While index <> 1
+    End With
+    
+End Function
+
+Function getWbNameIndex(full_name As String) As Integer
+    Dim i As String
+    i = 1
+    Dim w As Workbook
+    
+    For Each w In WorkBooks
+        If w.fullname = full_name Then
+            getWbNameIndex = i
+        End If
+        i = i + 1
+    Next
+End Function
