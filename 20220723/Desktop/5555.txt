@@ -1,1 +1,0 @@
-﻿SELECT id, product_name, customer_code, customer_name, sale_date, sales_number, sales_quantity FROM (SELECT * FROM sq where sale_date = '2022/06/20' And salesman = '李永齊' ORDER BY sales_number ASC) as tb1 ORDER BY customer_code ASC;

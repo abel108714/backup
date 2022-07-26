@@ -1,1 +1,0 @@
-C:\auto\GetSDPic.py
